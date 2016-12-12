@@ -211,8 +211,26 @@ print("zero!")
 
 
 // Example 12 - Nested Functions
+func selectStepFunction(backward: Bool) -> (Int) -> Int {
+    func stepForward(input: Int) -> Int {
+        return input + 1
+    }
+    
+    func stepBackward(input: Int) -> Int {
+        return input - 1
+    }
+    
+    return backward ? stepBackward : stepForward
+}
 
-
+var theCurrentValue = -4
+let movingNearerToZero = selectStepFunction(backward: theCurrentValue > 0)
+//movingNearerToZero now refers to the nested stepForward function
+while theCurrentValue != 0 {
+    print("\(theCurrentValue)...")
+    theCurrentValue = movingNearerToZero(theCurrentValue)
+}
+print("zero!")
 
 
 
