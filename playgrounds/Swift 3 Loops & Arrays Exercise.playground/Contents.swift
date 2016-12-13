@@ -36,15 +36,27 @@ sandwichOptions.insert("Philly CheeseSteak", at: 2)
 
 // EXERCISE LOOPS
 //1) Create an empty array of type Int called oddNumbers
-
+var oddNumbers = [Int]()
 
 //2) Using a standard for-in loop add all odd numbers less than or equal to 100 to the oddNumbers array
-
+for number in 0...100 {
+    if number % 2 != 0 {
+        oddNumbers.append(number)
+    }
+}
 
 //3) Create a second array called sums of type Int
-
+var sums = [Int]()
 
 //4) Using a for-in, iterate through oddNumbers array and add the current iteration value + 5 to the sums array
-
+for oddNumber in oddNumbers {
+    sums.append(oddNumber + 5)
+}
 
 //5) Using a repeat while loop, iterate through the sums array and print "The sum is: x" where x is the current value of the iteration (ie The sum is: 15)
+var index = 0
+repeat {
+    print("The sum is: \(sums[index])")
+    index += 1
+} while (index < sums.count)
+
