@@ -8,7 +8,7 @@ func combineArrays(firstArray: [Any], secondArray: [Any]) -> Any {
     // Declare and initialize a new empty array to hold all elements from arrays passed into this function
     var comboArray = [Any]()
     
-    // Check if both arrays have the same number of elements, otherwise print a message that tells user the arrays don't have equal numbers of elements
+    // Check if both arrays have the same number of elements, otherwise prints and returns a message to the console that tells user the arrays don't have equal numbers of elements.
     if firstArray.count == secondArray.count {
     // Use an enumerated for-each loop to go through the array elements in the first array
         for (index, element) in firstArray.enumerated() {
@@ -17,11 +17,12 @@ func combineArrays(firstArray: [Any], secondArray: [Any]) -> Any {
             // Append the retrieved element using the array subscript syntax from the secondArray with the current index
             comboArray.append(secondArray[index])
         }
-    } else {
+        return comboArray
+    }
+    else {
+        print("Arrays are not equal in count. Try again.")
         return "Arrays are not equal in count. Try again."
     }
-    
-    return comboArray
 }
 
 //Test #1 using two arrays of strings
