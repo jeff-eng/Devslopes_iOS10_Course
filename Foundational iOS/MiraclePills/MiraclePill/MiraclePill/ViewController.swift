@@ -10,9 +10,16 @@ import UIKit
 
 class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
 
+    // MARK: IBOutlets & Properties
     @IBOutlet weak var statePicker: UIPickerView!
     @IBOutlet weak var statePickerBtn: UIButton!
-
+    
+    @IBOutlet weak var zipCodeLabel: UILabel!
+    @IBOutlet weak var zipCodeTextField: UITextField!
+    
+    @IBOutlet weak var countryLabel: UILabel!
+    @IBOutlet weak var countryTextField: UITextField!
+    
     // Create a list of states using an array (an array is the most simple and logical data structure to organize a list of states)
     let states = ["Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming"]
     
@@ -27,11 +34,21 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         // Dispose of any resources that can be recreated.
     }
 
+    // MARK: Actions
+    
     @IBAction func stateBtnPressed(_ sender: Any) {
         // Show the picker when button pressed
         statePicker.isHidden = false
+        // Hide the zip code label and text field.
+        zipCodeLabel.isHidden = true
+        zipCodeTextField.isHidden = true
+        // Hide the country label and text field
+        countryLabel.isHidden = true
+        countryLabel.isHidden = true
     }
 
+    // MARK: Methods
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         // Returning 1 because we only want a single(1) column of states to pick through.
         return 1
