@@ -39,9 +39,11 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     @IBAction func stateBtnPressed(_ sender: Any) {
         // Show the picker when button pressed
         statePicker.isHidden = false
+        
         // Hide the zip code label and text field.
         zipCodeLabel.isHidden = true
         zipCodeTextField.isHidden = true
+        
         // Hide the country label and text field
         countryLabel.isHidden = true
         countryTextField.isHidden = true
@@ -68,6 +70,15 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         
         // Hide the state picker after state is selected.
         statePicker.isHidden = true
+        
+        // Show the zip code label and text field.
+        zipCodeLabel.isHidden = false
+        zipCodeTextField.isHidden = false
+        
+        // Show the country label and text field.
+        countryLabel.isHidden = false
+        countryTextField.isHidden = false
+        
     }
 }
 
