@@ -44,7 +44,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         zipCodeTextField.isHidden = true
         // Hide the country label and text field
         countryLabel.isHidden = true
-        countryLabel.isHidden = true
+        countryTextField.isHidden = true
     }
 
     // MARK: Methods
