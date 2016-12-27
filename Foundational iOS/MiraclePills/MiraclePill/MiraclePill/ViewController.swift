@@ -20,6 +20,8 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     @IBOutlet weak var countryLabel: UILabel!
     @IBOutlet weak var countryTextField: UITextField!
     
+
+    
     // Create a list of states using an array (an array is the most simple and logical data structure to organize a list of states)
     let states = ["Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming"]
     
@@ -49,6 +51,11 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         countryTextField.isHidden = true
     }
 
+    @IBAction func buyNowBtn(_ sender: UIButton) {
+    
+    }
+    
+    
     // MARK: Methods
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
