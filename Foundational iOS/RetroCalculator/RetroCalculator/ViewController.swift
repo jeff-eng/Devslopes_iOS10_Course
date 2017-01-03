@@ -2,7 +2,7 @@
 //  ViewController.swift
 //  RetroCalculator
 //
-//  Created by Jeffrey Eng on 1/2/17.
+//  Created by Jeffrey Eng on 1/3/17.
 //  Copyright © 2017 Jeffrey Eng. All rights reserved.
 //
 
