@@ -10,8 +10,10 @@ import UIKit
 import AVFoundation
 
 class ViewController: UIViewController {
+    @IBOutlet weak var outputLbl: UILabel!
 
     var btnSound: AVAudioPlayer!
+    var runningNumber = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +31,12 @@ class ViewController: UIViewController {
 
     @IBAction func numberPressed(sender: UIButton) {
         playSound()
+        
+        // Create running number so when user taps on number, that number is appended to the end of the runningNumber string variable
+        runningNumber += "\(sender.tag)"
+        
+        // Display the runningNumber in the output label. Access the outputLbl text property and set it equal to the runningNumber variable
+        outputLbl.text = runningNumber
     }
     
     func playSound() {
