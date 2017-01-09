@@ -77,6 +77,22 @@ class ViewController: UIViewController {
         processOperation(operation: currentOperation)
     }
     
+    @IBAction func clearBtnPressed(sender: AnyObject) {
+        // Play sound when clear button pressed
+        playSound()
+        
+        // Reset the properties
+        runningNumber = ""
+        currentOperation = Operation.Empty
+        leftValStr = ""
+        rightValStr = ""
+        result = ""
+        
+        // Set the output label's text to the result property which is reset to empty String
+        outputLbl.text = result
+    }
+    
+    
     // MARK: Methods
     
     func playSound() {
@@ -121,6 +137,5 @@ class ViewController: UIViewController {
             currentOperation = operation
         }
     }
-    
 }
 
