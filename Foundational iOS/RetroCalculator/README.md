@@ -10,12 +10,12 @@
 * Using control flow with if-else statements to program app logic
 * Error handling with do-catch statements:
   ```Swift
-        do {
-            try btnSound = AVAudioPlayer(contentsOf: soundURL)
+    do {
+      try btnSound = AVAudioPlayer(contentsOf: soundURL)
             btnSound.prepareToPlay()
-        } catch let err as NSError {
-            print(err.debugDescription)
-        }
+    } catch let err as NSError {
+      print(err.debugDescription)
+    }
   ```
   * The do-statement will attempt to run the code but if it fails, the catch statement will run.
 * Creating a launch screen
