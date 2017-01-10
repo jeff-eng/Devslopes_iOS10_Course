@@ -14,6 +14,8 @@
 		953DCC2D1E244D05007C6C6B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 953DCC2B1E244D05007C6C6B /* LaunchScreen.storyboard */; };
 		953DCC381E245C18007C6C6B /* still time.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 953DCC371E245C18007C6C6B /* still time.ttf */; };
 		953DCC3B1E245E4F007C6C6B /* VideoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953DCC3A1E245E4F007C6C6B /* VideoVC.swift */; };
+		953DCC3D1E255EB7007C6C6B /* PartyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953DCC3C1E255EB7007C6C6B /* PartyCell.swift */; };
+		953DCC3F1E2566D9007C6C6B /* PartyRock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953DCC3E1E2566D9007C6C6B /* PartyRock.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		953DCC2E1E244D05007C6C6B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		953DCC371E245C18007C6C6B /* still time.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "still time.ttf"; path = "PartyRockApp/still time.ttf"; sourceTree = "<group>"; };
 		953DCC3A1E245E4F007C6C6B /* VideoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoVC.swift; sourceTree = "<group>"; };
+		953DCC3C1E255EB7007C6C6B /* PartyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartyCell.swift; sourceTree = "<group>"; };
+		953DCC3E1E2566D9007C6C6B /* PartyRock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartyRock.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +87,7 @@
 		953DCC351E244F6A007C6C6B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				953DCC3C1E255EB7007C6C6B /* PartyCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -90,6 +95,7 @@
 		953DCC361E244F73007C6C6B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				953DCC3E1E2566D9007C6C6B /* PartyRock.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -179,6 +185,8 @@
 			files = (
 				953DCC3B1E245E4F007C6C6B /* VideoVC.swift in Sources */,
 				953DCC251E244D05007C6C6B /* MainVC.swift in Sources */,
+				953DCC3F1E2566D9007C6C6B /* PartyRock.swift in Sources */,
+				953DCC3D1E255EB7007C6C6B /* PartyCell.swift in Sources */,
 				953DCC231E244D05007C6C6B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -343,6 +351,7 @@
 				953DCC331E244D05007C6C6B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
