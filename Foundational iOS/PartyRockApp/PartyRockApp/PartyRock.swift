@@ -16,6 +16,7 @@ class PartyRock {
     private var _videoTitle: String!
     
     // MARK: Getters
+    // The purpose of Getters here is to prevent outside classes from manipulating the data in this class.
     var imageURL: String {
         return _imageURL
     }
@@ -29,6 +30,7 @@ class PartyRock {
     }
     
     // MARK: Initializer
+    // Pass in the imageURL, videoURL, and videoTitle data whenever an instance of PartyRock is created.
     init(imageURL: String, videoURL: String, videoTitle: String) {
         _imageURL = imageURL
         _videoURL = videoURL
