@@ -11,5 +11,11 @@ import CoreData
 
 
 public class Item: NSManagedObject {
-
+    public override func awakeFromInsert() {
+        
+        super.awakeFromInsert()
+        
+        // Create a timestamp for an Item by assign the current date to the 'created' attribute for an Item
+        self.created = NSDate()
+    }
 }
