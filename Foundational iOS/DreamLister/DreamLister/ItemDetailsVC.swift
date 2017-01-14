@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class ItemDetailsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
@@ -29,6 +30,27 @@ class ItemDetailsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSou
         // Set the storePicker's delegate and dataSource to this view controller
         storePicker.delegate = self
         storePicker.dataSource = self
+        
+        // Create a list of stores that will be saved in Core Data - Test Data
+        let store = Store(context: context)
+        store.name = "Best Buy"
+        
+        let store2 = Store(context: context)
+        store.name = "Tesla Dealership"
+        
+        let store3 = Store(context: context)
+        store.name = "Frys Electronics"
+        
+        let store4 = Store(context: context)
+        store.name = "Target"
+        
+        let store5 = Store(context: context)
+        store.name = "Amazon"
+        
+        let store6 = Store(context: context)
+        store.name = "Apple Store"
+        
+        ad.saveContext()
     }
 
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
@@ -49,5 +71,18 @@ class ItemDetailsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSou
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         // update when selected
+    }
+    
+    func getStores() {
+        let fetchRequest: NSFetchRequest<Store> = Store.fetchRequest()
+        
+        do {
+            // set the stores array equal to the result we get back
+            self.stores = try context.fetch(fetchRequest)
+            // reload the store picker to ensure it's updated
+            self.storePicker.reloadAllComponents()
+        } catch {
+            // handle the error
+        }
     }
 }
