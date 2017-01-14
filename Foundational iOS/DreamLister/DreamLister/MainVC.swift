@@ -23,7 +23,7 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFe
         tableView.dataSource = self
         
         //Generate our test data for purpose of testing the app
-//        generateTestData()
+        generateTestData()
         
         attemptFetch()
     }
