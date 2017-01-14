@@ -31,26 +31,27 @@ class ItemDetailsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSou
         storePicker.delegate = self
         storePicker.dataSource = self
         
-        // Create a list of stores that will be saved in Core Data - Test Data
-        let store = Store(context: context)
-        store.name = "Best Buy"
-        
-        let store2 = Store(context: context)
-        store.name = "Tesla Dealership"
-        
-        let store3 = Store(context: context)
-        store.name = "Frys Electronics"
-        
-        let store4 = Store(context: context)
-        store.name = "Target"
-        
-        let store5 = Store(context: context)
-        store.name = "Amazon"
-        
-        let store6 = Store(context: context)
-        store.name = "Apple Store"
-        
-        ad.saveContext()
+//        // Create a list of stores that will be saved in Core Data - Test Data
+//        let store = Store(context: context)
+//        store.name = "Best Buy"
+//        
+//        let store2 = Store(context: context)
+//        store2.name = "Tesla Dealership"
+//        
+//        let store3 = Store(context: context)
+//        store3.name = "Frys Electronics"
+//        
+//        let store4 = Store(context: context)
+//        store4.name = "Target"
+//        
+//        let store5 = Store(context: context)
+//        store5.name = "Amazon"
+//        
+//        let store6 = Store(context: context)
+//        store6.name = "Apple Store"
+//        
+//        ad.saveContext()
+        getStores()
     }
 
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
