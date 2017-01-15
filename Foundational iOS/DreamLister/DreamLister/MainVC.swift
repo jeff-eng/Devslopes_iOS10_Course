@@ -23,7 +23,7 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFe
         tableView.dataSource = self
         
         //Generate our test data for purpose of testing the app
-        generateTestData()
+//        generateTestData()
         
         attemptFetch()
     }
@@ -78,6 +78,9 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFe
         
         //Instantiate the Fetched Results Controller - pass in which fetch request we're working with(fetching Items); context comes from app delegate
         let controller = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+        
+        // Need set the delegate to 'self' so the methods created below can listen for updates to the data and update the table view.
+        controller.delegate = self
         
         self.controller = controller
         
