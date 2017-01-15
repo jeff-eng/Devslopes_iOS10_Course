@@ -96,8 +96,14 @@ class ItemDetailsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSou
     }
     
     @IBAction func savePressed(_ sender: UIButton) {
-        //Insert entity into the NSManagedObjectContext
-        let item = Item(context: context)
+        var item: Item!
+        
+        if itemToEdit == nil {
+            // Insert new item if itemToEdit isn't currently assigned to an item
+            item = Item(context: context)
+        } else {
+            item = itemToEdit
+        }
         
         //Assign the data from the text fields to the entity.
         if let title = titleField.text {
