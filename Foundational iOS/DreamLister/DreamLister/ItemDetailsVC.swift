@@ -147,4 +147,16 @@ class ItemDetailsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSou
             }
         }
     }
+    
+    @IBAction func deletePressed(_ sender: UIBarButtonItem) {
+        // Delete if there is item to edit exists
+        if itemToEdit != nil {
+            context.delete(itemToEdit!)
+            ad.saveContext()
+        }
+        
+        // Dismiss the ItemDetailsVC and pop off navigation stack when delete button pressed
+        _ = navigationController?.popViewController(animated: true)
+    }
+    
 }
