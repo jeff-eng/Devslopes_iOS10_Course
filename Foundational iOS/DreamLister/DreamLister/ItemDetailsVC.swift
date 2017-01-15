@@ -86,4 +86,30 @@ class ItemDetailsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSou
             // handle the error
         }
     }
+    
+    @IBAction func savePressed(_ sender: UIButton) {
+        //Insert entity into the NSManagedObjectContext
+        let item = Item(context: context)
+        
+        //Assign the data from the text fields to the entity.
+        if let title = titleField.text {
+            //Assign the value from the text field to the Item's attribute
+            item.title = title
+        }
+        if let price = priceField.text {
+            item.price = (price as NSString).doubleValue
+        }
+        if let details = detailsField.text {
+            item.details = details
+        }
+        
+        // Setting the store attribute to the selected one in the storePicker
+        item.toStore = stores[storePicker.selectedRow(inComponent: 0)]
+        
+        // Save
+        ad.saveContext()
+        
+        // After save button is pressed, dismiss VC and pop it off navigation stack
+        _ = navigationController?.popViewController(animated: true)
+    }
 }
