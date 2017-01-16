@@ -92,8 +92,21 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFe
         let fetchRequest: NSFetchRequest<Item> = Item.fetchRequest()
         // Sorting by date using the created attribute
         let dateSort = NSSortDescriptor(key: "created", ascending: false)
-        // Sort descriptors expects an array
-        fetchRequest.sortDescriptors = [dateSort]
+        // Sorting by price using the price attribute
+        let priceSort = NSSortDescriptor(key: "price", ascending: true)
+        // Sorting by title using the title attribute
+        let titleSort = NSSortDescriptor(key: "title", ascending: true)
+        
+        let indexOfSegment = segment.selectedSegmentIndex
+        if indexOfSegment == 0 {
+            // Sort descriptors expects an array
+            fetchRequest.sortDescriptors = [dateSort]
+        } else if indexOfSegment == 1 {
+            fetchRequest.sortDescriptors = [priceSort]
+        } else if indexOfSegment == 2 {
+            fetchRequest.sortDescriptors = [titleSort]
+        }
+        
         
         //Instantiate the Fetched Results Controller - pass in which fetch request we're working with(fetching Items); context comes from app delegate
         let controller = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
@@ -110,6 +123,14 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFe
             let error = error as NSError
             print("\(error)")
         }
+    }
+    
+    
+    @IBAction func segmentChange(_ sender: Any) {
+        // When segment control is changed, call attemptFetch method and sort the items
+        attemptFetch()
+        // Reload the table view to display the new sort
+        tableView.reloadData()
     }
     
     // Whenever the table view is about to update, this method listens for changes and will update the table view for you.
