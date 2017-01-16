@@ -160,7 +160,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imagePick" translatesAutoresizingMaskIntoConstraints="NO" id="MEM-vr-RTf">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imagePick" translatesAutoresizingMaskIntoConstraints="NO" id="MEM-vr-RTf">
                                 <rect key="frame" x="16" y="72" width="100" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="bjT-wZ-9h4"/>
@@ -173,6 +173,9 @@
                                     <constraint firstAttribute="width" constant="100" id="Vbw-KN-AYG"/>
                                     <constraint firstAttribute="height" constant="100" id="c17-bx-Js1"/>
                                 </constraints>
+                                <connections>
+                                    <action selector="addImage:" destination="nni-hR-H3H" eventType="touchUpInside" id="96n-fP-Lko"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5bV-7D-frD" customClass="CustomTextField" customModule="DreamLister" customModuleProvider="target">
                                 <rect key="frame" x="124" y="82" width="235" height="40"/>
@@ -192,7 +195,7 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Details" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cSB-rz-ldZ" customClass="CustomTextField" customModule="DreamLister" customModuleProvider="target">
                                 <rect key="frame" x="16" y="182" width="343" height="60"/>
@@ -272,6 +275,7 @@
                         <outlet property="detailsField" destination="cSB-rz-ldZ" id="ibF-l3-FZu"/>
                         <outlet property="priceField" destination="hgp-6S-CLr" id="PBc-KT-QGU"/>
                         <outlet property="storePicker" destination="Bkd-Zt-JDD" id="iCN-jb-lhd"/>
+                        <outlet property="thumbImg" destination="MEM-vr-RTf" id="oBd-sR-5SG"/>
                         <outlet property="titleField" destination="5bV-7D-frD" id="pbz-0k-Uk9"/>
                     </connections>
                 </viewController>
