@@ -19,6 +19,8 @@ class ItemDetailsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSou
     
     // Array to hold a list of the Store entities
     var stores = [Store]()
+    // Array to hold a list of the ItemType entities
+    var itemTypes = [ItemType]()
     
     // Property to save and reference current item being edited.
     var itemToEdit: Item?
@@ -62,6 +64,7 @@ class ItemDetailsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSou
 //        
 //        ad.saveContext()
         getStores()
+        getItemTypes()
         
         // Load the Item data if there is an item to edit
         if itemToEdit != nil {
@@ -71,18 +74,27 @@ class ItemDetailsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSou
 
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
-        let store = stores[row]
-        return store.name
+        if component == 0 {
+            let store = stores[row]
+            return store.name
+        } else {
+            let item = itemTypes[row]
+            return item.type
+        }
     }
 
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         // We want to return the number of stores in the array
-        return stores.count
+        if component == 0 {
+            return stores.count
+        } else {
+            return itemTypes.count
+        }
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         // Return only one column
-        return 1
+        return 2
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
@@ -96,6 +108,17 @@ class ItemDetailsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSou
             // set the stores array equal to the result we get back
             self.stores = try context.fetch(fetchRequest)
             // reload the store picker to ensure it's updated
+            self.storePicker.reloadAllComponents()
+        } catch {
+            // handle the error
+        }
+    }
+
+    func getItemTypes() {
+        let fetchRequest: NSFetchRequest<ItemType> = ItemType.fetchRequest()
+        
+        do {
+            self.itemTypes = try context.fetch(fetchRequest)
             self.storePicker.reloadAllComponents()
         } catch {
             // handle the error
