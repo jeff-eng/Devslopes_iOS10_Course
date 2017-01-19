@@ -224,5 +224,4 @@ class ItemDetailsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSou
         // Dismiss the Image Picker Controller after selection
         imagePicker.dismiss(animated: true, completion: nil)
     }
-    
 }
