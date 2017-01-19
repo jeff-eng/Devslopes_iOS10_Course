@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -231,10 +232,20 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Store" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LUQ-Wf-Gaq">
-                                <rect key="frame" x="140.5" y="354" width="94" height="21"/>
+                                <rect key="frame" x="47" y="354" width="94" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="94" id="52p-aT-1zd"/>
                                     <constraint firstAttribute="height" constant="21" id="PW0-cQ-OFD"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z0A-AY-RvN">
+                                <rect key="frame" x="234.5" y="354" width="94" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="94" id="2EH-Zp-BXv"/>
+                                    <constraint firstAttribute="height" constant="21" id="7aK-ej-quG"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -248,6 +259,7 @@
                             <constraint firstItem="MEM-vr-RTf" firstAttribute="leading" secondItem="DGm-pE-n9v" secondAttribute="leadingMargin" id="AW3-Rs-DhS"/>
                             <constraint firstItem="njB-m1-lYx" firstAttribute="top" secondItem="Bkd-Zt-JDD" secondAttribute="bottom" constant="8" id="DUu-vG-BYt"/>
                             <constraint firstItem="cSB-rz-ldZ" firstAttribute="leading" secondItem="DGm-pE-n9v" secondAttribute="leadingMargin" id="MSB-hs-jPo"/>
+                            <constraint firstItem="Z0A-AY-RvN" firstAttribute="centerX" secondItem="DGm-pE-n9v" secondAttribute="centerX" multiplier="1.5" id="RKo-bU-yDc"/>
                             <constraint firstItem="WoC-dU-ntL" firstAttribute="centerY" secondItem="MEM-vr-RTf" secondAttribute="centerY" id="SaT-IO-gPk"/>
                             <constraint firstItem="Bkd-Zt-JDD" firstAttribute="leading" secondItem="DGm-pE-n9v" secondAttribute="leadingMargin" id="Tng-pd-G9m"/>
                             <constraint firstItem="5bV-7D-frD" firstAttribute="trailing" secondItem="DGm-pE-n9v" secondAttribute="trailingMargin" id="VUA-os-Wgk"/>
@@ -257,12 +269,13 @@
                             <constraint firstItem="cSB-rz-ldZ" firstAttribute="trailing" secondItem="DGm-pE-n9v" secondAttribute="trailingMargin" id="Zpy-N2-UtR"/>
                             <constraint firstItem="cSB-rz-ldZ" firstAttribute="top" secondItem="hgp-6S-CLr" secondAttribute="bottom" constant="10" id="dib-VC-BY3"/>
                             <constraint firstItem="5bV-7D-frD" firstAttribute="leading" secondItem="WoC-dU-ntL" secondAttribute="trailing" constant="8" id="eRv-39-Jm0"/>
+                            <constraint firstItem="Bkd-Zt-JDD" firstAttribute="top" secondItem="Z0A-AY-RvN" secondAttribute="bottom" constant="8" id="gUo-Ma-sg0"/>
                             <constraint firstItem="Bkd-Zt-JDD" firstAttribute="top" secondItem="LUQ-Wf-Gaq" secondAttribute="bottom" constant="8" id="kRb-Q3-vWF"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Bkd-Zt-JDD" secondAttribute="trailing" id="kil-UW-uVm"/>
                             <constraint firstItem="hgp-6S-CLr" firstAttribute="top" secondItem="5bV-7D-frD" secondAttribute="bottom" constant="10" id="lMj-jW-aS0"/>
                             <constraint firstItem="hgp-6S-CLr" firstAttribute="trailing" secondItem="DGm-pE-n9v" secondAttribute="trailingMargin" id="o4n-l1-gmI"/>
                             <constraint firstItem="MEM-vr-RTf" firstAttribute="top" secondItem="wFR-8P-ZDE" secondAttribute="bottom" constant="8" id="ol0-gi-dR2"/>
-                            <constraint firstItem="LUQ-Wf-Gaq" firstAttribute="centerX" secondItem="DGm-pE-n9v" secondAttribute="centerX" id="rTV-ZI-3oP"/>
+                            <constraint firstItem="LUQ-Wf-Gaq" firstAttribute="centerX" secondItem="DGm-pE-n9v" secondAttribute="centerX" multiplier="0.5" id="rTV-ZI-3oP"/>
                             <constraint firstItem="njB-m1-lYx" firstAttribute="trailing" secondItem="DGm-pE-n9v" secondAttribute="trailingMargin" id="yOg-nu-nXG"/>
                         </constraints>
                     </view>
