@@ -96,6 +96,8 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFe
         let priceSort = NSSortDescriptor(key: "price", ascending: true)
         // Sorting by title using the title attribute
         let titleSort = NSSortDescriptor(key: "title", ascending: true)
+        // Sorting by type by accessing the toItemType relationship of Item, then accessing the type attribute on the ItemType entity
+        let typeSort = NSSortDescriptor(key: "toItemType.type", ascending: true)
         
         let indexOfSegment = segment.selectedSegmentIndex
         if indexOfSegment == 0 {
@@ -105,8 +107,9 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFe
             fetchRequest.sortDescriptors = [priceSort]
         } else if indexOfSegment == 2 {
             fetchRequest.sortDescriptors = [titleSort]
+        } else if indexOfSegment == 3 {
+            fetchRequest.sortDescriptors = [typeSort]
         }
-        
         
         //Instantiate the Fetched Results Controller - pass in which fetch request we're working with(fetching Items); context comes from app delegate
         let controller = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
@@ -124,7 +127,6 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFe
             print("\(error)")
         }
     }
-    
     
     @IBAction func segmentChange(_ sender: Any) {
         // When segment control is changed, call attemptFetch method and sort the items
@@ -198,4 +200,3 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFe
         ad.saveContext()
     }
 }
-

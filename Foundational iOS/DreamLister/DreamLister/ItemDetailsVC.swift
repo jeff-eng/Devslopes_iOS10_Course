@@ -19,6 +19,8 @@ class ItemDetailsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSou
     
     // Array to hold a list of the Store entities
     var stores = [Store]()
+    // Array to hold a list of the ItemType entities
+    var itemTypes = [ItemType]()
     
     // Property to save and reference current item being edited.
     var itemToEdit: Item?
@@ -62,6 +64,7 @@ class ItemDetailsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSou
 //        
 //        ad.saveContext()
         getStores()
+        getItemTypes()
         
         // Load the Item data if there is an item to edit
         if itemToEdit != nil {
@@ -70,23 +73,32 @@ class ItemDetailsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSou
     }
 
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        
-        let store = stores[row]
-        return store.name
+        // Populate the picker views with Store names and Item Types
+        if component == 0 {
+            let store = stores[row]
+            return store.name
+        } else {
+            let item = itemTypes[row]
+            return item.type
+        }
     }
 
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        // We want to return the number of stores in the array
-        return stores.count
+        // We want to return the number of stores in each array
+        if component == 0 {
+            return stores.count
+        } else {
+            return itemTypes.count
+        }
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        // Return only one column
-        return 1
+        // Return two columns - first column is Stores, second column is Item Types
+        return 2
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        // update when selected
+        // This method is triggered whenever the user makes a change to the picker selection.
     }
     
     func getStores() {
@@ -96,6 +108,17 @@ class ItemDetailsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSou
             // set the stores array equal to the result we get back
             self.stores = try context.fetch(fetchRequest)
             // reload the store picker to ensure it's updated
+            self.storePicker.reloadAllComponents()
+        } catch {
+            // handle the error
+        }
+    }
+
+    func getItemTypes() {
+        let fetchRequest: NSFetchRequest<ItemType> = ItemType.fetchRequest()
+        
+        do {
+            self.itemTypes = try context.fetch(fetchRequest)
             self.storePicker.reloadAllComponents()
         } catch {
             // handle the error
@@ -134,7 +157,8 @@ class ItemDetailsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSou
         
         // Setting the store attribute to the selected one in the storePicker
         item.toStore = stores[storePicker.selectedRow(inComponent: 0)]
-        
+        // Setting the item type attribute to the selected one in the storePicker
+        item.toItemType = itemTypes[storePicker.selectedRow(inComponent: 1)]
         // Save
         ad.saveContext()
         
@@ -160,6 +184,18 @@ class ItemDetailsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSou
                     }
                     index += 1
                 } while index < stores.count
+            }
+            
+            if let itemType = item.toItemType {
+                var index = 0
+                repeat {
+                    let i = itemTypes[index]
+                    if i.type == itemType.type {
+                        storePicker.selectRow(index, inComponent: 1, animated: false)
+                        break
+                    }
+                    index += 1
+                } while index < itemTypes.count
             }
         }
     }
@@ -188,5 +224,4 @@ class ItemDetailsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSou
         // Dismiss the Image Picker Controller after selection
         imagePicker.dismiss(animated: true, completion: nil)
     }
-    
 }
