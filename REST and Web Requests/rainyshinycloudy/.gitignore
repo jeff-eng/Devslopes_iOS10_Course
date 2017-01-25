@@ -1,0 +1,2 @@
+# Ignore the Openweather API key so it's not sent to Github:
+APIkey.swift
