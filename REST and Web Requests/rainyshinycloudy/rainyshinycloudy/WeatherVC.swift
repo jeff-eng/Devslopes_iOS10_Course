@@ -17,6 +17,7 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var tableView: UITableView!
 
     var currentWeather: CurrentWeather!
+    var forecastCell: ForecastCell!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +26,7 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         tableView.dataSource = self
         
         currentWeather = CurrentWeather()
+        forecastCell = ForecastCell()
         // Calls the downloadWeatherDetails method. Once downloadWeatherDetails completes, updateMainUI is called inside the closure to update the screen with the weather details.
         currentWeather.downloadWeatherDetails {
             self.updateMainUI()
