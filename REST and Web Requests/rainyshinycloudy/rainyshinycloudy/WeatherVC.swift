@@ -25,8 +25,9 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         tableView.dataSource = self
         
         currentWeather = CurrentWeather()
+        // Calls the downloadWeatherDetails method. Once downloadWeatherDetails completes, updateMainUI is called inside the closure to update the screen with the weather details.
         currentWeather.downloadWeatherDetails {
-            //Setup UI to load downloaded data
+            self.updateMainUI()
         }
     }
 
@@ -49,7 +50,7 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         currentTempLabel.text = "\(currentWeather.currentTemp)"
         currentWeatherTypeLabel.text = currentWeather.weatherType
         locationLabel.text = currentWeather.cityName
-        
+        currentWeatherImage.image = UIImage(named: currentWeather.weatherType)
     }
 }
 

@@ -55,7 +55,7 @@ class CurrentWeather {
     }
     
     // MARK: Method(s)
-    func downloadWeatherDetails(completed: DownloadComplete) {
+    func downloadWeatherDetails(completed: @escaping DownloadComplete) {
         //Download Current Weather Data using GET request, followed by a closure
         Alamofire.request(CURRENT_WEATHER_URL).responseJSON { response in
             let result = response.result
@@ -88,8 +88,8 @@ class CurrentWeather {
                     }
                 }
             }
+            completed()
         }
-        completed()
     }
     
     // Separate method to convert kelvin to fahrenheit and round to nearest tenth
