@@ -41,13 +41,21 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
+        // Since the forecasts array is a property of the forecast instance above, we have to access it using dot notation and then get the count
+        return forecast.forecasts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "weatherCell", for: indexPath)
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "weatherCell", for: indexPath) as? WeatherCell {
+            
+            let forecastFromArray = forecast.forecasts[indexPath.row]
+            cell.configureCell(forecast: forecastFromArray)
+            return cell
+        } else {
+            // Returns an empty WeatherCell object in case of failure to retrieve a forecast
+            return WeatherCell()
+        }
         
-        return cell
     }
     
     func updateMainUI() {

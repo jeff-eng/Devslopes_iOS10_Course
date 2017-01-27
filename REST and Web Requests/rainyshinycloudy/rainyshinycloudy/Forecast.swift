@@ -18,7 +18,7 @@ class Forecast {
     private var _lowTemp: String!
     
     // MARK: Forecast Objects array
-    static var forecasts = [Forecast]()
+    var forecasts = [Forecast]()
     
     // MARK: Getters
     var date: String {
@@ -54,11 +54,11 @@ class Forecast {
         if let temp = weatherDict["temp"] as? Dictionary<String, AnyObject> {
             
             if let min = temp["min"] as? Double {
-                self._lowTemp = "\(roundToTenths(min.toFahrenheit))"
+                self._lowTemp = "\(roundToTenths(min.toFahrenheit))°"
             }
             
             if let max = temp["max"] as? Double {
-                self._highTemp = "\(roundToTenths(max.toFahrenheit))"
+                self._highTemp = "\(roundToTenths(max.toFahrenheit))°"
             }
         }
         
@@ -92,11 +92,11 @@ class Forecast {
                     for obj in list {
                         let forecast = Forecast()
                         forecast.parseData(from: obj)
-                        Forecast.forecasts.append(forecast)
+                        self.forecasts.append(forecast)
                         print(obj)
                     }
-                    // We do not need the information for today, so we will ignore it
-                    Forecast.forecasts.remove(at: 0)
+                    // Remove the first item in the forecasts array since we already have the current weather for the day
+                    self.forecasts.remove(at: 0)
                 }
             }
             completed()

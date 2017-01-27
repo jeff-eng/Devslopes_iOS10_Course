@@ -21,6 +21,7 @@
 		95E13CC51E3A7823008A0517 /* Forecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E13CC41E3A7823008A0517 /* Forecast.swift */; };
 		95E13CC81E3AEF5D008A0517 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E13CC71E3AEF5D008A0517 /* Date.swift */; };
 		95E13CCA1E3AF5C3008A0517 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E13CC91E3AF5C3008A0517 /* Double.swift */; };
+		95E13CCC1E3BD80F008A0517 /* WeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E13CCB1E3BD80F008A0517 /* WeatherCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		95E13CC41E3A7823008A0517 /* Forecast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Forecast.swift; sourceTree = "<group>"; };
 		95E13CC71E3AEF5D008A0517 /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		95E13CC91E3AF5C3008A0517 /* Double.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
+		95E13CCB1E3BD80F008A0517 /* WeatherCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherCell.swift; sourceTree = "<group>"; };
 		A17D493243A8495D2B4CC5CE /* Pods-rainyshinycloudy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rainyshinycloudy.release.xcconfig"; path = "Pods/Target Support Files/Pods-rainyshinycloudy/Pods-rainyshinycloudy.release.xcconfig"; sourceTree = "<group>"; };
 		F8E3BBF69C1447134BE7BE21 /* Pods-rainyshinycloudy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rainyshinycloudy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-rainyshinycloudy/Pods-rainyshinycloudy.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -186,6 +188,7 @@
 		95E13CC31E382570008A0517 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				95E13CCB1E3BD80F008A0517 /* WeatherCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -389,6 +392,7 @@
 			files = (
 				950B56A51E36907B002EAAEF /* WeatherVC.swift in Sources */,
 				95E13CC01E3824D0008A0517 /* CurrentWeather.swift in Sources */,
+				95E13CCC1E3BD80F008A0517 /* WeatherCell.swift in Sources */,
 				95E13CC81E3AEF5D008A0517 /* Date.swift in Sources */,
 				95E13CCA1E3AF5C3008A0517 /* Double.swift in Sources */,
 				950B56A31E36907B002EAAEF /* AppDelegate.swift in Sources */,
