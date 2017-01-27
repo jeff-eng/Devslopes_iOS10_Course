@@ -95,6 +95,8 @@ class Forecast {
                         self.forecasts.append(forecast)
                         print(obj)
                     }
+                    // Remove the first item in the forecasts array since we already have the current weather for the day
+                    self.forecasts.remove(at: 0)
                 }
             }
             completed()
