@@ -15,10 +15,6 @@ class WeatherCell: UITableViewCell {
     @IBOutlet weak var highTempLabel: UILabel!
     @IBOutlet weak var lowTempLabel: UILabel!
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
 
     func configureCell(forecast: Forecast) {
         lowTempLabel.text = forecast.lowTemp

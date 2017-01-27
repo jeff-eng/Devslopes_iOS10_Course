@@ -18,7 +18,7 @@ class Forecast {
     private var _lowTemp: String!
     
     // MARK: Forecast Objects array
-    static var forecasts = [Forecast]()
+    var forecasts = [Forecast]()
     
     // MARK: Getters
     var date: String {
@@ -92,11 +92,9 @@ class Forecast {
                     for obj in list {
                         let forecast = Forecast()
                         forecast.parseData(from: obj)
-                        Forecast.forecasts.append(forecast)
+                        self.forecasts.append(forecast)
                         print(obj)
                     }
-                    // We do not need the information for today, so we will ignore it
-                    Forecast.forecasts.remove(at: 0)
                 }
             }
             completed()
