@@ -83,7 +83,7 @@
                                 <rect key="frame" x="0.0" y="300" width="375" height="367"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="weatherCell" rowHeight="80" id="SDv-qj-Zpo">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="weatherCell" rowHeight="80" id="SDv-qj-Zpo" customClass="WeatherCell" customModule="rainyshinycloudy" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SDv-qj-Zpo" id="gdD-6J-sBE">
@@ -151,6 +151,13 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <connections>
+                                            <outlet property="dayLabel" destination="Cgi-8i-E60" id="h8i-w4-6E9"/>
+                                            <outlet property="highTempLabel" destination="QJk-D6-DSL" id="zeQ-Hq-hgG"/>
+                                            <outlet property="lowTempLabel" destination="gLK-rH-BzU" id="L4p-Eu-fQd"/>
+                                            <outlet property="weatherIcon" destination="z4g-VR-YfD" id="Q0f-qI-nel"/>
+                                            <outlet property="weatherTypeLabel" destination="8mZ-nN-cWz" id="oq8-Rw-Kfx"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
