@@ -80,10 +80,9 @@ class CurrentWeather {
                 if let main = dict["main"] as? Dictionary<String, AnyObject> {
                     // Access the dictionary with the key 'temp', optionally unwrap and cast as a Double
                     if let currentTemperature = main["temp"] as? Double {
-                        // convert the value using the convertKelvinToFahrenheit method
-                        let kelvinToFahrenheit = self.convertKelvinToFahrenheit(kelvinValue: currentTemperature)
+
                         // Set the currentTemp property to the Fahrenheit value
-                        self._currentTemp = kelvinToFahrenheit
+                        self._currentTemp = roundToTenths(currentTemperature.toFahrenheit)
                         print(self._currentTemp)
                     }
                 }
@@ -92,10 +91,4 @@ class CurrentWeather {
         }
     }
     
-    // Separate method to convert kelvin to fahrenheit and round to nearest tenth
-    private func convertKelvinToFahrenheit(kelvinValue: Double) -> Double {
-        let fahrenheitRawValue = kelvinValue * (9/5) - 459.67
-        let fahrenheitRoundedValue = Double(round(10 * fahrenheitRawValue)/10)
-        return fahrenheitRoundedValue
-    }
 }
