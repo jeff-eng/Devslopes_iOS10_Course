@@ -54,11 +54,11 @@ class Forecast {
         if let temp = weatherDict["temp"] as? Dictionary<String, AnyObject> {
             
             if let min = temp["min"] as? Double {
-                self._lowTemp = "\(roundToTenths(min.toFahrenheit))"
+                self._lowTemp = "\(roundToTenths(min.toFahrenheit))°"
             }
             
             if let max = temp["max"] as? Double {
-                self._highTemp = "\(roundToTenths(max.toFahrenheit))"
+                self._highTemp = "\(roundToTenths(max.toFahrenheit))°"
             }
         }
         
