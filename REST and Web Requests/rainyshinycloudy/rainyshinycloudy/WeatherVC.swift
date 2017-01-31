@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import CoreLocation
 
-class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var currentTempLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
@@ -16,24 +17,30 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var currentWeatherTypeLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
 
+    let locationManager = CLLocationManager()
+    var currentLocation: CLLocation!
+    
     var currentWeather: CurrentWeather!
     var forecast: Forecast!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        locationManager.delegate = self
+        setLocationManagerSettings()
+        
         tableView.delegate = self
         tableView.dataSource = self
         
         currentWeather = CurrentWeather()
         forecast = Forecast()
         // Calls the downloadWeatherDetails method. Once downloadWeatherDetails completes, updateMainUI is called inside the closure to update the screen with the weather details.
-        currentWeather.downloadWeatherDetails {
-            self.updateMainUI()
-            self.forecast.downloadForecastData {
-                self.tableView.reloadData()
-            }
-        }
+
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        locationAuthStatus()
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -64,6 +71,35 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         currentWeatherTypeLabel.text = currentWeather.weatherType
         locationLabel.text = currentWeather.cityName
         currentWeatherImage.image = UIImage(named: currentWeather.weatherType)
+    }
+    
+    func locationAuthStatus() {
+        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+            // If authorized to share location with app, then get the user's location and save it to a constant for reference later on in the app.
+            currentLocation = locationManager.location
+            // Save the lat/long coordinates to the Singleton class Location
+            Location.sharedInstance.latitude = currentLocation.coordinate.latitude
+            Location.sharedInstance.longitude = currentLocation.coordinate.longitude
+            
+            // This will only run only after we get our coordinate info
+            currentWeather.downloadWeatherDetails {
+                self.updateMainUI()
+                self.forecast.downloadForecastData {
+                    self.tableView.reloadData()
+                }
+            }
+        } else {
+            // Handles scenario where the app is open and user has not yet authorized use of their location
+            locationManager.requestWhenInUseAuthorization()
+            // Calls this function to run the check again
+            locationAuthStatus()
+        }
+    }
+    
+    func setLocationManagerSettings() {
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startMonitoringSignificantLocationChanges()
     }
 }
 
