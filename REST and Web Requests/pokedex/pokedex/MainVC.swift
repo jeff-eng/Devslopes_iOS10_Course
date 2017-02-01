@@ -36,7 +36,7 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
             // Create instance of Pokemon class
             let pokemon = Pokemon(name: "Pokemon", pokedexId: indexPath.row)
             // Call the cell's configureCell method and pass in the Pokemon instance above to update the cell with the Pokemon instance's name and image.
-            cell.configureCell(pokemon: pokemon)
+            cell.configureCell(pokemon)
             
             return cell
         } else {
