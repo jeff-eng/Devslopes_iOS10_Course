@@ -14,6 +14,13 @@ class PokeCell: UICollectionViewCell {
     
     var pokemon: Pokemon!
     
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        
+        layer.cornerRadius = 5.0
+        
+    }
+    
     // Method to update the cell with the Pokemon's name in label and image in image view
     func configureCell(pokemon: Pokemon) {
         self.pokemon = pokemon
@@ -21,4 +28,5 @@ class PokeCell: UICollectionViewCell {
         nameLabel.text = self.pokemon.name.capitalized
         thumbImg.image = UIImage(named: "\(self.pokemon.pokedexId)")
     }
+    
 }
