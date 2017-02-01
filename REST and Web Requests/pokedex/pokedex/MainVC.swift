@@ -32,6 +32,12 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PokeCell", for: indexPath) as? PokeCell {
+            
+            // Create instance of Pokemon class
+            let pokemon = Pokemon(name: "Pokemon", pokedexId: indexPath.row)
+            // Call the cell's configureCell method and pass in the Pokemon instance above to update the cell with the Pokemon instance's name and image.
+            cell.configureCell(pokemon: pokemon)
+            
             return cell
         } else {
             return UICollectionViewCell()
