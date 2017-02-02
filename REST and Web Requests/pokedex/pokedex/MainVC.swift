@@ -9,21 +9,25 @@
 import UIKit
 import AVFoundation
 
-class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
 
     //MARK: IBOutlet(s)
     @IBOutlet weak var collection: UICollectionView!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     //MARK: Properties
     var musicPlayer: AVAudioPlayer!
+    var inSearchMode = false
     
-    //MARK: Array
+    //MARK: Arrays
     var pokemon = [Pokemon]()
+    var filteredPokemon = [Pokemon]()
     
     //MARK: Default methods
     override func viewDidLoad() {
         super.viewDidLoad()
   
+        searchBar.delegate = self
         collection.delegate = self
         collection.dataSource = self
         
@@ -42,12 +46,17 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PokeCell", for: indexPath) as? PokeCell {
             
-            // Retrieve the Pokemon instance at particular index path
-            let poke = pokemon[indexPath.row]
+            let poke: Pokemon!
             
-            // Call the cell's configureCell method and pass in the Pokemon instance above to update the cell with the Pokemon instance's name and image.
-            cell.configureCell(poke)
-            
+            // If in search mode, use the filtered array to build the collection view. Otherwise, use the normal pokemon array.
+            if inSearchMode {
+                poke = filteredPokemon[indexPath.row]
+                cell.configureCell(poke)
+            } else {
+                poke = pokemon[indexPath.row]
+                // Call the cell's configureCell method and pass in the Pokemon instance above to update the cell with the Pokemon instance's name and image.
+                cell.configureCell(poke)
+            }
             return cell
         } else {
             return UICollectionViewCell()
@@ -59,6 +68,12 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        // If in search mode, return the count of the filtered Pokemon array
+        if inSearchMode {
+            return filteredPokemon.count
+        }
+        
         return pokemon.count
     }
     
@@ -129,4 +144,21 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
         }
     }
     
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        if searchBar.text == nil || searchBar.text == "" {
+            inSearchMode = false
+            // Reload the collection view when there is no text in search bar
+            collection.reloadData()
+        } else {
+            inSearchMode = true
+            
+            // Making sure the string in the search bar is lower cased to match the format of our Pokemon objects
+            let lower = searchBar.text!.lowercased()
+            // Use higher-order function 'filter'. The syntax for filter takes a closure as a parameter. $0 is a placeholder for original array(pokemon).
+            filteredPokemon = pokemon.filter({$0.name.range(of: lower) != nil})
+            // Reload the collection view with the filtered results
+            collection.reloadData()
+        }
+    }
 }
