@@ -7,12 +7,16 @@
 //
 
 import UIKit
+import AVFoundation
 
 class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
     //MARK: IBOutlet(s)
     
     @IBOutlet weak var collection: UICollectionView!
+    
+    //MARK: Properties
+    var musicPlayer: AVAudioPlayer!
     
     //MARK: Array
     var pokemon = [Pokemon]()
@@ -26,6 +30,8 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
         
         // Parse the CSV file when the view loads
         parsePokemonCSV()
+        // Play the audio file when the app loads
+        initAudio()
     }
 
     override func didReceiveMemoryWarning() {
@@ -96,5 +102,37 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
             print(error.debugDescription)
         }
     }
+    
+    func initAudio() {
+        // Create file path to the audio file
+        let path = Bundle.main.path(forResource: "music", ofType: "mp3")!
+        
+        // Error handling in case audio file isn't available
+        do {
+            musicPlayer = try AVAudioPlayer(contentsOf: URL(string: path)!)
+            musicPlayer.prepareToPlay()
+            musicPlayer.numberOfLoops = -1 //Loops continuously
+            musicPlayer.play()
+            
+        } catch let error as NSError {
+            print(error.debugDescription)
+        }
+    }
+    
+    @IBAction func musicBtnPressed(_ sender: UIButton) {
+        if musicPlayer.isPlaying {
+            // Pauses music when pressed if the song is playing
+            musicPlayer.pause()
+            // Make button transparent to indicate paused
+            sender.alpha = 0.2
+        } else {
+            // Resumes playing if the song is paused
+            musicPlayer.play()
+            // Make button fully opaque when music is playing
+            sender.alpha = 1.0
+        }
+        
+    }
+    
 }
 
