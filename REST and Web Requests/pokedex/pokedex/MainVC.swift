@@ -39,10 +39,11 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PokeCell", for: indexPath) as? PokeCell {
             
-            // Create instance of Pokemon class
-            let pokemon = Pokemon(name: "Pokemon", pokedexId: indexPath.row)
+            // Retrieve the Pokemon instance at particular index path
+            let poke = pokemon[indexPath.row]
+            
             // Call the cell's configureCell method and pass in the Pokemon instance above to update the cell with the Pokemon instance's name and image.
-            cell.configureCell(pokemon)
+            cell.configureCell(poke)
             
             return cell
         } else {
@@ -55,7 +56,7 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 30
+        return pokemon.count
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -94,7 +95,6 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
         } catch let error as NSError {
             print(error.debugDescription)
         }
-
     }
 }
 
