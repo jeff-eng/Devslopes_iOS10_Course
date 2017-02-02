@@ -22,7 +22,7 @@ class PokeCell: UICollectionViewCell {
     }
     
     // Method to update the cell with the Pokemon's name in label and image in image view
-    func configureCell(pokemon: Pokemon) {
+    func configureCell(_ pokemon: Pokemon) {
         self.pokemon = pokemon
         
         nameLabel.text = self.pokemon.name.capitalized
