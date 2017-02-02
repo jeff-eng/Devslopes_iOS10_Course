@@ -12,7 +12,6 @@ import AVFoundation
 class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
     //MARK: IBOutlet(s)
-    
     @IBOutlet weak var collection: UICollectionView!
     
     //MARK: Properties
@@ -39,9 +38,7 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
         // Dispose of any resources that can be recreated.
     }
 
-    
     //MARK: Collection View Delegate Methods
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PokeCell", for: indexPath) as? PokeCell {
             
@@ -74,7 +71,6 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
     }
     
     //MARK: Methods
-    
     func parsePokemonCSV() {
         // Create filepath for the pokemon.csv file
         let path = Bundle.main.path(forResource: "pokemon", ofType: "csv")!
@@ -131,8 +127,6 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
             // Make button fully opaque when music is playing
             sender.alpha = 1.0
         }
-        
     }
     
 }
-
