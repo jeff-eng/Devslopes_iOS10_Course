@@ -31,6 +31,9 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
         collection.delegate = self
         collection.dataSource = self
         
+        // Renames the search key on the software keyboard to 'done'
+        searchBar.returnKeyType = .done
+        
         // Parse the CSV file when the view loads
         parsePokemonCSV()
         // Play the audio file when the app loads
@@ -144,12 +147,16 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
         }
     }
     
+    //MARK: Search bar delegate methods
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
         if searchBar.text == nil || searchBar.text == "" {
             inSearchMode = false
             // Reload the collection view when there is no text in search bar
             collection.reloadData()
+            
+            // Tell the view that when there is no text, to end editing
+            view.endEditing(true)
         } else {
             inSearchMode = true
             
@@ -160,5 +167,9 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
             // Reload the collection view with the filtered results
             collection.reloadData()
         }
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        view.endEditing(true)
     }
 }
