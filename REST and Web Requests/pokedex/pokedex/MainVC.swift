@@ -217,4 +217,15 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
             keyboardDismissTapGesture = nil
         }
     }
+    
+    //MARK: Segue method(s)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "PokemonDetailVC" {
+            if let detailsVC = segue.destination as? PokemonDetailVC {
+                if let poke = sender as? Pokemon {
+                    detailsVC.pokemon = poke
+                }
+            }
+        }
+    }
 }
