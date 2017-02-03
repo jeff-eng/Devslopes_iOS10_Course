@@ -82,7 +82,17 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        // Code goes here to run when the cell is tapped on
+        
+        var poke: Pokemon!
+        
+        // Checking whether to use the filtered array or regular array depending on if in search mode
+        if inSearchMode {
+            poke = filteredPokemon[indexPath.row]
+        } else {
+            poke = pokemon[indexPath.row]
+        }
+        
+        performSegue(withIdentifier: "PokemonDetailVC", sender: poke)        
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -205,6 +215,17 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
         if keyboardDismissTapGesture != nil {
             self.view.removeGestureRecognizer(keyboardDismissTapGesture!)
             keyboardDismissTapGesture = nil
+        }
+    }
+    
+    //MARK: Segue method(s)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "PokemonDetailVC" {
+            if let detailsVC = segue.destination as? PokemonDetailVC {
+                if let poke = sender as? Pokemon {
+                    detailsVC.pokemon = poke
+                }
+            }
         }
     }
 }
