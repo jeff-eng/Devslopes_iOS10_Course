@@ -9,23 +9,31 @@
 import UIKit
 import AVFoundation
 
-class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
 
     //MARK: IBOutlet(s)
     @IBOutlet weak var collection: UICollectionView!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     //MARK: Properties
     var musicPlayer: AVAudioPlayer!
+    var inSearchMode = false
+    var keyboardDismissTapGesture: UIGestureRecognizer?
     
-    //MARK: Array
+    //MARK: Arrays
     var pokemon = [Pokemon]()
+    var filteredPokemon = [Pokemon]()
     
     //MARK: Default methods
     override func viewDidLoad() {
         super.viewDidLoad()
   
+        searchBar.delegate = self
         collection.delegate = self
         collection.dataSource = self
+        
+        // Renames the search key on the software keyboard to 'done'
+        searchBar.returnKeyType = .done
         
         // Parse the CSV file when the view loads
         parsePokemonCSV()
@@ -33,6 +41,20 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
         initAudio()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self)
+        
+        super.viewWillDisappear(animated)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -42,12 +64,17 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PokeCell", for: indexPath) as? PokeCell {
             
-            // Retrieve the Pokemon instance at particular index path
-            let poke = pokemon[indexPath.row]
+            let poke: Pokemon!
             
-            // Call the cell's configureCell method and pass in the Pokemon instance above to update the cell with the Pokemon instance's name and image.
-            cell.configureCell(poke)
-            
+            // If in search mode, use the filtered array to build the collection view. Otherwise, use the normal pokemon array.
+            if inSearchMode {
+                poke = filteredPokemon[indexPath.row]
+                cell.configureCell(poke)
+            } else {
+                poke = pokemon[indexPath.row]
+                // Call the cell's configureCell method and pass in the Pokemon instance above to update the cell with the Pokemon instance's name and image.
+                cell.configureCell(poke)
+            }
             return cell
         } else {
             return UICollectionViewCell()
@@ -59,6 +86,12 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        // If in search mode, return the count of the filtered Pokemon array
+        if inSearchMode {
+            return filteredPokemon.count
+        }
+        
         return pokemon.count
     }
     
@@ -129,4 +162,49 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
         }
     }
     
+    //MARK: Search bar delegate methods
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        if searchBar.text == nil || searchBar.text == "" {
+            inSearchMode = false
+            // Reload the collection view when there is no text in search bar
+            collection.reloadData()
+            
+            // Tell the view that when there is no text, to end editing
+            view.endEditing(true)
+        } else {
+            inSearchMode = true
+            
+            // Making sure the string in the search bar is lower cased to match the format of our Pokemon objects
+            let lower = searchBar.text!.lowercased()
+            // Use higher-order function 'filter'. The syntax for filter takes a closure as a parameter. $0 is a placeholder for original array(pokemon).
+            filteredPokemon = pokemon.filter({$0.name.range(of: lower) != nil})
+            // Reload the collection view with the filtered results
+            collection.reloadData()
+        }
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        view.endEditing(true)
+    }
+    
+   
+    //MARK: Keyboard Methods
+    func dismissKeyboard(sender: Any) {
+        searchBar.resignFirstResponder()
+    }
+    
+    func keyboardWillShow(notification: NSNotification) {
+        if keyboardDismissTapGesture == nil {
+            keyboardDismissTapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard(sender:)))
+            self.view.addGestureRecognizer(keyboardDismissTapGesture!)
+        }
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        if keyboardDismissTapGesture != nil {
+            self.view.removeGestureRecognizer(keyboardDismissTapGesture!)
+            keyboardDismissTapGesture = nil
+        }
+    }
 }
