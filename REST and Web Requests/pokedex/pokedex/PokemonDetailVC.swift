@@ -35,5 +35,8 @@ class PokemonDetailVC: UIViewController {
         nameLabel.text = pokemon.name
     }
 
+    @IBAction func backButtonPressed(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
+    }
     
 }
