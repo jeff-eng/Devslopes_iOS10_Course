@@ -9,11 +9,26 @@
 import UIKit
 
 class PokemonDetailVC: UIViewController {
-
-    @IBOutlet weak var nameLabel: UILabel!
+    
+    //MARK: Properties
     // Create reference for the Pokemon object that is being passed from MainVC to PokemonDetailVC via segue.
     var pokemon: Pokemon!
     
+    //MARK: IBOutlet(s)
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var mainImage: UIImageView!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var typeDetailLabel: UILabel!
+    @IBOutlet weak var defenseDetailLabel: UILabel!
+    @IBOutlet weak var heightDetailLabel: UILabel!
+    @IBOutlet weak var pokedexIdDetailLabel: UILabel!
+    @IBOutlet weak var weightDetailLabel: UILabel!
+    @IBOutlet weak var baseAttackDetailLabel: UILabel!
+    @IBOutlet weak var currentEvoImage: UIImageView!
+    @IBOutlet weak var nextEvoImage: UIImageView!
+    @IBOutlet weak var evoDetailLabel: UILabel!
+    
+    //MARK: Default methods
     override func viewDidLoad() {
         super.viewDidLoad()
 

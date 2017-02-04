@@ -331,7 +331,7 @@
                                                                         <color key="textColor" red="1" green="0.34509803919999998" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="13.2 lbs" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HpQ-Hy-Efb">
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="13.2 lbs" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HpQ-Hy-Efb" userLabel="Weight Detail Label">
                                                                         <rect key="frame" x="73.333333333333314" y="0.0" width="52.666666666666671" height="23.333333333333314"/>
                                                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
                                                                         <nil key="textColor"/>
@@ -422,7 +422,18 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="baseAttackDetailLabel" destination="Hwm-JQ-uwJ" id="hyW-oD-GHe"/>
+                        <outlet property="currentEvoImage" destination="uiA-R5-cP7" id="4xr-1Q-Q5w"/>
+                        <outlet property="defenseDetailLabel" destination="DlB-kI-q5h" id="I7c-GG-TLA"/>
+                        <outlet property="descriptionLabel" destination="ihK-aI-ltA" id="Bhh-dA-Ap0"/>
+                        <outlet property="evoDetailLabel" destination="0nT-sO-GsT" id="Tdp-j0-gjZ"/>
+                        <outlet property="heightDetailLabel" destination="HpQ-Hy-Efb" id="SKv-Qk-fPr"/>
+                        <outlet property="mainImage" destination="htD-Ja-8xM" id="z5a-Y6-bRR"/>
                         <outlet property="nameLabel" destination="azy-P7-oLf" id="38i-Jf-yYq"/>
+                        <outlet property="nextEvoImage" destination="xAO-9h-3YZ" id="mhU-LH-6N8"/>
+                        <outlet property="pokedexIdDetailLabel" destination="3lY-aA-4GV" id="6rJ-un-PKs"/>
+                        <outlet property="typeDetailLabel" destination="Q2K-QL-HNU" id="5sE-ka-CCY"/>
+                        <outlet property="weightDetailLabel" destination="HpQ-Hy-Efb" id="b6l-9D-FEL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0jS-Bs-s1n" userLabel="First Responder" sceneMemberID="firstResponder"/>
