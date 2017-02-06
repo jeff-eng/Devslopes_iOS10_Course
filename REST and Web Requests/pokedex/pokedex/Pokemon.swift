@@ -19,6 +19,7 @@ class Pokemon {
     private var _weight: String!
     private var _baseAttack: String!
     private var _nextEvolutionText: String!
+    private var _pokemonURL: String!
     
     // MARK: Class Properties
     var name: String {
@@ -33,5 +34,12 @@ class Pokemon {
     init(name: String, pokedexId: Int) {
         self._name = name
         self._pokedexId = pokedexId
+        
+        self._pokemonURL = "\(URL_BASE)\(URL_POKEMON)\(self.pokedexId)/"
+    }
+    
+    //MARK: Class methods
+    func downloadPokemonDetail() {
+        
     }
 }
