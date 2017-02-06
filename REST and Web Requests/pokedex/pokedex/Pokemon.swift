@@ -40,11 +40,40 @@ class Pokemon {
     }
     
     //MARK: Class methods
-    func downloadPokemonDetail(complete: DownloadComplete) {
+    func downloadPokemonDetail(complete: @escaping DownloadComplete) {
         Alamofire.request(_pokemonURL).responseJSON {(response) in
             // Print results to see if we get a response
-            print(response.result.value as Any)
+            print(response.result.value)
             
+            // Optionally unwrap the dictionary that is returned from the GET request
+            if let dict = response.result.value as? Dictionary<String, AnyObject> {
+                // Call the parseJSON method and pass in the dictionary
+                self.parseJSON(from: dict)
+            }
         }
+    }
+    
+    func parseJSON(from pokeDict: Dictionary<String, AnyObject>) {
+        if let weight = pokeDict["weight"] as? String {
+            //Set the weight property of Pokemon instance to the value of the key 'weight'.
+            self._weight = weight
+        }
+        
+        if let height = pokeDict["height"] as? String {
+            self._height = height
+        }
+        
+        if let defense = pokeDict["defense"] as? Int {
+            self._defense = "\(defense)"
+        }
+        
+        if let baseAttack = pokeDict["attack"] as? Int {
+            self._baseAttack = "\(baseAttack)"
+        }
+        
+        print(self._weight)
+        print(self._height)
+        print(self._baseAttack)
+        print(self._defense)
     }
 }
