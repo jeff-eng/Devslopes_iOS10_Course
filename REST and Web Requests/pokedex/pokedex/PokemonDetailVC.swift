@@ -28,6 +28,11 @@ class PokemonDetailVC: UIViewController {
     @IBOutlet weak var nextEvoImage: UIImageView!
     @IBOutlet weak var evoDetailLabel: UILabel!
     
+    //MARK: IBAction(s)
+    @IBAction func backButtonPressed(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
+    }
+
     //MARK: Default methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,11 +48,6 @@ class PokemonDetailVC: UIViewController {
             self.updateUI()
             
         }
-    }
-
-    //MARK: IBAction(s)
-    @IBAction func backButtonPressed(_ sender: UIButton) {
-        dismiss(animated: true, completion: nil)
     }
     
     //MARK: Methods

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Alamofire
 
 class Pokemon {
     // MARK: Private variables
@@ -40,6 +41,10 @@ class Pokemon {
     
     //MARK: Class methods
     func downloadPokemonDetail(complete: DownloadComplete) {
-        
+        Alamofire.request(_pokemonURL).responseJSON {(response) in
+            // Print results to see if we get a response
+            print(response.result.value as Any)
+            
+        }
     }
 }
