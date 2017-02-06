@@ -39,7 +39,7 @@ class Pokemon {
     }
     
     //MARK: Class methods
-    func downloadPokemonDetail() {
+    func downloadPokemonDetail(complete: DownloadComplete) {
         
     }
 }

@@ -33,10 +33,25 @@ class PokemonDetailVC: UIViewController {
         super.viewDidLoad()
 
         nameLabel.text = pokemon.name
+        
+        // Calls method to run web request for Pokemon data
+        pokemon.downloadPokemonDetail {
+            
+            // Whatever we write here in this trailing closure will only be called after the web request is complete
+            
+            // Here, what we want to happen is to update the UI(labels), when the data is returned.
+            self.updateUI()
+            
+        }
     }
 
+    //MARK: IBAction(s)
     @IBAction func backButtonPressed(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
     
+    //MARK: Methods
+    func updateUI() {
+
+    }
 }
