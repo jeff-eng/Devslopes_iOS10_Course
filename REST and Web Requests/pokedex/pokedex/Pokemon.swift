@@ -22,7 +22,57 @@ class Pokemon {
     private var _nextEvolutionText: String!
     private var _pokemonURL: String!
     
-    // MARK: Class Properties
+    //MARK: Class Properties (Getters)
+    var nextEvolutionText: String {
+        // Handling if the value is nil
+        if _nextEvolutionText == nil {
+            _nextEvolutionText = ""
+        }
+        return _nextEvolutionText
+    }
+    
+    var baseAttack: String {
+        if _baseAttack == nil {
+            _baseAttack = ""
+        }
+        return _baseAttack
+    }
+    
+    var weight: String {
+        if _weight == nil {
+            _weight = ""
+        }
+        return _weight
+    }
+    
+    var height: String {
+        if _height == nil {
+            _height = ""
+        }
+        return _height
+    }
+    
+    var defense: String {
+        if _defense == nil {
+            _defense = ""
+        }
+        return _defense
+    }
+    
+    var type: String {
+        if _type == nil {
+            _type = ""
+        }
+        return _type
+    }
+    
+    var description: String {
+        if _description == nil {
+            _description = ""
+        }
+        return _description
+    }
+    
     var name: String {
         return _name
     }
