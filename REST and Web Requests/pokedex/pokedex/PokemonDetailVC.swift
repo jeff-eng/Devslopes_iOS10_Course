@@ -38,6 +38,7 @@ class PokemonDetailVC: UIViewController {
         super.viewDidLoad()
 
         nameLabel.text = pokemon.name
+        setCurrentEvoImage()
         
         // Calls method to run web request for Pokemon data
         pokemon.downloadPokemonDetail {
@@ -58,6 +59,14 @@ class PokemonDetailVC: UIViewController {
         heightDetailLabel.text = pokemon.height
         weightDetailLabel.text = pokemon.weight
         pokedexIdDetailLabel.text = "\(pokemon.pokedexId)"
-        
+        typeDetailLabel.text = pokemon.type
+    }
+    
+    func setCurrentEvoImage() {
+        let currentImage = UIImage(named: "\(pokemon.pokedexId)")
+        // Set the main image in the UI
+        mainImage.image = currentImage
+        // Set the currentEvoImage in the UI
+        currentEvoImage.image = currentImage
     }
 }
