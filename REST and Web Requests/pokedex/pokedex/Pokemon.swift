@@ -197,7 +197,7 @@ class Pokemon {
                 self._nextEvolutionId = nextEvoId
             }
             
-            if let level = evolutions[0]["level"] as? Int {
+            if let level = evolutions[0]["level"] as? Int, evolutions.count > 0 {
                 self._nextEvolutionLevel = "\(level)"
             } else {
                 self._nextEvolutionLevel = ""

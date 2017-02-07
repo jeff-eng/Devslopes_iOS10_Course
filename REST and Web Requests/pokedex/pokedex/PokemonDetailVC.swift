@@ -61,6 +61,17 @@ class PokemonDetailVC: UIViewController {
         pokedexIdDetailLabel.text = "\(pokemon.pokedexId)"
         typeDetailLabel.text = pokemon.type
         descriptionLabel.text = pokemon.description
+        
+        if pokemon.nextEvolutionId == "" {
+            evoDetailLabel.text = "No Evolutions"
+            nextEvoImage.isHidden = true
+        } else {
+            nextEvoImage.isHidden = false
+            nextEvoImage.image = UIImage(named: pokemon.nextEvolutionId)
+            
+            let nextEvoString = "Next Evolution: \(pokemon.nextEvolutionName) - LVL \(pokemon.nextEvolutionLevel)"
+            evoDetailLabel.text = nextEvoString
+        }
     }
     
     func setCurrentEvoImage() {
