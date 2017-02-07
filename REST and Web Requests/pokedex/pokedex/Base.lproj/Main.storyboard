@@ -165,9 +165,9 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="65"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pikachu" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="azy-P7-oLf">
-                                        <rect key="frame" x="99" y="36" width="216" height="21"/>
+                                        <rect key="frame" x="99" y="27.333333333333329" width="216" height="35"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="21" id="ILP-Gu-5ig"/>
+                                            <constraint firstAttribute="height" constant="35" id="ILP-Gu-5ig"/>
                                             <constraint firstAttribute="width" constant="216" id="e1F-If-Qx7"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="24"/>
@@ -188,7 +188,7 @@
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.34509803919999998" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="azy-P7-oLf" firstAttribute="centerY" secondItem="dQW-b2-5AI" secondAttribute="centerY" constant="14" id="Gf0-UK-Rpe"/>
+                                    <constraint firstItem="azy-P7-oLf" firstAttribute="centerY" secondItem="dQW-b2-5AI" secondAttribute="centerY" constant="12" id="Gf0-UK-Rpe"/>
                                     <constraint firstAttribute="height" constant="65" id="GfG-gY-p9b"/>
                                     <constraint firstItem="O0U-Ud-JV5" firstAttribute="leading" secondItem="dQW-b2-5AI" secondAttribute="leading" constant="8" id="YmF-cp-JnH"/>
                                     <constraint firstItem="azy-P7-oLf" firstAttribute="centerX" secondItem="dQW-b2-5AI" secondAttribute="centerX" id="nRy-SM-44D"/>

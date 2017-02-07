@@ -74,7 +74,7 @@ class Pokemon {
     }
     
     var name: String {
-        return _name
+        return _name.capitalized
     }
     
     var pokedexId: Int {
