@@ -60,6 +60,7 @@ class PokemonDetailVC: UIViewController {
         weightDetailLabel.text = pokemon.weight
         pokedexIdDetailLabel.text = "\(pokemon.pokedexId)"
         typeDetailLabel.text = pokemon.type
+        descriptionLabel.text = pokemon.description
     }
     
     func setCurrentEvoImage() {

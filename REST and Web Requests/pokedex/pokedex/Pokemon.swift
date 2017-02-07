@@ -91,20 +91,20 @@ class Pokemon {
     
     //MARK: Class methods
     func downloadPokemonDetail(completed: @escaping DownloadComplete) {
-        Alamofire.request(_pokemonURL).responseJSON {(response) in
+        Alamofire.request(_pokemonURL).responseJSON { (response) in
             // Print results to see if we get a response
             print(response.result.value as Any)
             
             // Optionally unwrap the dictionary that is returned from the GET request
             if let dict = response.result.value as? Dictionary<String, AnyObject> {
                 // Call the parseJSON method and pass in the dictionary
-                self.parseJSON(from: dict)
+                self.parseJSON(from: dict, is: completed)
             }
             completed()
         }
     }
     
-    func parseJSON(from pokeDict: Dictionary<String, AnyObject>) {
+    func parseJSON(from pokeDict: Dictionary<String, AnyObject>, is complete: @escaping DownloadComplete) {
         if let weight = pokeDict["weight"] as? String {
             //Set the weight property of Pokemon instance to the value of the key 'weight'.
             self._weight = weight
@@ -133,16 +133,42 @@ class Pokemon {
                         self._type! += ", \(name.capitalized)"
                     }
                 }
+            } else {
+                self._type = ""
             }
             
-        } else {
-            self._type = ""
+            if let descriptionsArray = pokeDict["descriptions"] as? [Dictionary<String, String>], descriptionsArray.count > 0 {
+                if let resourceURI = descriptionsArray[0]["resource_uri"] {
+                    
+                    let descriptionURL = "\(URL_BASE)\(resourceURI)"
+                    
+                    //Make another web request for the descriptions since they reside in a different URL
+                    Alamofire.request(descriptionURL).responseJSON { (response) in
+                        // Print results to see what comes back from the web request
+                        print(response.result.value as Any)
+                        
+                        if let descriptionDict = response.result.value as? Dictionary<String, AnyObject> {
+                            self.parseDescriptionJSON(from: descriptionDict)
+                        }
+                        complete()
+                    }
+                }
+            }
         }
-            
         print(self._weight)
         print(self._height)
         print(self._baseAttack)
         print(self._defense)
         print(self._type)
     }
+    
+    func parseDescriptionJSON(from descriptionDictionary: Dictionary<String, AnyObject>) {
+        if let description = descriptionDictionary["description"] as? String {
+            print(description)
+            self._description = description
+        } else {
+            self._description = "No description available at this time."
+        }
+    }
+    
 }
