@@ -43,7 +43,7 @@ class PokemonDetailVC: UIViewController {
         pokemon.downloadPokemonDetail {
             
             // Whatever we write here in this trailing closure will only be called after the web request is complete
-            
+
             // Here, what we want to happen is to update the UI(labels), when the data is returned.
             self.updateUI()
             
@@ -52,6 +52,12 @@ class PokemonDetailVC: UIViewController {
     
     //MARK: Methods
     func updateUI() {
-
+        //Update the IBOutlets with the pokemon instance properties now that we know we got the data from the API and set our Pokemon Model to that data.
+        baseAttackDetailLabel.text = pokemon.baseAttack
+        defenseDetailLabel.text = pokemon.defense
+        heightDetailLabel.text = pokemon.height
+        weightDetailLabel.text = pokemon.weight
+        pokedexIdDetailLabel.text = "\(pokemon.pokedexId)"
+        
     }
 }

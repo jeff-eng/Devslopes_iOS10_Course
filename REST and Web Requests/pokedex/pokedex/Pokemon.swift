@@ -90,7 +90,7 @@ class Pokemon {
     }
     
     //MARK: Class methods
-    func downloadPokemonDetail(complete: @escaping DownloadComplete) {
+    func downloadPokemonDetail(completed: @escaping DownloadComplete) {
         Alamofire.request(_pokemonURL).responseJSON {(response) in
             // Print results to see if we get a response
             print(response.result.value)
@@ -100,6 +100,7 @@ class Pokemon {
                 // Call the parseJSON method and pass in the dictionary
                 self.parseJSON(from: dict)
             }
+            completed()
         }
     }
     
