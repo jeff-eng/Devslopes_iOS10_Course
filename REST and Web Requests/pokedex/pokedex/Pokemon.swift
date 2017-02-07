@@ -20,9 +20,33 @@ class Pokemon {
     private var _weight: String!
     private var _baseAttack: String!
     private var _nextEvolutionText: String!
+    private var _nextEvolutionName: String!
+    private var _nextEvolutionId: String!
+    private var _nextEvolutionLevel: String!
     private var _pokemonURL: String!
     
     //MARK: Class Properties (Getters)
+    var nextEvolutionName: String {
+        if _nextEvolutionName == nil {
+            _nextEvolutionName = ""
+        }
+        return _nextEvolutionName
+    }
+    
+    var nextEvolutionId: String {
+        if _nextEvolutionId == nil {
+            _nextEvolutionId = ""
+        }
+        return _nextEvolutionId
+    }
+    
+    var nextEvolutionLevel: String {
+        if _nextEvolutionLevel == nil {
+            _nextEvolutionLevel = ""
+        }
+        return _nextEvolutionLevel
+    }
+    
     var nextEvolutionText: String {
         // Handling if the value is nil
         if _nextEvolutionText == nil {
@@ -136,30 +160,58 @@ class Pokemon {
             } else {
                 self._type = ""
             }
-            
-            if let descriptionsArray = pokeDict["descriptions"] as? [Dictionary<String, String>], descriptionsArray.count > 0 {
-                if let resourceURI = descriptionsArray[0]["resource_uri"] {
+        }
+        
+        if let descriptionsArray = pokeDict["descriptions"] as? [Dictionary<String, String>], descriptionsArray.count > 0 {
+            if let resourceURI = descriptionsArray[0]["resource_uri"] {
+                
+                let descriptionURL = "\(URL_BASE)\(resourceURI)"
+                
+                //Make another web request for the descriptions since they reside in a different URL
+                Alamofire.request(descriptionURL).responseJSON { (response) in
+                    // Print results to see what comes back from the web request
+                    print(response.result.value as Any)
                     
-                    let descriptionURL = "\(URL_BASE)\(resourceURI)"
-                    
-                    //Make another web request for the descriptions since they reside in a different URL
-                    Alamofire.request(descriptionURL).responseJSON { (response) in
-                        // Print results to see what comes back from the web request
-                        print(response.result.value as Any)
-                        
-                        if let descriptionDict = response.result.value as? Dictionary<String, AnyObject> {
-                            self.parseDescriptionJSON(from: descriptionDict)
-                        }
-                        complete()
+                    if let descriptionDict = response.result.value as? Dictionary<String, AnyObject> {
+                        self.parseDescriptionJSON(from: descriptionDict)
                     }
+                    complete()
                 }
             }
         }
+        
+        if let evolutions = pokeDict["evolutions"] as? [Dictionary<String, AnyObject>], evolutions.count > 0 {
+            if let nextEvolution = evolutions[0]["to"] as? String {
+                // If no substring matches 'mega', then set the nextEvolution to the class property
+                if nextEvolution.range(of: "mega") == nil {
+                    self._nextEvolutionName = nextEvolution
+                }
+            }
+                    
+            if let uri = evolutions[0]["resource_uri"] as? String {
+                // Taking out the URI and leaving the Pokedex ID and '/'
+                let extractedIdFromURI = uri.replacingOccurrences(of: "/api/v1/pokemon/", with: "")
+                // Taking out the remaining forward slash from the extractedIdFromURI
+                let nextEvoId = extractedIdFromURI.replacingOccurrences(of: "/", with: "")
+                //Set our property to the nextEvoId we extracted from the URI
+                self._nextEvolutionId = nextEvoId
+            }
+            
+            if let level = evolutions[0]["level"] as? Int {
+                self._nextEvolutionLevel = "\(level)"
+            } else {
+                self._nextEvolutionLevel = ""
+            }
+        }
+        
         print(self._weight)
         print(self._height)
         print(self._baseAttack)
         print(self._defense)
         print(self._type)
+        print(self._nextEvolutionLevel)
+        print(self._nextEvolutionId)
+        
     }
     
     func parseDescriptionJSON(from descriptionDictionary: Dictionary<String, AnyObject>) {
