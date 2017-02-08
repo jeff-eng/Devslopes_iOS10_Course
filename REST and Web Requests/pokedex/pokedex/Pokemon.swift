@@ -185,33 +185,36 @@ class Pokemon {
                 // If no substring matches 'mega', then set the nextEvolution to the class property
                 if nextEvolution.range(of: "mega") == nil {
                     self._nextEvolutionName = nextEvolution
+
+                    if let uri = evolutions[0]["resource_uri"] as? String {
+                        // Taking out the URI and leaving the Pokedex ID and '/'
+                        let extractedIdFromURI = uri.replacingOccurrences(of: "/api/v1/pokemon/", with: "")
+                        // Taking out the remaining forward slash from the extractedIdFromURI
+                        let nextEvoId = extractedIdFromURI.replacingOccurrences(of: "/", with: "")
+                        //Set our property to the nextEvoId we extracted from the URI
+                        self._nextEvolutionId = nextEvoId
+                    }
+                    
+                    if let level = evolutions[0]["level"] as? Int {
+                        self._nextEvolutionLevel = "\(level)"
+                    } else {
+                        self._nextEvolutionLevel = ""
+                    }
+                    
                 }
             }
-                    
-            if let uri = evolutions[0]["resource_uri"] as? String {
-                // Taking out the URI and leaving the Pokedex ID and '/'
-                let extractedIdFromURI = uri.replacingOccurrences(of: "/api/v1/pokemon/", with: "")
-                // Taking out the remaining forward slash from the extractedIdFromURI
-                let nextEvoId = extractedIdFromURI.replacingOccurrences(of: "/", with: "")
-                //Set our property to the nextEvoId we extracted from the URI
-                self._nextEvolutionId = nextEvoId
-            }
             
-            if let level = evolutions[0]["level"] as? Int, evolutions.count > 0 {
-                self._nextEvolutionLevel = "\(level)"
-            } else {
-                self._nextEvolutionLevel = ""
-            }
+            
         }
         
-        print(self._weight)
-        print(self._height)
-        print(self._baseAttack)
-        print(self._defense)
-        print(self._type)
-        print(self._nextEvolutionLevel)
-        print(self._nextEvolutionId)
-        
+//        print(self._weight)
+//        print(self._height)
+//        print(self._baseAttack)
+//        print(self._defense)
+//        print(self._type)
+        print(self.nextEvolutionLevel)
+        print(self.nextEvolutionId)
+        print(self.nextEvolutionName)
     }
     
     func parseDescriptionJSON(from descriptionDictionary: Dictionary<String, AnyObject>) {

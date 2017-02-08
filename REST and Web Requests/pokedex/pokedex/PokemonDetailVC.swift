@@ -42,12 +42,9 @@ class PokemonDetailVC: UIViewController {
         
         // Calls method to run web request for Pokemon data
         pokemon.downloadPokemonDetail {
-            
             // Whatever we write here in this trailing closure will only be called after the web request is complete
-
             // Here, what we want to happen is to update the UI(labels), when the data is returned.
             self.updateUI()
-            
         }
     }
     
