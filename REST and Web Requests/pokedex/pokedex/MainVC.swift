@@ -124,7 +124,7 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
             let csv = try CSV(contentsOfURL: path)
             // Pull out the rows from the CSV file
             let rows = csv.rows
-            print(rows)
+//            print(rows)
             
             // Loop through each row in the data pulling out the ID and name values using the dictionary keys, then create and append the Pokemon instances in array
             for row in rows {

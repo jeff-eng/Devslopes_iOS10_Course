@@ -27,16 +27,61 @@ class PokemonDetailVC: UIViewController {
     @IBOutlet weak var currentEvoImage: UIImageView!
     @IBOutlet weak var nextEvoImage: UIImageView!
     @IBOutlet weak var evoDetailLabel: UILabel!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    //MARK: IBAction(s)
+    @IBAction func backButtonPressed(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
+    }
+
     //MARK: Default methods
     override func viewDidLoad() {
         super.viewDidLoad()
 
         nameLabel.text = pokemon.name
-    }
-
-    @IBAction func backButtonPressed(_ sender: UIButton) {
-        dismiss(animated: true, completion: nil)
+        setCurrentEvoImage()
+        
+        activityIndicator.startAnimating()
+        // Calls method to run web request for Pokemon data
+        pokemon.downloadPokemonDetail {
+            // Whatever we write here in this trailing closure will only be called after the web request is complete
+            // Here, what we want to happen is to update the UI(labels), when the data is returned.
+            self.updateUI()
+            if self.descriptionLabel.text != "" {
+                self.activityIndicator.stopAnimating()
+                self.activityIndicator.isHidden = true
+            }
+        }
     }
     
+    //MARK: Methods
+    func updateUI() {
+        //Update the IBOutlets with the pokemon instance properties now that we know we got the data from the API and set our Pokemon Model to that data.
+        baseAttackDetailLabel.text = pokemon.baseAttack
+        defenseDetailLabel.text = pokemon.defense
+        heightDetailLabel.text = pokemon.height
+        weightDetailLabel.text = pokemon.weight
+        pokedexIdDetailLabel.text = "\(pokemon.pokedexId)"
+        typeDetailLabel.text = pokemon.type
+        descriptionLabel.text = pokemon.description
+        
+        if pokemon.nextEvolutionId == "" {
+            evoDetailLabel.text = "No Evolutions"
+            nextEvoImage.isHidden = true
+        } else {
+            nextEvoImage.isHidden = false
+            nextEvoImage.image = UIImage(named: pokemon.nextEvolutionId)
+            
+            let nextEvoString = "Next Evolution: \(pokemon.nextEvolutionName) - LVL \(pokemon.nextEvolutionLevel)"
+            evoDetailLabel.text = nextEvoString
+        }
+    }
+    
+    func setCurrentEvoImage() {
+        let currentImage = UIImage(named: "\(pokemon.pokedexId)")
+        // Set the main image in the UI
+        mainImage.image = currentImage
+        // Set the currentEvoImage in the UI
+        currentEvoImage.image = currentImage
+    }
 }
