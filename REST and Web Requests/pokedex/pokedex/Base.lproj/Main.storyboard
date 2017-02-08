@@ -222,8 +222,11 @@
                                                             <constraint firstAttribute="width" constant="120" id="zYB-1e-MNf"/>
                                                         </constraints>
                                                     </imageView>
+                                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="bDy-8Q-R7W">
+                                                        <rect key="frame" x="120" y="0.0" width="72" height="120"/>
+                                                    </activityIndicatorView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ihK-aI-ltA">
-                                                        <rect key="frame" x="120" y="0.0" width="168" height="120"/>
+                                                        <rect key="frame" x="192" y="0.0" width="96" height="120"/>
                                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -425,6 +428,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="bDy-8Q-R7W" id="BEF-34-wn0"/>
                         <outlet property="baseAttackDetailLabel" destination="Hwm-JQ-uwJ" id="hyW-oD-GHe"/>
                         <outlet property="currentEvoImage" destination="uiA-R5-cP7" id="4xr-1Q-Q5w"/>
                         <outlet property="defenseDetailLabel" destination="DlB-kI-q5h" id="I7c-GG-TLA"/>

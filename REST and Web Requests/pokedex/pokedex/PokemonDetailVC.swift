@@ -27,6 +27,7 @@ class PokemonDetailVC: UIViewController {
     @IBOutlet weak var currentEvoImage: UIImageView!
     @IBOutlet weak var nextEvoImage: UIImageView!
     @IBOutlet weak var evoDetailLabel: UILabel!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     //MARK: IBAction(s)
     @IBAction func backButtonPressed(_ sender: UIButton) {
@@ -40,11 +41,16 @@ class PokemonDetailVC: UIViewController {
         nameLabel.text = pokemon.name
         setCurrentEvoImage()
         
+        activityIndicator.startAnimating()
         // Calls method to run web request for Pokemon data
         pokemon.downloadPokemonDetail {
             // Whatever we write here in this trailing closure will only be called after the web request is complete
             // Here, what we want to happen is to update the UI(labels), when the data is returned.
             self.updateUI()
+            if self.descriptionLabel.text != "" {
+                self.activityIndicator.stopAnimating()
+                self.activityIndicator.isHidden = true
+            }
         }
     }
     

@@ -200,27 +200,15 @@ class Pokemon {
                     } else {
                         self._nextEvolutionLevel = ""
                     }
-                    
                 }
             }
-            
-            
         }
-        
-//        print(self._weight)
-//        print(self._height)
-//        print(self._baseAttack)
-//        print(self._defense)
-//        print(self._type)
-        print(self.nextEvolutionLevel)
-        print(self.nextEvolutionId)
-        print(self.nextEvolutionName)
     }
     
     func parseDescriptionJSON(from descriptionDictionary: Dictionary<String, AnyObject>) {
         if let description = descriptionDictionary["description"] as? String {
-            print(description)
-            self._description = description
+            let modifiedDescription = description.replacingOccurrences(of: "POKMON", with: "Pokemon")
+            self._description = modifiedDescription
         } else {
             self._description = "No description available at this time."
         }
