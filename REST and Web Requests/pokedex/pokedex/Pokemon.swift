@@ -158,7 +158,7 @@ class Pokemon {
                     }
                 }
             } else {
-                self._type = ""
+                self._type = "Not Available"
             }
         }
         
