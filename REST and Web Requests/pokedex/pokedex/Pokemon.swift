@@ -129,6 +129,14 @@ class Pokemon {
     }
     
     func parseJSON(from pokeDict: Dictionary<String, AnyObject>, is complete: @escaping DownloadComplete) {
+        
+        parseForBaseProperties(from: pokeDict)
+        parseDescriptionsData(from: pokeDict, isNow: complete)
+        parseEvolutionsData(from: pokeDict)
+    }
+
+    //MARK: parseJSON Helper methods
+    func parseForBaseProperties(from pokeDict: Dictionary<String, AnyObject>) {
         if let weight = pokeDict["weight"] as? String {
             //Set the weight property of Pokemon instance to the value of the key 'weight'.
             self._weight = weight
@@ -161,7 +169,9 @@ class Pokemon {
                 self._type = "Not Available"
             }
         }
-        
+    }
+    
+    func parseDescriptionsData(from pokeDict: Dictionary<String, AnyObject>, isNow complete: @escaping DownloadComplete) {
         if let descriptionsArray = pokeDict["descriptions"] as? [Dictionary<String, String>], descriptionsArray.count > 0 {
             if let resourceURI = descriptionsArray[0]["resource_uri"] {
                 
@@ -179,13 +189,24 @@ class Pokemon {
                 }
             }
         }
-        
+    }
+    
+    func parseDescriptionJSON(from descriptionDictionary: Dictionary<String, AnyObject>) {
+        if let description = descriptionDictionary["description"] as? String {
+            let modifiedDescription = description.replacingOccurrences(of: "POKMON", with: "Pokemon")
+            self._description = modifiedDescription
+        } else {
+            self._description = "No description available at this time."
+        }
+    }
+    
+    func parseEvolutionsData(from pokeDict: Dictionary<String, AnyObject>) {
         if let evolutions = pokeDict["evolutions"] as? [Dictionary<String, AnyObject>], evolutions.count > 0 {
             if let nextEvolution = evolutions[0]["to"] as? String {
                 // If no substring matches 'mega', then set the nextEvolution to the class property
                 if nextEvolution.range(of: "mega") == nil {
                     self._nextEvolutionName = nextEvolution
-
+                    
                     if let uri = evolutions[0]["resource_uri"] as? String {
                         // Taking out the URI and leaving the Pokedex ID and '/'
                         let extractedIdFromURI = uri.replacingOccurrences(of: "/api/v1/pokemon/", with: "")
@@ -202,15 +223,6 @@ class Pokemon {
                     }
                 }
             }
-        }
-    }
-    
-    func parseDescriptionJSON(from descriptionDictionary: Dictionary<String, AnyObject>) {
-        if let description = descriptionDictionary["description"] as? String {
-            let modifiedDescription = description.replacingOccurrences(of: "POKMON", with: "Pokemon")
-            self._description = modifiedDescription
-        } else {
-            self._description = "No description available at this time."
         }
     }
     
