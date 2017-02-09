@@ -11,10 +11,6 @@ import AVFoundation
 
 class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
 
-    //MARK: IBOutlet(s)
-    @IBOutlet weak var collection: UICollectionView!
-    @IBOutlet weak var searchBar: UISearchBar!
-    
     //MARK: Properties
     var musicPlayer: AVAudioPlayer!
     var inSearchMode = false
@@ -23,6 +19,25 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
     //MARK: Arrays
     var pokemon = [Pokemon]()
     var filteredPokemon = [Pokemon]()
+
+    //MARK: IBOutlet(s)
+    @IBOutlet weak var collection: UICollectionView!
+    @IBOutlet weak var searchBar: UISearchBar!
+    
+    //MARK: IBAction(s)
+    @IBAction func musicBtnPressed(_ sender: UIButton) {
+        if musicPlayer.isPlaying {
+            // Pauses music when pressed if the song is playing
+            musicPlayer.pause()
+            // Make button transparent to indicate paused
+            sender.alpha = 0.2
+        } else {
+            // Resumes playing if the song is paused
+            musicPlayer.play()
+            // Make button fully opaque when music is playing
+            sender.alpha = 1.0
+        }
+    }
     
     //MARK: Default methods
     override func viewDidLoad() {
@@ -124,7 +139,6 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
             let csv = try CSV(contentsOfURL: path)
             // Pull out the rows from the CSV file
             let rows = csv.rows
-//            print(rows)
             
             // Loop through each row in the data pulling out the ID and name values using the dictionary keys, then create and append the Pokemon instances in array
             for row in rows {
@@ -158,20 +172,6 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
         }
     }
     
-    @IBAction func musicBtnPressed(_ sender: UIButton) {
-        if musicPlayer.isPlaying {
-            // Pauses music when pressed if the song is playing
-            musicPlayer.pause()
-            // Make button transparent to indicate paused
-            sender.alpha = 0.2
-        } else {
-            // Resumes playing if the song is paused
-            musicPlayer.play()
-            // Make button fully opaque when music is playing
-            sender.alpha = 1.0
-        }
-    }
-    
     //MARK: Search bar delegate methods
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
@@ -198,7 +198,6 @@ class MainVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
         view.endEditing(true)
     }
     
-   
     //MARK: Keyboard Methods
     func dismissKeyboard(sender: Any) {
         searchBar.resignFirstResponder()

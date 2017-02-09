@@ -423,6 +423,7 @@
                             <constraint firstItem="tfS-GH-ETn" firstAttribute="leading" secondItem="J45-G7-u5a" secondAttribute="leadingMargin" id="M1J-cD-kwK"/>
                             <constraint firstItem="dQW-b2-5AI" firstAttribute="leading" secondItem="J45-G7-u5a" secondAttribute="leading" id="M3t-F6-guV"/>
                             <constraint firstItem="dQW-b2-5AI" firstAttribute="top" secondItem="J45-G7-u5a" secondAttribute="top" id="jpn-x1-uC1"/>
+                            <constraint firstItem="QR1-Cq-LM0" firstAttribute="top" relation="greaterThanOrEqual" secondItem="tfS-GH-ETn" secondAttribute="bottom" constant="13" id="sCC-ct-mdA"/>
                             <constraint firstAttribute="trailingMargin" secondItem="tfS-GH-ETn" secondAttribute="trailing" id="tWG-kO-Q56"/>
                             <constraint firstItem="Eh5-cO-DUN" firstAttribute="centerX" secondItem="J45-G7-u5a" secondAttribute="centerX" id="umb-BY-r9A"/>
                         </constraints>
