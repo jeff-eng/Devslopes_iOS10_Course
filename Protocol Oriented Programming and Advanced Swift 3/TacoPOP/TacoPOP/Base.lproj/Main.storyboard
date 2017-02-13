@@ -21,7 +21,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kE6-Sv-Oyf">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kE6-Sv-Oyf" customClass="HeaderView" customModule="TacoPOP" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TacoPOP" translatesAutoresizingMaskIntoConstraints="NO" id="cUb-1b-XSv">
@@ -47,6 +47,9 @@
                             <constraint firstAttribute="trailing" secondItem="kE6-Sv-Oyf" secondAttribute="trailing" id="pim-f1-MwS"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="headerView" destination="kE6-Sv-Oyf" id="A8d-ju-fLi"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
