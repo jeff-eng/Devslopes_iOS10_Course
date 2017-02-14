@@ -15,6 +15,7 @@
 		95CCF1831E5240EE0081733D /* DropShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95CCF1821E5240EE0081733D /* DropShadow.swift */; };
 		95CCF1851E52477E0081733D /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95CCF1841E52477E0081733D /* HeaderView.swift */; };
 		95CCF1871E526D420081733D /* Taco.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95CCF1861E526D420081733D /* Taco.swift */; };
+		95CCF1891E5277FF0081733D /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95CCF1881E5277FF0081733D /* DataService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		95CCF1821E5240EE0081733D /* DropShadow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropShadow.swift; sourceTree = "<group>"; };
 		95CCF1841E52477E0081733D /* HeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		95CCF1861E526D420081733D /* Taco.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Taco.swift; sourceTree = "<group>"; };
+		95CCF1881E5277FF0081733D /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				95CCF1861E526D420081733D /* Taco.swift */,
+				95CCF1881E5277FF0081733D /* DataService.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -197,6 +200,7 @@
 				95CCF1691E5233CC0081733D /* AppDelegate.swift in Sources */,
 				95CCF1831E5240EE0081733D /* DropShadow.swift in Sources */,
 				95CCF1811E5236520081733D /* MainVC.swift in Sources */,
+				95CCF1891E5277FF0081733D /* DataService.swift in Sources */,
 				95CCF1871E526D420081733D /* Taco.swift in Sources */,
 				95CCF1851E52477E0081733D /* HeaderView.swift in Sources */,
 			);
