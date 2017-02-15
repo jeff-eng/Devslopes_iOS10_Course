@@ -20,6 +20,7 @@
 		95CCF18D1E52907A0081733D /* TacoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95CCF18B1E52907A0081733D /* TacoCell.xib */; };
 		95CCF1911E539FCB0081733D /* ReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95CCF1901E539FCB0081733D /* ReusableView.swift */; };
 		95CCF1931E53B8810081733D /* NibLoadableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95CCF1921E53B8810081733D /* NibLoadableView.swift */; };
+		95CCF1951E53BC740081733D /* UICollectionView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95CCF1941E53BC740081733D /* UICollectionView+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		95CCF18B1E52907A0081733D /* TacoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TacoCell.xib; sourceTree = "<group>"; };
 		95CCF1901E539FCB0081733D /* ReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReusableView.swift; sourceTree = "<group>"; };
 		95CCF1921E53B8810081733D /* NibLoadableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibLoadableView.swift; sourceTree = "<group>"; };
+		95CCF1941E53BC740081733D /* UICollectionView+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +134,7 @@
 		95CCF17F1E52354A0081733D /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				95CCF1941E53BC740081733D /* UICollectionView+Ext.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -214,6 +217,7 @@
 				95CCF1691E5233CC0081733D /* AppDelegate.swift in Sources */,
 				95CCF1831E5240EE0081733D /* DropShadow.swift in Sources */,
 				95CCF1931E53B8810081733D /* NibLoadableView.swift in Sources */,
+				95CCF1951E53BC740081733D /* UICollectionView+Ext.swift in Sources */,
 				95CCF1911E539FCB0081733D /* ReusableView.swift in Sources */,
 				95CCF1811E5236520081733D /* MainVC.swift in Sources */,
 				95CCF1891E5277FF0081733D /* DataService.swift in Sources */,

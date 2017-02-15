@@ -25,6 +25,11 @@ class MainVC: UIViewController, DataServiceDelegate {
         collectionView.dataSource = self
         
         headerView.addDropShadow()
+        /*
+        let nib = UINib(nibName: "TacoCell", bundle: nil)
+        collectionView.register(nib, forCellWithReuseIdentifier: "TacoCell") 
+        */
+        collectionView.register(TacoCell.self)
     }
     
     func deliciousTacoDataLoaded() {
@@ -43,13 +48,17 @@ extension MainVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TacoCell", for: indexPath) as? TacoCell {
-            cell.configureCell(taco: ds.tacoArray[indexPath.row])
-            
-            return cell
-        }
+//        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TacoCell", for: indexPath) as? TacoCell {
+//            cell.configureCell(taco: ds.tacoArray[indexPath.row])
+//            
+//            return cell
+//        }
+//        
+//        return UICollectionViewCell()
         
-        return UICollectionViewCell()
+        let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as TacoCell
+        cell.configureCell(taco: ds.tacoArray[indexPath.row])
+        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
