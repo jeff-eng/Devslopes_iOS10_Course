@@ -7,19 +7,57 @@
 //
 
 import UIKit
+import Speech
+import AVFoundation
 
 class ViewController: UIViewController {
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var transcriptionTextView: UITextView!
 
+    var audioPlayer: AVAudioPlayer!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        // Hide the activity indicator on load of the app
+        activityIndicator.isHidden = true
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func requestSpeechAuth() {
+        SFSpeechRecognizer.requestAuthorization { authStatus in
+            if authStatus == SFSpeechRecognizerAuthorizationStatus.authorized {
+                if let path = Bundle.main.url(forResource: "test", withExtension: "m4a") {
+                    do {
+                        let sound = try AVAudioPlayer(contentsOf: path)
+                        self.audioPlayer = sound
+                        sound.play()
+                    } catch {
+                        print("Error!")
+                    }
+                    
+                    let recognizer = SFSpeechRecognizer()
+                    let request = SFSpeechURLRecognitionRequest(url: path)
+                    recognizer?.recognitionTask(with: request) { (result, error) in
+                        if let error = error {
+                            print("There was an error: \(error)")
+                        } else {
+                            print(result?.bestTranscription.formattedString)
+                        }
+                    }
+                }
+            }
+        }
+    
     }
-
-
+    
+    @IBAction func playButtonPressed(_ sender: Any) {
+        // Show the Activity Indicator
+        activityIndicator.isHidden = false
+        // Start animating the Activity Indicator
+        activityIndicator.startAnimating()
+        // Call the function to play the file and enable the speech authorization
+        requestSpeechAuth()
+    }
+    
+    
 }
-
