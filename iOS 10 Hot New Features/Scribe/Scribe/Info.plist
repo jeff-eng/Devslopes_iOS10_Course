@@ -41,5 +41,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>We need to analyze and transcribe your audio.  Please refrain from using any audio that contains sensitive information.  Thank you. 💩</string>
 </dict>
 </plist>

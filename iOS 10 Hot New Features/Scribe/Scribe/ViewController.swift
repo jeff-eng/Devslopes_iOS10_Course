@@ -10,7 +10,7 @@ import UIKit
 import Speech
 import AVFoundation
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, AVAudioPlayerDelegate {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var transcriptionTextView: UITextView!
 
@@ -23,6 +23,15 @@ class ViewController: UIViewController {
         activityIndicator.isHidden = true
     }
 
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        // Stop the audio player
+        player.stop()
+        // Stop animating the activity indicator
+        activityIndicator.stopAnimating()
+        // Hide the activity indicator
+        activityIndicator.isHidden = true
+    }
+    
     func requestSpeechAuth() {
         SFSpeechRecognizer.requestAuthorization { authStatus in
             if authStatus == SFSpeechRecognizerAuthorizationStatus.authorized {
@@ -30,6 +39,7 @@ class ViewController: UIViewController {
                     do {
                         let sound = try AVAudioPlayer(contentsOf: path)
                         self.audioPlayer = sound
+                        self.audioPlayer.delegate = self
                         sound.play()
                     } catch {
                         print("Error!")
@@ -41,7 +51,7 @@ class ViewController: UIViewController {
                         if let error = error {
                             print("There was an error: \(error)")
                         } else {
-                            print(result?.bestTranscription.formattedString)
+                            self.transcriptionTextView.text = result?.bestTranscription.formattedString
                         }
                     }
                 }
