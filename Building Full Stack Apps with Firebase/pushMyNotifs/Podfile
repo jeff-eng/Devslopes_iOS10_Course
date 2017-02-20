@@ -7,4 +7,5 @@ target 'pushMyNotifs' do
 
   # Pods for pushMyNotifs
   pod 'Firebase/Core'
+  pod 'Firebase/Messaging'
 end

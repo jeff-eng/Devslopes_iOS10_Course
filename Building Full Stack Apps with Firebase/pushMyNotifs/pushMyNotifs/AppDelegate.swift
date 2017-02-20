@@ -8,6 +8,8 @@
 
 import UIKit
 import Firebase
+import FirebaseInstanceID
+import FirebaseMessaging
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -43,6 +45,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    func tokenRefreshNotification(notification: NSNotification) {
+        // Retrieve and print out the new token
+        let refreshedToken = FIRInstanceID.instanceID().token()!
+        print("InstanceID token: \(refreshedToken)")
+        
+        // Whenever we have a new token, connect to FCM
+        connectToFCM()
+    }
+    
+    func connectToFCM() {
+        FIRMessaging.messaging().connect { (error) in
+            if (error) != nil {
+                print("Unable to connect to FCM \(error)")
+            } else {
+                print("Connected to FCM")
+            }
+        }
+    }
 
 }
 
