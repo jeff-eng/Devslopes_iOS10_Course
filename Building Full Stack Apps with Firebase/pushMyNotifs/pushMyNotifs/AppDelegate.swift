@@ -66,7 +66,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func tokenRefreshNotification(notification: NSNotification) {
         // Retrieve and print out the new token
-        let refreshedToken = FIRInstanceID.instanceID().token()!
+        let refreshedToken = FIRInstanceID.instanceID().token()
         print("InstanceID token: \(refreshedToken)")
         
         // Whenever we have a new token, connect to FCM
