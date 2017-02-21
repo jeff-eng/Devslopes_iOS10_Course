@@ -14,6 +14,11 @@
 		95AC206D1E5CCCAF00B68A0E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95AC206C1E5CCCAF00B68A0E /* Assets.xcassets */; };
 		95AC20701E5CCCAF00B68A0E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95AC206E1E5CCCAF00B68A0E /* LaunchScreen.storyboard */; };
 		95AC20781E5CCD4700B68A0E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 95AC20771E5CCD4700B68A0E /* GoogleService-Info.plist */; };
+		95AC208B1E5CD5E200B68A0E /* GeoFire.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AC20821E5CD5E200B68A0E /* GeoFire.m */; };
+		95AC208C1E5CD5E200B68A0E /* GFBase32Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AC20841E5CD5E200B68A0E /* GFBase32Utils.m */; };
+		95AC208D1E5CD5E200B68A0E /* GFGeoHash.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AC20861E5CD5E200B68A0E /* GFGeoHash.m */; };
+		95AC208E1E5CD5E200B68A0E /* GFGeoHashQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AC20881E5CD5E200B68A0E /* GFGeoHashQuery.m */; };
+		95AC208F1E5CD5E200B68A0E /* GFQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AC208A1E5CD5E200B68A0E /* GFQuery.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +33,22 @@
 		95AC206F1E5CCCAF00B68A0E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		95AC20711E5CCCAF00B68A0E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		95AC20771E5CCD4700B68A0E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		95AC207B1E5CD5E200B68A0E /* GeoFire.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeoFire.h; sourceTree = "<group>"; };
+		95AC207C1E5CD5E200B68A0E /* GFCircleQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFCircleQuery.h; sourceTree = "<group>"; };
+		95AC207D1E5CD5E200B68A0E /* GFQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFQuery.h; sourceTree = "<group>"; };
+		95AC207E1E5CD5E200B68A0E /* GFRegionQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFRegionQuery.h; sourceTree = "<group>"; };
+		95AC207F1E5CD5E200B68A0E /* GeoFire-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GeoFire-Prefix.pch"; sourceTree = "<group>"; };
+		95AC20811E5CD5E200B68A0E /* GeoFire+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GeoFire+Private.h"; sourceTree = "<group>"; };
+		95AC20821E5CD5E200B68A0E /* GeoFire.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeoFire.m; sourceTree = "<group>"; };
+		95AC20831E5CD5E200B68A0E /* GFBase32Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFBase32Utils.h; sourceTree = "<group>"; };
+		95AC20841E5CD5E200B68A0E /* GFBase32Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFBase32Utils.m; sourceTree = "<group>"; };
+		95AC20851E5CD5E200B68A0E /* GFGeoHash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFGeoHash.h; sourceTree = "<group>"; };
+		95AC20861E5CD5E200B68A0E /* GFGeoHash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFGeoHash.m; sourceTree = "<group>"; };
+		95AC20871E5CD5E200B68A0E /* GFGeoHashQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFGeoHashQuery.h; sourceTree = "<group>"; };
+		95AC20881E5CD5E200B68A0E /* GFGeoHashQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFGeoHashQuery.m; sourceTree = "<group>"; };
+		95AC20891E5CD5E200B68A0E /* GFQuery+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GFQuery+Private.h"; sourceTree = "<group>"; };
+		95AC208A1E5CD5E200B68A0E /* GFQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFQuery.m; sourceTree = "<group>"; };
+		95AC20931E5CD82E00B68A0E /* pokefinder-bridging-header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "pokefinder-bridging-header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,8 +91,48 @@
 				95AC206E1E5CCCAF00B68A0E /* LaunchScreen.storyboard */,
 				95AC20771E5CCD4700B68A0E /* GoogleService-Info.plist */,
 				95AC20711E5CCCAF00B68A0E /* Info.plist */,
+				95AC20791E5CD5E200B68A0E /* GeoFire */,
+				95AC20931E5CD82E00B68A0E /* pokefinder-bridging-header.h */,
 			);
 			path = pokefinder;
+			sourceTree = "<group>";
+		};
+		95AC20791E5CD5E200B68A0E /* GeoFire */ = {
+			isa = PBXGroup;
+			children = (
+				95AC207A1E5CD5E200B68A0E /* API */,
+				95AC207F1E5CD5E200B68A0E /* GeoFire-Prefix.pch */,
+				95AC20801E5CD5E200B68A0E /* Implementation */,
+			);
+			path = GeoFire;
+			sourceTree = "<group>";
+		};
+		95AC207A1E5CD5E200B68A0E /* API */ = {
+			isa = PBXGroup;
+			children = (
+				95AC207B1E5CD5E200B68A0E /* GeoFire.h */,
+				95AC207C1E5CD5E200B68A0E /* GFCircleQuery.h */,
+				95AC207D1E5CD5E200B68A0E /* GFQuery.h */,
+				95AC207E1E5CD5E200B68A0E /* GFRegionQuery.h */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		95AC20801E5CD5E200B68A0E /* Implementation */ = {
+			isa = PBXGroup;
+			children = (
+				95AC20811E5CD5E200B68A0E /* GeoFire+Private.h */,
+				95AC20821E5CD5E200B68A0E /* GeoFire.m */,
+				95AC20831E5CD5E200B68A0E /* GFBase32Utils.h */,
+				95AC20841E5CD5E200B68A0E /* GFBase32Utils.m */,
+				95AC20851E5CD5E200B68A0E /* GFGeoHash.h */,
+				95AC20861E5CD5E200B68A0E /* GFGeoHash.m */,
+				95AC20871E5CD5E200B68A0E /* GFGeoHashQuery.h */,
+				95AC20881E5CD5E200B68A0E /* GFGeoHashQuery.m */,
+				95AC20891E5CD5E200B68A0E /* GFQuery+Private.h */,
+				95AC208A1E5CD5E200B68A0E /* GFQuery.m */,
+			);
+			path = Implementation;
 			sourceTree = "<group>";
 		};
 		E6CD22744E5616FADBFA3FB6 /* Pods */ = {
@@ -216,8 +277,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95AC208C1E5CD5E200B68A0E /* GFBase32Utils.m in Sources */,
 				95AC20681E5CCCAF00B68A0E /* ViewController.swift in Sources */,
+				95AC208D1E5CD5E200B68A0E /* GFGeoHash.m in Sources */,
 				95AC20661E5CCCAF00B68A0E /* AppDelegate.swift in Sources */,
+				95AC208B1E5CD5E200B68A0E /* GeoFire.m in Sources */,
+				95AC208E1E5CD5E200B68A0E /* GFGeoHashQuery.m in Sources */,
+				95AC208F1E5CD5E200B68A0E /* GFQuery.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -346,6 +412,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jeffeng.pokefinder;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "pokefinder/pokefinder-bridging-header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -360,6 +427,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jeffeng.pokefinder;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "pokefinder/pokefinder-bridging-header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -383,6 +451,7 @@
 				95AC20761E5CCCAF00B68A0E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
