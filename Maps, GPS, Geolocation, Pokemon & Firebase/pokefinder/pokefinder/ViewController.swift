@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import CoreLocation
 
 class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     @IBOutlet weak var mapView: MKMapView!
@@ -48,7 +49,6 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     // Method to center map on user's current location
     func centerMapOnLocation(location: CLLocation) {
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, 2000, 2000)
-        
         mapView.setRegion(coordinateRegion, animated: true)
     }
 
