@@ -9,12 +9,15 @@
 import UIKit
 import MapKit
 import CoreLocation
+import FirebaseDatabase
 
 class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     @IBOutlet weak var mapView: MKMapView!
 
     let locationManager = CLLocationManager()
     var mapHasCenteredOnce = false
+    var geoFire: GeoFire!
+    var geoFireRef: FIRDatabaseReference!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +25,9 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         mapView.delegate = self
         // Setting the tracking mode to keep centered on user's location
         mapView.userTrackingMode = MKUserTrackingMode.follow
+        
+        geoFireRef = FIRDatabase.database().reference()
+        geoFire = GeoFire(firebaseRef: geoFireRef)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -81,6 +87,12 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         return annotationView
     }
+    
+    // Whenever you see a Pokemon, this method is called and sets the location for the specific Pokemon using the PokeID as the key
+    func createSighting(forLocation location: CLLocation, withPokemon pokeId: Int) {
+        geoFire.setLocation(location, forKey: "\(pokeId)")
+    }
+    
     
     @IBAction func spotRandomPokemon(_ sender: Any) {
     }
