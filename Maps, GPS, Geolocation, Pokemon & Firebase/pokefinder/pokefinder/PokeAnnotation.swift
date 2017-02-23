@@ -172,6 +172,6 @@ class PokeAnnotation: NSObject, MKAnnotation {
         self.coordinate = coordinate
         self.pokeID = pokeID
         self.pokemonName = pokemon[pokeID - 1].capitalized
-        self.title = self.pokemonName
+        self.title = self.pokemonName // Sets the title of the annotation
     }
 }
