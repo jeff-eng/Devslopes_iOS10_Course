@@ -42,6 +42,6 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>We need your permission to use your location data in order to provide your location on the map.</string>
+	<string>We need your permission to use your location data in order to show Pokemon on the map.</string>
 </dict>
 </plist>
