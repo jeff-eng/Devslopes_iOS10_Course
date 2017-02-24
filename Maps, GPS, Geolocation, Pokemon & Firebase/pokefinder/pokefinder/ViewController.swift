@@ -14,6 +14,7 @@ import FirebaseDatabase
 class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     @IBOutlet weak var mapView: MKMapView!
 
+    //MARK: Class properties
     let locationManager = CLLocationManager()
     var mapHasCenteredOnce = false
     var geoFire: GeoFire!
@@ -37,6 +38,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         locationAuthStatus()
     }
     
+    //MARK: Location methods
     // Method prompting to obtain permission for user's location
     func locationAuthStatus() {
         if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
@@ -60,6 +62,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         mapView.setRegion(coordinateRegion, animated: true)
     }
 
+    //MARK: Map View methods
     // Update this callback/protocol function for when the user's location is actually updated
     func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
         // Optionally unwrap user's updated location
@@ -76,6 +79,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     // Updating this callback/protocol function to replace the location dot with sprite image
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
+        let annoIdentifier = "Pokemon"
         // Create uninstantiated reference of annotation view
         var annotationView: MKAnnotationView?
         
@@ -85,11 +89,55 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "User")
             // Change the image of the annotation to the sprite image
             annotationView?.image = UIImage(named: "ash")
+        } else if let deqAnno = mapView.dequeueReusableAnnotationView(withIdentifier: annoIdentifier) {
+            annotationView = deqAnno
+            annotationView?.annotation = annotation
+        } else {
+            let av = MKAnnotationView(annotation: annotation, reuseIdentifier: annoIdentifier)
+            av.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+            annotationView = av
+        }
+        
+        // Customize the annotation view
+        if let annotationView = annotationView, let anno = annotation as? PokeAnnotation {
+            // Show the popup when selected (note that annotation title is required for the callout)
+            annotationView.canShowCallout = true
+            annotationView.image = UIImage(named: "\(anno.pokeID)")
+            let btn = UIButton()
+            btn.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+            btn.setImage(UIImage(named: "map"), for: .normal)
+            annotationView.rightCalloutAccessoryView = btn
         }
         
         return annotationView
     }
     
+    // When user pans across the map, we want to update the map with the Pokemon sightings
+    func mapView(_ mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
+        // Obtain the user's center in lat/long coordinates
+        let location = CLLocation(latitude: mapView.centerCoordinate.latitude, longitude: mapView.centerCoordinate.longitude)
+        // Show the sightings based on user's new updated location after panning
+        showSightingsOnMap(location: location)
+    }
+    
+    // Implement behavior when callout accessory control is tapped
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        
+        // Configure map view before it's loaded
+        if let anno = view.annotation as? PokeAnnotation {
+            let place = MKPlacemark(coordinate: anno.coordinate)
+            let destination = MKMapItem(placemark: place)
+            destination.name = "Pokemon Sighting"
+            let regionDistance: CLLocationDistance = 1000
+            let regionSpan = MKCoordinateRegionMakeWithDistance(anno.coordinate, regionDistance, regionDistance)
+            
+            let options = [MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: regionSpan.center), MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: regionSpan.span), MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDefault] as [String: Any]
+            
+            MKMapItem.openMaps(with: [destination], launchOptions: options)
+        }
+    }
+    
+    //MARK: Pokemon Sighting methods
     // Whenever you see a Pokemon, this method is called and sets the location for the specific Pokemon using the PokeID as the key
     func createSighting(forLocation location: CLLocation, withPokemon pokeId: Int) {
         // Call the GeoFire's setLocation method, which stores the location and associated PokeID key
