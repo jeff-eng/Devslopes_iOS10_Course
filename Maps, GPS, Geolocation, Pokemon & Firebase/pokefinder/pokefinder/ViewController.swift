@@ -76,7 +76,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         }
     }
     
-    // Updating this callback/protocol function to replace the location dot with sprite image
+    // Updating this callback/protocol function to replace the location dot with sprite image.  This function is called whenever we add an annotation to the map
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
         let annoIdentifier = "Pokemon"
@@ -90,7 +90,9 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             // Change the image of the annotation to the sprite image
             annotationView?.image = UIImage(named: "ash")
         } else if let deqAnno = mapView.dequeueReusableAnnotationView(withIdentifier: annoIdentifier) {
+            // Replace the annotation view with a dequeued annotation view
             annotationView = deqAnno
+            // Set the now-dequeued annotation view to the annotation
             annotationView?.annotation = annotation
         } else {
             let av = MKAnnotationView(annotation: annotation, reuseIdentifier: annoIdentifier)
@@ -102,10 +104,15 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         if let annotationView = annotationView, let anno = annotation as? PokeAnnotation {
             // Show the popup when selected (note that annotation title is required for the callout)
             annotationView.canShowCallout = true
+            // Setting the annotation image to  the Pokemon image
             annotationView.image = UIImage(named: "\(anno.pokeID)")
+            // Create button
             let btn = UIButton()
+            // Set the dimensions
             btn.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+            // Set the image of the button
             btn.setImage(UIImage(named: "map"), for: .normal)
+            // Add the button to the pop up displayed on the annotation 
             annotationView.rightCalloutAccessoryView = btn
         }
         
@@ -125,14 +132,20 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         // Configure map view before it's loaded
         if let anno = view.annotation as? PokeAnnotation {
+            // Create a placemark (an object that stores address info)
             let place = MKPlacemark(coordinate: anno.coordinate)
+            // Create a destination
             let destination = MKMapItem(placemark: place)
+            // Give the destination a name
             destination.name = "Pokemon Sighting"
+            // Set a region distance
             let regionDistance: CLLocationDistance = 1000
+            // Set which portion of the map to display
             let regionSpan = MKCoordinateRegionMakeWithDistance(anno.coordinate, regionDistance, regionDistance)
-            
+            // Set the options that will be passed to Apple Maps
             let options = [MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: regionSpan.center), MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: regionSpan.span), MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDefault] as [String: Any]
             
+            // Open Apple Maps with all the options we set
             MKMapItem.openMaps(with: [destination], launchOptions: options)
         }
     }
