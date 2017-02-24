@@ -51,7 +51,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     // CLLocationManager Delegate method that monitors authorization status
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         // Shows user location on the map view after checking that user authorized
-        if status == CLAuthorizationStatus.authorizedWhenInUse {
+        if status == .authorizedWhenInUse {
             mapView.showsUserLocation = true
         }
     }
