@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MainVC.swift
 //  pokefinder
 //
 //  Created by Jeffrey Eng on 2/21/17.
@@ -11,7 +11,7 @@ import MapKit
 import CoreLocation
 import FirebaseDatabase
 
-class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
+class MainVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     @IBOutlet weak var mapView: MKMapView!
 
     //MARK: Class properties
@@ -175,11 +175,18 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     // When we tap on the Pokeball, this IBAction will add a random Pokemon to the map and will center it on the user's current center location on the map view
     @IBAction func spotRandomPokemon(_ sender: Any) {
-        // Get the current center location on the map
-        let location = CLLocation(latitude: mapView.centerCoordinate.latitude, longitude: mapView.centerCoordinate.longitude)
-        // Generate a random integer that corresponds with a PokeID
-        let rand = arc4random_uniform(151) + 1
-        // Create the sighting and pass in the location and random integer
-        createSighting(forLocation: location, withPokemon: Int(rand))
+        
+        // Tapping on the Pokeball triggers a new VC
+        
+//        // Get the current center location on the map
+//        let location = CLLocation(latitude: mapView.centerCoordinate.latitude, longitude: mapView.centerCoordinate.longitude)
+//        // Generate a random integer that corresponds with a PokeID
+//        let rand = arc4random_uniform(151) + 1
+//        // Create the sighting and pass in the location and random integer
+//        createSighting(forLocation: location, withPokemon: Int(rand))
     }
+    
+//    override func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)? = nil) {
+//        <#code#>
+//    }
 }

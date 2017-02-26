@@ -43,5 +43,9 @@
 	</array>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>We need your permission to use your location data in order to show Pokemon on the map.</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Pokemon Solid.ttf</string>
+	</array>
 </dict>
 </plist>
