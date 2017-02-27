@@ -27,6 +27,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="VXF-tg-pfZ">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Cg-70-428">
                                 <rect key="frame" x="16" y="604" width="54" height="53"/>
                                 <constraints>
@@ -39,9 +42,6 @@
                                     <segue destination="Ffb-ag-7qG" kind="show" identifier="PokemonSelectionVC" action="showDetailViewController:sender:" id="bZU-aA-uZM"/>
                                 </connections>
                             </button>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="VXF-tg-pfZ">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                            </mapView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -114,7 +114,7 @@
                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="jxb-Qw-z1c" customClass="PokemonCell" customModule="pokefinder" customModuleProvider="target">
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PokeCell" id="jxb-Qw-z1c" customClass="PokemonCell" customModule="pokefinder" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="110" height="110"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -128,7 +128,7 @@
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="25" translatesAutoresizingMaskIntoConstraints="NO" id="ffW-uq-XUk">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="25" translatesAutoresizingMaskIntoConstraints="NO" id="ffW-uq-XUk">
                                                             <rect key="frame" x="0.0" y="0.0" width="110" height="80"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="80" id="jq3-JR-unm"/>
@@ -177,6 +177,9 @@
                             <constraint firstItem="KgX-xy-Oj2" firstAttribute="top" secondItem="r0u-a7-8AL" secondAttribute="top" id="iSX-4v-O3v"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="collectionView" destination="XvH-dL-4dI" id="4ns-GO-nPf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kuX-mB-1cy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

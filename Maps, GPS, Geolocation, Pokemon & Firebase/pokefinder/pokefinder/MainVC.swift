@@ -57,7 +57,7 @@ class MainVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     }
     
     // Method to center map on user's current location
-    func centerMapOnLocation(location: CLLocation) {
+    func centerMapOnLocation(_ location: CLLocation) {
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, 2000, 2000)
         mapView.setRegion(coordinateRegion, animated: true)
     }
@@ -70,7 +70,7 @@ class MainVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
             // Check when the map has already been centered once(generally on initial app load)
             if !mapHasCenteredOnce {
                 // Center the map with the user's updated location
-                centerMapOnLocation(location: loc)
+                centerMapOnLocation(loc)
                 mapHasCenteredOnce = true
             }
         }
@@ -124,7 +124,7 @@ class MainVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
         // Obtain the user's center in lat/long coordinates
         let location = CLLocation(latitude: mapView.centerCoordinate.latitude, longitude: mapView.centerCoordinate.longitude)
         // Show the sightings based on user's new updated location after panning
-        showSightingsOnMap(location: location)
+        showSightingsOnMap(location)
     }
     
     // Implement behavior when callout accessory control is tapped
@@ -158,7 +158,7 @@ class MainVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     }
     
     // Whenever we get user's location, we display Pokemon sightings on the map
-    func showSightingsOnMap(location: CLLocation) {
+    func showSightingsOnMap(_ location: CLLocation) {
         // Create a query at a specific location with specified radius (in km)
         let circleQuery = geoFire!.query(at: location, withRadius: 2.5)
         // Observe whenever we find a sighting
