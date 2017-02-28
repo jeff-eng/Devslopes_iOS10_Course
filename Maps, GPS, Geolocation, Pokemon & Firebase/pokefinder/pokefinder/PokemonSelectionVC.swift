@@ -18,6 +18,7 @@ class PokemonSelectionVC: UIViewController, UICollectionViewDelegate, UICollecti
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var searchBar: UISearchBar!
 
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -149,8 +150,9 @@ class PokemonSelectionVC: UIViewController, UICollectionViewDelegate, UICollecti
     
     func keyboardWillShow(notification: NSNotification) {
         if keyboardDismissTapGesture == nil {
-            // If nil, we want to create an instance of type UIGestureRecognizer
+            // Create an instance of type UIGestureRecognizer     
             keyboardDismissTapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard(sender:)))
+            // Apply the gesture recognizer to the main view
             self.view.addGestureRecognizer(keyboardDismissTapGesture!)
         }
     }
@@ -174,4 +176,7 @@ class PokemonSelectionVC: UIViewController, UICollectionViewDelegate, UICollecti
     }
     */
 
+    @IBAction func backButtonPressed(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
+    }
 }

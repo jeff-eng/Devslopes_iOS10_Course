@@ -84,10 +84,23 @@
                                         <color key="shadowColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <size key="shadowOffset" width="0.0" height="2"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UuO-vb-XNZ">
+                                        <rect key="frame" x="8" y="25" width="35" height="22"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="22" id="CsI-7F-zKW"/>
+                                            <constraint firstAttribute="width" constant="35" id="nhU-6E-FeC"/>
+                                        </constraints>
+                                        <state key="normal" image="back"/>
+                                        <connections>
+                                            <action selector="backButtonPressed:" destination="Ffb-ag-7qG" eventType="touchUpInside" id="kHh-gE-mLF"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.827892005443573" green="0.32684564590454102" blue="0.21642440557479858" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
+                                    <constraint firstItem="UuO-vb-XNZ" firstAttribute="leading" secondItem="KgX-xy-Oj2" secondAttribute="leading" constant="8" id="8o7-2h-1Lz"/>
                                     <constraint firstItem="XPp-oU-2uZ" firstAttribute="top" secondItem="KgX-xy-Oj2" secondAttribute="top" constant="14" id="GfB-yt-74D"/>
+                                    <constraint firstAttribute="bottom" secondItem="UuO-vb-XNZ" secondAttribute="bottom" constant="8" id="dv5-0D-mdp"/>
                                     <constraint firstItem="XPp-oU-2uZ" firstAttribute="centerX" secondItem="KgX-xy-Oj2" secondAttribute="centerX" id="t2X-dl-dQD"/>
                                     <constraint firstAttribute="height" constant="55" id="tGp-HX-m09"/>
                                 </constraints>
@@ -189,6 +202,7 @@
     </scenes>
     <resources>
         <image name="25" width="120" height="120"/>
+        <image name="back" width="100" height="67"/>
         <image name="pokeball" width="97" height="96"/>
     </resources>
 </document>

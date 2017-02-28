@@ -31,6 +31,7 @@ class MainVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
         geoFireRef = FIRDatabase.database().reference()
         // Initialize GeoFire
         geoFire = GeoFire(firebaseRef: geoFireRef)
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
