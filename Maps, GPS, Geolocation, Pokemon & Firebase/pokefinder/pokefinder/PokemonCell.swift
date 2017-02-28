@@ -19,7 +19,7 @@ class PokemonCell: UICollectionViewCell {
     func configureCell(_ pokemon: Pokemon) {
         self.pokemon = pokemon
         // Change the text of the nameLabel
-        nameLabel.text = pokemon.name
+        nameLabel.text = pokemon.name.capitalized
         // Change the image of the pokemon
         pokemonImage.image = UIImage(named: "\(self.pokemon.pokeId)")
     }
