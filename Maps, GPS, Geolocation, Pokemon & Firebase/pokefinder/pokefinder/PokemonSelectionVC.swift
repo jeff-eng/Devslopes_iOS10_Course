@@ -27,8 +27,6 @@ class PokemonSelectionVC: UIViewController, UICollectionViewDelegate, UICollecti
         collectionView.dataSource = self
         searchBar.delegate = self
     
-//        parseCSV()
-        
         searchBar.returnKeyType = .done
     }
 
@@ -103,29 +101,6 @@ class PokemonSelectionVC: UIViewController, UICollectionViewDelegate, UICollecti
         return CGSize(width: 110, height: 110)
     }
     
-//    func parseCSV() {
-//        let filePath = Bundle.main.path(forResource: "pokemon", ofType: "csv")!
-//        
-//        do {
-//            let csv = try CSV(contentsOfURL: filePath)
-//            let rows = csv.rows
-//            
-//            // Loop through the array of dictionaries and pull out the id and name
-//            for row in rows {
-//                //Grab the Pokedex ID
-//                let pokeId = Int(row["id"]!)!
-//                //Grab the Pokedex Identifier
-//                let pokemonName = row["identifier"]!
-//                //Create the Pokemon object
-//                let pokemonInstance = Pokemon(name: pokemonName, pokeId: pokeId)
-//                pokemons.append(pokemonInstance)
-//            }
-//            
-//        } catch let error as NSError {
-//            print(error)
-//        }
-//    }
-    
     //MARK: Search bar methods
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         // Case where user selected the search bar but didn't type anything
@@ -153,6 +128,7 @@ class PokemonSelectionVC: UIViewController, UICollectionViewDelegate, UICollecti
         view.endEditing(true)
     }
     
+    //MARK: Keyboard Hiding Methods
     func dismissKeyboard(sender: Any) {
         searchBar.resignFirstResponder()
     }
