@@ -147,6 +147,16 @@
                                                                 <constraint firstAttribute="height" constant="80" id="jq3-JR-unm"/>
                                                             </constraints>
                                                         </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zXG-Jn-lGb">
+                                                            <rect key="frame" x="2" y="2" width="30" height="21"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="30" id="bga-bR-EFX"/>
+                                                                <constraint firstAttribute="height" constant="21" id="qUM-gX-AaQ"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="14"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
                                                     </subviews>
                                                 </view>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -154,12 +164,15 @@
                                                     <constraint firstAttribute="trailing" secondItem="ffW-uq-XUk" secondAttribute="trailing" id="4Ug-2Y-Nae"/>
                                                     <constraint firstItem="r1P-jy-MBh" firstAttribute="leading" secondItem="jxb-Qw-z1c" secondAttribute="leading" id="A7b-wn-wtp"/>
                                                     <constraint firstItem="r1P-jy-MBh" firstAttribute="top" secondItem="ffW-uq-XUk" secondAttribute="bottom" id="IOA-Py-mTC"/>
+                                                    <constraint firstItem="zXG-Jn-lGb" firstAttribute="leading" secondItem="jxb-Qw-z1c" secondAttribute="leading" constant="2" id="Mg2-pt-bty"/>
+                                                    <constraint firstItem="zXG-Jn-lGb" firstAttribute="top" secondItem="jxb-Qw-z1c" secondAttribute="top" constant="2" id="Myw-2U-gJN"/>
                                                     <constraint firstAttribute="bottom" secondItem="r1P-jy-MBh" secondAttribute="bottom" id="Ux8-qy-xqP"/>
                                                     <constraint firstAttribute="trailing" secondItem="r1P-jy-MBh" secondAttribute="trailing" id="byS-jD-Pzb"/>
                                                     <constraint firstItem="ffW-uq-XUk" firstAttribute="top" secondItem="jxb-Qw-z1c" secondAttribute="top" id="wb4-jf-Ikp"/>
                                                     <constraint firstItem="ffW-uq-XUk" firstAttribute="leading" secondItem="jxb-Qw-z1c" secondAttribute="leading" id="zIa-YC-chI"/>
                                                 </constraints>
                                                 <connections>
+                                                    <outlet property="idLabel" destination="zXG-Jn-lGb" id="h3F-yG-kMp"/>
                                                     <outlet property="nameLabel" destination="r1P-jy-MBh" id="y9W-jU-gpO"/>
                                                     <outlet property="pokemonImage" destination="ffW-uq-XUk" id="g2J-JF-MmL"/>
                                                 </connections>

@@ -13,16 +13,23 @@ import FirebaseDatabase
 
 class MainVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     @IBOutlet weak var mapView: MKMapView!
-
+   
     //MARK: Class properties
+    var pokemons = [Pokemon]()
+    var selectedPokemonId: Int!
+
     let locationManager = CLLocationManager()
     var mapHasCenteredOnce = false
+    
     var geoFire: GeoFire!
     var geoFireRef: FIRDatabaseReference!
-    
+
+    //MARK: Default View methods
     override func viewDidLoad() {
         super.viewDidLoad()
      
+        parseCSV()
+        
         mapView.delegate = self
         // Setting the tracking mode to keep centered on user's location
         mapView.userTrackingMode = MKUserTrackingMode.follow
@@ -35,7 +42,6 @@ class MainVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        // Call locationAuthStatus method after the View appears
         locationAuthStatus()
     }
     
@@ -165,10 +171,12 @@ class MainVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
         // Observe whenever we find a sighting
         _ = circleQuery?.observe(GFEventType.keyEntered, with: { (key, location) in
           
-            // Optionally unwrapping key and location b/c it could be nil
+            // Optionally binding key and location b/c it could be nil
             if let key = key, let location = location {
                 // Create a PokeAnnotation object using the location and pokeID
-                let anno = PokeAnnotation(coordinate: location.coordinate, pokeID: Int(key)!)
+                let pokemonFromArray = self.pokemons[Int(key)! - 1]
+                let anno = PokeAnnotation(coordinate: location.coordinate, pokeID: pokemonFromArray.pokeId, pokemonName: pokemonFromArray.name)
+
                 self.mapView.addAnnotation(anno)
             }
         })
@@ -176,8 +184,6 @@ class MainVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
     // When we tap on the Pokeball, this IBAction will add a random Pokemon to the map and will center it on the user's current center location on the map view
     @IBAction func spotRandomPokemon(_ sender: Any) {
-        
-        // Tapping on the Pokeball triggers a new VC
         
 //        // Get the current center location on the map
 //        let location = CLLocation(latitude: mapView.centerCoordinate.latitude, longitude: mapView.centerCoordinate.longitude)
@@ -190,4 +196,54 @@ class MainVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
 //    override func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)? = nil) {
 //        <#code#>
 //    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let selectionVC = segue.destination as? PokemonSelectionVC, segue.identifier == "PokemonSelectionVC" {
+                selectionVC.delegate = self
+                selectionVC.pokemons = pokemons
+        }
+    }
+    
 }
+
+extension MainVC: PokemonSelectionVCDelegate {
+    
+    func didDismissCollectionView(sender: PokemonSelectionVC, selected: Pokemon) {
+        
+        // Get the user's current location
+        let location = CLLocation(latitude: mapView.centerCoordinate.latitude, longitude: mapView.centerCoordinate.longitude)
+        
+        pokemons = sender.pokemons
+        selectedPokemonId = selected.pokeId
+        createSighting(forLocation: location, withPokemon: selectedPokemonId)
+        
+        dismiss(animated: true, completion: nil)
+    }
+}
+
+extension MainVC {
+
+    func parseCSV() {
+        let filePath = Bundle.main.path(forResource: "pokemon", ofType: "csv")!
+        
+        do {
+            let csv = try CSV(contentsOfURL: filePath)
+            let rows = csv.rows
+            
+            // Loop through the array of dictionaries and pull out the id and name
+            for row in rows {
+                //Grab the Pokedex ID
+                let pokeId = Int(row["id"]!)!
+                //Grab the Pokedex Identifier
+                let pokemonName = row["identifier"]!
+                //Create the Pokemon object
+                let pokemonInstance = Pokemon(name: pokemonName, pokeId: pokeId)
+                pokemons.append(pokemonInstance)
+            }
+            
+        } catch let error as NSError {
+            print(error)
+        }
+    }
+}
+

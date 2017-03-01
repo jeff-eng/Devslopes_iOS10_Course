@@ -10,14 +10,15 @@ import UIKit
 
 class PokemonSelectionVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
     
-    var pokemons = [Pokemon]()
+    var pokemons: [Pokemon]!
     var filteredPokemons = [Pokemon]()
     var inSearchMode = false
     var keyboardDismissTapGesture: UIGestureRecognizer?
+
+    weak var delegate: PokemonSelectionVCDelegate?
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var searchBar: UISearchBar!
-
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,8 +26,8 @@ class PokemonSelectionVC: UIViewController, UICollectionViewDelegate, UICollecti
         collectionView.delegate = self
         collectionView.dataSource = self
         searchBar.delegate = self
-        
-        parseCSV()
+    
+//        parseCSV()
         
         searchBar.returnKeyType = .done
     }
@@ -50,8 +51,16 @@ class PokemonSelectionVC: UIViewController, UICollectionViewDelegate, UICollecti
     
     //MARK: UICollectionViewDelegate protocol methods
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        var selectedPokemon: Pokemon!
         
-        // Runs the code when the cell is tapped
+        if inSearchMode {
+            selectedPokemon = filteredPokemons[indexPath.row]
+        } else {
+            selectedPokemon = pokemons[indexPath.row]
+        }
+    
+        delegate?.didDismissCollectionView(sender: self, selected: selectedPokemon)
+        
     }
     
     //MARK: UICollectionViewDataSource protocol methods
@@ -94,28 +103,28 @@ class PokemonSelectionVC: UIViewController, UICollectionViewDelegate, UICollecti
         return CGSize(width: 110, height: 110)
     }
     
-    func parseCSV() {
-        let filePath = Bundle.main.path(forResource: "pokemon", ofType: "csv")!
-        
-        do {
-            let csv = try CSV(contentsOfURL: filePath)
-            let rows = csv.rows
-            
-            // Loop through the array of dictionaries and pull out the id and name
-            for row in rows {
-                //Grab the Pokedex ID
-                let pokeId = Int(row["id"]!)!
-                //Grab the Pokedex Identifier
-                let pokemonName = row["identifier"]!
-                //Create the Pokemon object
-                let pokemonInstance = Pokemon(name: pokemonName, pokeId: pokeId)
-                pokemons.append(pokemonInstance)
-            }
-            
-        } catch let error as NSError {
-            print(error)
-        }
-    }
+//    func parseCSV() {
+//        let filePath = Bundle.main.path(forResource: "pokemon", ofType: "csv")!
+//        
+//        do {
+//            let csv = try CSV(contentsOfURL: filePath)
+//            let rows = csv.rows
+//            
+//            // Loop through the array of dictionaries and pull out the id and name
+//            for row in rows {
+//                //Grab the Pokedex ID
+//                let pokeId = Int(row["id"]!)!
+//                //Grab the Pokedex Identifier
+//                let pokemonName = row["identifier"]!
+//                //Create the Pokemon object
+//                let pokemonInstance = Pokemon(name: pokemonName, pokeId: pokeId)
+//                pokemons.append(pokemonInstance)
+//            }
+//            
+//        } catch let error as NSError {
+//            print(error)
+//        }
+//    }
     
     //MARK: Search bar methods
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -165,16 +174,6 @@ class PokemonSelectionVC: UIViewController, UICollectionViewDelegate, UICollecti
             keyboardDismissTapGesture = nil
         }
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
     @IBAction func backButtonPressed(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
