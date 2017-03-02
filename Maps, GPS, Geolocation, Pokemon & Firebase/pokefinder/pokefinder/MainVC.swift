@@ -120,7 +120,7 @@ class MainVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
             deleteBtn.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
             btn.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
             // Set the image of the buttons
-            deleteBtn.setImage(UIImage(named: "pokeball"), for: .normal)
+            deleteBtn.setImage(UIImage(named: "delete"), for: .normal)
             btn.setImage(UIImage(named: "map"), for: .normal)
             // Add the buttons to the pop up displayed on the annotation
             annotationView.rightCalloutAccessoryView = deleteBtn
