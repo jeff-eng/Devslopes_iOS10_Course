@@ -111,16 +111,20 @@ class MainVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
         if let annotationView = annotationView, let anno = annotation as? PokeAnnotation {
             // Show the popup when selected (note that annotation title is required for the callout)
             annotationView.canShowCallout = true
-            // Setting the annotation image to  the Pokemon image
+            // Setting the annotation image to the Pokemon image
             annotationView.image = UIImage(named: "\(anno.pokeID)")
             // Create button
             let btn = UIButton()
+            let deleteBtn = UIButton()
             // Set the dimensions
             btn.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+            deleteBtn.frame = CGRect(x: 50, y: 0, width: 30, height: 30)
             // Set the image of the button
             btn.setImage(UIImage(named: "map"), for: .normal)
+            deleteBtn.setImage(UIImage(named: "pokeball"), for: .normal)
             // Add the button to the pop up displayed on the annotation 
             annotationView.rightCalloutAccessoryView = btn
+            annotationView.leftCalloutAccessoryView = deleteBtn
         }
         
         return annotationView
@@ -137,23 +141,29 @@ class MainVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     // Implement behavior when callout accessory control is tapped
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         
-        // Configure map view before it's loaded
         if let anno = view.annotation as? PokeAnnotation {
-            // Create a placemark (an object that stores address info)
-            let place = MKPlacemark(coordinate: anno.coordinate)
-            // Create a destination
-            let destination = MKMapItem(placemark: place)
-            // Give the destination a name
-            destination.name = "Pokemon Sighting"
-            // Set a region distance
-            let regionDistance: CLLocationDistance = 1000
-            // Set which portion of the map to display
-            let regionSpan = MKCoordinateRegionMakeWithDistance(anno.coordinate, regionDistance, regionDistance)
-            // Set the options that will be passed to Apple Maps
-            let options = [MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: regionSpan.center), MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: regionSpan.span), MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDefault] as [String: Any]
-            
-            // Open Apple Maps with all the options we set
-            MKMapItem.openMaps(with: [destination], launchOptions: options)
+            if control == view.leftCalloutAccessoryView {
+                print("The delete button was tapped!")
+                removeSighting(withPokemon: anno.pokeID)
+                mapView.removeAnnotation(anno)
+            } else {
+                // Configure map view before it's loaded
+                // Create a placemark (an object that stores address info)
+                let place = MKPlacemark(coordinate: anno.coordinate)
+                // Create a destination
+                let destination = MKMapItem(placemark: place)
+                // Give the destination a name
+                destination.name = "Pokemon Sighting"
+                // Set a region distance
+                let regionDistance: CLLocationDistance = 1000
+                // Set which portion of the map to display
+                let regionSpan = MKCoordinateRegionMakeWithDistance(anno.coordinate, regionDistance, regionDistance)
+                // Set the options that will be passed to Apple Maps
+                let options = [MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: regionSpan.center), MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: regionSpan.span), MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDefault] as [String: Any]
+                
+                // Open Apple Maps with all the options we set
+                MKMapItem.openMaps(with: [destination], launchOptions: options)
+            }
         }
     }
     
@@ -162,6 +172,12 @@ class MainVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     func createSighting(forLocation location: CLLocation, withPokemon pokeId: Int) {
         // Call the GeoFire's setLocation method, which stores the location and associated PokeID key
         geoFire.setLocation(location, forKey: "\(pokeId)")
+    }
+    
+    //Method to remove the sighting from Firebase
+    func removeSighting(withPokemon pokeId: Int) {
+        
+        geoFire.removeKey(String(pokeId))
     }
     
     // Whenever we get user's location, we display Pokemon sightings on the map
