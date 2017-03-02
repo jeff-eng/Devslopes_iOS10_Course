@@ -117,14 +117,14 @@ class MainVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
             let btn = UIButton()
             let deleteBtn = UIButton()
             // Set the dimensions
+            deleteBtn.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
             btn.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-            deleteBtn.frame = CGRect(x: 50, y: 0, width: 30, height: 30)
-            // Set the image of the button
-            btn.setImage(UIImage(named: "map"), for: .normal)
+            // Set the image of the buttons
             deleteBtn.setImage(UIImage(named: "pokeball"), for: .normal)
-            // Add the button to the pop up displayed on the annotation 
-            annotationView.rightCalloutAccessoryView = btn
-            annotationView.leftCalloutAccessoryView = deleteBtn
+            btn.setImage(UIImage(named: "map"), for: .normal)
+            // Add the buttons to the pop up displayed on the annotation
+            annotationView.rightCalloutAccessoryView = deleteBtn
+            annotationView.leftCalloutAccessoryView = btn
         }
         
         return annotationView
@@ -142,7 +142,7 @@ class MainVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         
         if let anno = view.annotation as? PokeAnnotation {
-            if control == view.leftCalloutAccessoryView {
+            if control == view.rightCalloutAccessoryView {
                 print("The delete button was tapped!")
                 removeSighting(withPokemon: anno.pokeID)
                 mapView.removeAnnotation(anno)
@@ -153,7 +153,7 @@ class MainVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
                 // Create a destination
                 let destination = MKMapItem(placemark: place)
                 // Give the destination a name
-                destination.name = "Pokemon Sighting"
+                destination.name = "\(anno.title!) sighting"
                 // Set a region distance
                 let regionDistance: CLLocationDistance = 1000
                 // Set which portion of the map to display

@@ -15,7 +15,7 @@ class PokeAnnotation: NSObject, MKAnnotation {
     var pokemonName: String
     var title: String? {
         get {
-            return pokemonName
+            return pokemonName.capitalized
         }
     }
     
