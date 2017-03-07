@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -31,7 +30,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Cg-70-428">
-                                <rect key="frame" x="16" y="604" width="54" height="53"/>
+                                <rect key="frame" x="160.5" y="604" width="54" height="53"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="53" id="7pG-zg-efe"/>
                                     <constraint firstAttribute="width" constant="54" id="riJ-gp-GQE"/>
@@ -49,7 +48,7 @@
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="VXF-tg-pfZ" secondAttribute="bottom" id="Ptd-D5-2Dm"/>
                             <constraint firstItem="VXF-tg-pfZ" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="a36-f9-XwF"/>
                             <constraint firstItem="VXF-tg-pfZ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="dwi-kr-JOL"/>
-                            <constraint firstItem="7Cg-70-428" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="mCU-rL-vkK"/>
+                            <constraint firstItem="7Cg-70-428" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="q0Q-bM-2Uo"/>
                         </constraints>
                     </view>
                     <connections>
@@ -76,7 +75,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="55"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PokéFinder" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XPp-oU-2uZ">
-                                        <rect key="frame" x="124" y="14" width="126.5" height="37"/>
+                                        <rect key="frame" x="124" y="14" width="127" height="37"/>
                                         <fontDescription key="fontDescription" name="PokemonSolidNormal" family="Pokemon Solid" pointSize="25"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>

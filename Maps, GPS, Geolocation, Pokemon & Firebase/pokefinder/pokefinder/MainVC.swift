@@ -117,14 +117,14 @@ class MainVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
             let btn = UIButton()
             let deleteBtn = UIButton()
             // Set the dimensions
-            deleteBtn.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
             btn.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+            deleteBtn.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
             // Set the image of the buttons
-            deleteBtn.setImage(UIImage(named: "delete"), for: .normal)
             btn.setImage(UIImage(named: "map"), for: .normal)
+            deleteBtn.setImage(UIImage(named: "delete"), for: .normal)
             // Add the buttons to the pop up displayed on the annotation
-            annotationView.rightCalloutAccessoryView = deleteBtn
-            annotationView.leftCalloutAccessoryView = btn
+            annotationView.rightCalloutAccessoryView = btn
+            annotationView.leftCalloutAccessoryView = deleteBtn
         }
         
         return annotationView
@@ -142,10 +142,14 @@ class MainVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         
         if let anno = view.annotation as? PokeAnnotation {
-            if control == view.rightCalloutAccessoryView {
+            if control == view.leftCalloutAccessoryView {
                 print("The delete button was tapped!")
+                // Removes Pokemon sighting from Firebase
                 removeSighting(withPokemon: anno.pokeID)
+                // Remove the MKAnnotation
                 mapView.removeAnnotation(anno)
+                // Remove the MKAnnotationView from its superview
+                view.removeFromSuperview()
             } else {
                 // Configure map view before it's loaded
                 // Create a placemark (an object that stores address info)
@@ -177,7 +181,7 @@ class MainVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     //Method to remove the sighting from Firebase
     func removeSighting(withPokemon pokeId: Int) {
         
-        geoFire.removeKey(String(pokeId))
+        geoFire.removeKey("\(pokeId)")
     }
     
     // Whenever we get user's location, we display Pokemon sightings on the map
@@ -192,7 +196,7 @@ class MainVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
                 // Create a PokeAnnotation object using the location and pokeID
                 let pokemonFromArray = self.pokemons[Int(key)! - 1]
                 let anno = PokeAnnotation(coordinate: location.coordinate, pokeID: pokemonFromArray.pokeId, pokemonName: pokemonFromArray.name)
-
+                
                 self.mapView.addAnnotation(anno)
             }
         })
