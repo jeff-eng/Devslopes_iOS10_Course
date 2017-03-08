@@ -39,6 +39,9 @@ class MainVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
         // Initialize GeoFire
         geoFire = GeoFire(firebaseRef: geoFireRef)
         
+        let longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(segueOnLongPress))
+        longPressGestureRecognizer.minimumPressDuration = 1.0
+        mapView.addGestureRecognizer(longPressGestureRecognizer)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -200,6 +203,14 @@ class MainVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
                 self.mapView.addAnnotation(anno)
             }
         })
+    }
+    
+    func segueOnLongPress(gestureRecognizer: UIGestureRecognizer) {
+        
+        if gestureRecognizer.state == .began {
+            
+            self.performSegue(withIdentifier: "PokemonSelectionVC", sender: self)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
