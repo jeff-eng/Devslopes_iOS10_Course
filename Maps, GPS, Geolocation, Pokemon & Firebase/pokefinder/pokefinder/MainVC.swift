@@ -23,7 +23,7 @@ class MainVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
     var geoFire: GeoFire!
     var geoFireRef: FIRDatabaseReference!
-
+    
     //MARK: Default View methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -204,8 +204,8 @@ class MainVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let selectionVC = segue.destination as? PokemonSelectionVC, segue.identifier == "PokemonSelectionVC" {
-                selectionVC.delegate = self
-                selectionVC.pokemons = pokemons
+            selectionVC.delegate = self
+            selectionVC.pokemons = pokemons
         }
     }
     

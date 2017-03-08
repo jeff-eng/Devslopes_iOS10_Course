@@ -10,7 +10,6 @@
 		547003C6F6AD1BCD82FA75C0 /* Pods_pokefinder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06C09E7BBEC5B8D3CB47F10A /* Pods_pokefinder.framework */; };
 		9525EE2F1E6104F9006F4EAD /* Pokemon Solid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9525EE2E1E6104F9006F4EAD /* Pokemon Solid.ttf */; };
 		9525EE311E62492D006F4EAD /* PokemonSelectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9525EE301E62492D006F4EAD /* PokemonSelectionVC.swift */; };
-		9525EE341E62586E006F4EAD /* SlideInPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9525EE331E62586E006F4EAD /* SlideInPresentationController.swift */; };
 		9525EE361E625FE8006F4EAD /* PokemonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9525EE351E625FE8006F4EAD /* PokemonCell.swift */; };
 		9525EE381E626227006F4EAD /* Pokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9525EE371E626227006F4EAD /* Pokemon.swift */; };
 		9525EE3A1E63C950006F4EAD /* pokemon.csv in Resources */ = {isa = PBXBuildFile; fileRef = 9525EE391E63C950006F4EAD /* pokemon.csv */; };
@@ -36,7 +35,6 @@
 		4B1C0DFD8A136DCE24400FBE /* Pods-pokefinder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pokefinder.release.xcconfig"; path = "Pods/Target Support Files/Pods-pokefinder/Pods-pokefinder.release.xcconfig"; sourceTree = "<group>"; };
 		9525EE2E1E6104F9006F4EAD /* Pokemon Solid.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pokemon Solid.ttf"; sourceTree = "<group>"; };
 		9525EE301E62492D006F4EAD /* PokemonSelectionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PokemonSelectionVC.swift; sourceTree = "<group>"; };
-		9525EE331E62586E006F4EAD /* SlideInPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideInPresentationController.swift; sourceTree = "<group>"; };
 		9525EE351E625FE8006F4EAD /* PokemonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PokemonCell.swift; sourceTree = "<group>"; };
 		9525EE371E626227006F4EAD /* Pokemon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pokemon.swift; sourceTree = "<group>"; };
 		9525EE391E63C950006F4EAD /* pokemon.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = pokemon.csv; sourceTree = "<group>"; };
@@ -84,7 +82,6 @@
 		9525EE321E62584B006F4EAD /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				9525EE331E62586E006F4EAD /* SlideInPresentationController.swift */,
 			);
 			name = Presentation;
 			sourceTree = "<group>";
@@ -366,7 +363,6 @@
 				95AC20661E5CCCAF00B68A0E /* AppDelegate.swift in Sources */,
 				95AC208B1E5CD5E200B68A0E /* GeoFire.m in Sources */,
 				95AC208E1E5CD5E200B68A0E /* GFGeoHashQuery.m in Sources */,
-				9525EE341E62586E006F4EAD /* SlideInPresentationController.swift in Sources */,
 				95AC208F1E5CD5E200B68A0E /* GFQuery.m in Sources */,
 				9525EE3C1E63CA39006F4EAD /* csv.swift in Sources */,
 			);
