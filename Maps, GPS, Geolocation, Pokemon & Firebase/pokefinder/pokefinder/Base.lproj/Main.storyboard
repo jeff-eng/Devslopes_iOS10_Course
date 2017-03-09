@@ -29,30 +29,18 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="VXF-tg-pfZ">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Cg-70-428">
-                                <rect key="frame" x="160.5" y="604" width="54" height="53"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="53" id="7pG-zg-efe"/>
-                                    <constraint firstAttribute="width" constant="54" id="riJ-gp-GQE"/>
-                                </constraints>
-                                <state key="normal" image="pokeball"/>
-                                <connections>
-                                    <segue destination="Ffb-ag-7qG" kind="show" identifier="PokemonSelectionVC" action="showDetailViewController:sender:" id="bZU-aA-uZM"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="7Cg-70-428" secondAttribute="bottom" constant="10" id="0y4-xk-EJw"/>
                             <constraint firstAttribute="trailing" secondItem="VXF-tg-pfZ" secondAttribute="trailing" id="1AG-wc-ySO"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="VXF-tg-pfZ" secondAttribute="bottom" id="Ptd-D5-2Dm"/>
                             <constraint firstItem="VXF-tg-pfZ" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="a36-f9-XwF"/>
                             <constraint firstItem="VXF-tg-pfZ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="dwi-kr-JOL"/>
-                            <constraint firstItem="7Cg-70-428" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="q0Q-bM-2Uo"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="mapView" destination="VXF-tg-pfZ" id="ioR-ZE-Wud"/>
+                        <segue destination="Ffb-ag-7qG" kind="presentation" identifier="PokemonSelectionVC" id="ChM-bM-SQK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -214,6 +202,5 @@
     <resources>
         <image name="25" width="120" height="120"/>
         <image name="back" width="100" height="67"/>
-        <image name="pokeball" width="97" height="96"/>
     </resources>
 </document>
