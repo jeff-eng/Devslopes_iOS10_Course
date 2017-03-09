@@ -24,6 +24,9 @@ class MainVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     var geoFire: GeoFire!
     var geoFireRef: FIRDatabaseReference!
     
+    var touchPoint: CGPoint!
+    var coordinatesFromTouchPoint: CLLocationCoordinate2D!
+    
     //MARK: Default View methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,9 +42,7 @@ class MainVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
         // Initialize GeoFire
         geoFire = GeoFire(firebaseRef: geoFireRef)
         
-        let longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(segueOnLongPress))
-        longPressGestureRecognizer.minimumPressDuration = 1.0
-        mapView.addGestureRecognizer(longPressGestureRecognizer)
+        initLongPressGestureRec()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -174,7 +175,7 @@ class MainVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
         }
     }
     
-    //MARK: Pokemon Sighting methods
+    //MARK: Pokemon Sighting GeoFire related methods
     // Whenever you see a Pokemon, this method is called and sets the location for the specific Pokemon using the PokeID as the key
     func createSighting(forLocation location: CLLocation, withPokemon pokeId: Int) {
         // Call the GeoFire's setLocation method, which stores the location and associated PokeID key
@@ -205,10 +206,19 @@ class MainVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
         })
     }
     
+    //MARK: Gesture Recognizer
+    func initLongPressGestureRec() {
+        let longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(segueOnLongPress))
+        longPressGestureRecognizer.minimumPressDuration = 0.5
+        mapView.addGestureRecognizer(longPressGestureRecognizer)
+    }
+    
+    // MARK: Segue-related methods
     func segueOnLongPress(gestureRecognizer: UIGestureRecognizer) {
         
         if gestureRecognizer.state == .began {
-            
+            touchPoint = gestureRecognizer.location(in: self.mapView)
+            coordinatesFromTouchPoint = mapView.convert(touchPoint, toCoordinateFrom: self.mapView)
             self.performSegue(withIdentifier: "PokemonSelectionVC", sender: self)
         }
     }
@@ -222,12 +232,17 @@ class MainVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
 }
 
+//MARK: Extensions
+
 extension MainVC: PokemonSelectionVCDelegate {
     
     func didDismissCollectionView(sender: PokemonSelectionVC, selected: Pokemon) {
+        // Get the lat/long in CLLocationDegrees needed to create a CLLocation object
+        let lat = coordinatesFromTouchPoint.latitude
+        let long = coordinatesFromTouchPoint.longitude
         
-        // Get the user's current location
-        let location = CLLocation(latitude: mapView.centerCoordinate.latitude, longitude: mapView.centerCoordinate.longitude)
+        // Create a CLLocation object to pass into createSighting method
+        let location = CLLocation(latitude: lat, longitude: long)
         
         pokemons = sender.pokemons
         selectedPokemonId = selected.pokeId
