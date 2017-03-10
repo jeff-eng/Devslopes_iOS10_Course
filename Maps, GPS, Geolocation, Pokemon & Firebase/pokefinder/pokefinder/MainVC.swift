@@ -226,6 +226,8 @@ class MainVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let selectionVC = segue.destination as? PokemonSelectionVC, segue.identifier == "PokemonSelectionVC" {
             selectionVC.delegate = self
+            // Set transitioningDelegate to self(MainVC), which allows you to take manual control of any animated transitions to and from the destination VC.
+            selectionVC.transitioningDelegate = self
             selectionVC.pokemons = pokemons
         }
     }
@@ -249,6 +251,13 @@ extension MainVC: PokemonSelectionVCDelegate {
         createSighting(forLocation: location, withPokemon: selectedPokemonId)
         
         dismiss(animated: true, completion: nil)
+    }
+}
+
+extension MainVC: UIViewControllerTransitioningDelegate {
+    // This method overrides the default dismissal transition with the custom animation.
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return DismissAnimator()
     }
 }
 
