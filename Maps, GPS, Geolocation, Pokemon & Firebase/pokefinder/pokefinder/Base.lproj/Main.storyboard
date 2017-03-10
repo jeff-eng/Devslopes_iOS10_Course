@@ -70,15 +70,15 @@
                                         <color key="shadowColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <size key="shadowOffset" width="0.0" height="2"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UuO-vb-XNZ">
-                                        <rect key="frame" x="8" y="25" width="35" height="22"/>
+                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UuO-vb-XNZ">
+                                        <rect key="frame" x="8" y="25" width="22" height="22"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="22" id="CsI-7F-zKW"/>
-                                            <constraint firstAttribute="width" constant="35" id="nhU-6E-FeC"/>
+                                            <constraint firstAttribute="width" constant="22" id="nhU-6E-FeC"/>
                                         </constraints>
-                                        <state key="normal" image="back"/>
+                                        <state key="normal" image="close"/>
                                         <connections>
-                                            <action selector="backButtonPressed:" destination="Ffb-ag-7qG" eventType="touchUpInside" id="kHh-gE-mLF"/>
+                                            <action selector="closeButtonPressed:" destination="Ffb-ag-7qG" eventType="touchUpInside" id="ZJm-a3-J9d"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -211,6 +211,6 @@
     </scenes>
     <resources>
         <image name="25" width="120" height="120"/>
-        <image name="back" width="100" height="67"/>
+        <image name="close" width="128" height="128"/>
     </resources>
 </document>
