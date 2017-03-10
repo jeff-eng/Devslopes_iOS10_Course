@@ -70,19 +70,20 @@
                                         <color key="shadowColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <size key="shadowOffset" width="0.0" height="2"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UuO-vb-XNZ">
-                                        <rect key="frame" x="8" y="25" width="35" height="22"/>
+                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UuO-vb-XNZ">
+                                        <rect key="frame" x="8" y="25" width="22" height="22"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="22" id="CsI-7F-zKW"/>
-                                            <constraint firstAttribute="width" constant="35" id="nhU-6E-FeC"/>
+                                            <constraint firstAttribute="width" constant="22" id="nhU-6E-FeC"/>
                                         </constraints>
-                                        <state key="normal" image="back"/>
+                                        <state key="normal" image="close"/>
                                         <connections>
-                                            <action selector="backButtonPressed:" destination="Ffb-ag-7qG" eventType="touchUpInside" id="kHh-gE-mLF"/>
+                                            <action selector="closeButtonPressed:" destination="Ffb-ag-7qG" eventType="touchUpInside" id="ZJm-a3-J9d"/>
                                         </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.827892005443573" green="0.32684564590454102" blue="0.21642440557479858" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstItem="UuO-vb-XNZ" firstAttribute="leading" secondItem="KgX-xy-Oj2" secondAttribute="leading" constant="8" id="8o7-2h-1Lz"/>
                                     <constraint firstItem="XPp-oU-2uZ" firstAttribute="top" secondItem="KgX-xy-Oj2" secondAttribute="top" constant="14" id="GfB-yt-74D"/>
@@ -90,6 +91,9 @@
                                     <constraint firstItem="XPp-oU-2uZ" firstAttribute="centerX" secondItem="KgX-xy-Oj2" secondAttribute="centerX" id="t2X-dl-dQD"/>
                                     <constraint firstAttribute="height" constant="55" id="tGp-HX-m09"/>
                                 </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="qvP-uo-xU9" appends="YES" id="fRb-X9-HCY"/>
+                                </connections>
                             </view>
                             <searchBar contentMode="redraw" text="" placeholder="Search through Pokédex" translatesAutoresizingMaskIntoConstraints="NO" id="Moc-H6-4dq">
                                 <rect key="frame" x="0.0" y="55" width="375" height="44"/>
@@ -167,6 +171,7 @@
                                     </collectionView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.26274509800000001" green="0.61176470589999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstItem="XvH-dL-4dI" firstAttribute="leading" secondItem="stC-Bm-Yoa" secondAttribute="leading" constant="10" id="15m-jR-X8G"/>
                                     <constraint firstAttribute="bottom" secondItem="XvH-dL-4dI" secondAttribute="bottom" constant="10" id="7Js-IR-vfv"/>
@@ -195,12 +200,17 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kuX-mB-1cy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="qvP-uo-xU9">
+                    <connections>
+                        <action selector="handleGesture:" destination="Ffb-ag-7qG" id="WmE-Jx-axZ"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="893.60000000000002" y="136.28185907046478"/>
         </scene>
     </scenes>
     <resources>
         <image name="25" width="120" height="120"/>
-        <image name="back" width="100" height="67"/>
+        <image name="close" width="128" height="128"/>
     </resources>
 </document>

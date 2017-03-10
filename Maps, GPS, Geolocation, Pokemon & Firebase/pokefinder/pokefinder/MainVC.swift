@@ -27,6 +27,8 @@ class MainVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     var touchPoint: CGPoint!
     var coordinatesFromTouchPoint: CLLocationCoordinate2D!
     
+    let interactor = Interactor()
+    
     //MARK: Default View methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -226,6 +228,11 @@ class MainVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let selectionVC = segue.destination as? PokemonSelectionVC, segue.identifier == "PokemonSelectionVC" {
             selectionVC.delegate = self
+            // Set transitioningDelegate to self(MainVC), which allows you to take manual control of any animated transitions to and from the destination VC.
+            selectionVC.transitioningDelegate = self
+            // Pass the interactor object to PokemonSelectionVC; both controllers are using the same state machine.
+            selectionVC.interactor = interactor
+            
             selectionVC.pokemons = pokemons
         }
     }
@@ -249,6 +256,18 @@ extension MainVC: PokemonSelectionVCDelegate {
         createSighting(forLocation: location, withPokemon: selectedPokemonId)
         
         dismiss(animated: true, completion: nil)
+    }
+}
+
+extension MainVC: UIViewControllerTransitioningDelegate {
+    // This method overrides the default dismissal transition with the custom animation.
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return DismissAnimator()
+    }
+    
+    func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        // Return the interactor if user starts panning, otherwise use normal animation if they tap the close button
+        return interactor.hasStarted ? interactor : nil // <- Ternary conditional operator
     }
 }
 

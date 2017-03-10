@@ -14,6 +14,7 @@ class PokemonSelectionVC: UIViewController, UICollectionViewDelegate, UICollecti
     var filteredPokemons = [Pokemon]()
     var inSearchMode = false
     var keyboardDismissTapGesture: UIGestureRecognizer?
+    var interactor: Interactor? = nil
 
     weak var delegate: PokemonSelectionVCDelegate?
     
@@ -32,6 +33,8 @@ class PokemonSelectionVC: UIViewController, UICollectionViewDelegate, UICollecti
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+        showSwipeDownAssist()
         
         // We need to subscribe to when the keyboard is shown
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
@@ -135,7 +138,7 @@ class PokemonSelectionVC: UIViewController, UICollectionViewDelegate, UICollecti
     
     func keyboardWillShow(notification: NSNotification) {
         if keyboardDismissTapGesture == nil {
-            // Create an instance of type UIGestureRecognizer     
+            // Create an instance of type UIGestureRecognizer
             keyboardDismissTapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard(sender:)))
             // Apply the gesture recognizer to the main view
             self.view.addGestureRecognizer(keyboardDismissTapGesture!)
@@ -151,7 +154,73 @@ class PokemonSelectionVC: UIViewController, UICollectionViewDelegate, UICollecti
         }
     }
 
-    @IBAction func backButtonPressed(_ sender: UIButton) {
+    //MARK: IBActions
+    @IBAction func handleGesture(_ sender: UIPanGestureRecognizer) {
+        // Calculating the vertical drag distance
+        
+        // Sets how far down the user has to drag in order to trigger the modal dismissal
+        let percentThreshold: CGFloat = 0.3
+        // Converts the pan gesture coordinate to the PokemonSelectionVC's coordinate space
+        let translation = sender.translation(in: view)
+        // Converts the vertical distance to a percentage (based on teh overall screen height)
+        let verticalMovement = translation.y / view.bounds.height
+        // Captures movement in the downward direction
+        let downwardMovement = fmaxf(Float(verticalMovement), 0.0)
+        // Converts the downward movement to a percentage (max 100%)
+        let downwardmovementPercent = fminf(downwardMovement, 1.0)
+        // Casts percentage to a CGFloat (Interactor expects this type)
+        let progress = CGFloat(downwardmovementPercent)
+        
+        // Unwrap the interactor optional variable
+        guard let interactor = interactor else { return }
+        
+        switch sender.state {
+        // User just began dragging modal
+        case .began:
+            interactor.hasStarted = true
+            dismiss(animated: true, completion: nil)
+        // If user drags more than 30% threshold, complete the transition
+        case .changed:
+            interactor.shouldFinish = progress > percentThreshold
+            interactor.update(progress)
+        // In case gesture is cancelled, the interactor also cancels; also reset hasStarted to false
+        case .cancelled:
+            interactor.hasStarted = false
+            interactor.cancel()
+        // Based on whether user dragged more than 30%, the interactor completes the transition, or doesn't, using finish() or cancel().
+        case .ended:
+            interactor.hasStarted = false
+            interactor.shouldFinish
+                ? interactor.finish()
+                : interactor.cancel()
+        default:
+            break
+        }
+    }
+    
+    @IBAction func closeButtonPressed(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
+    
+    //MARK: Swipe Down Assist Animation
+    func showSwipeDownAssist() {
+        // Creating circle and specifying the start point and size
+        let startPosition = CGPoint(x: view.bounds.width * 0.75, y: 50)
+        let size = CGSize(width: 50, height: 50)
+        let circle = UIView(frame: CGRect(origin: startPosition, size: size))
+        
+        // Specifying the circle's properties
+        circle.layer.cornerRadius = circle.frame.width / 2
+        circle.backgroundColor = UIColor.white
+        circle.layer.shadowOpacity = 0.8
+        circle.layer.shadowOffset = CGSize.init(width: 0.2, height: 0.2)
+        
+        // Add the circle to the view
+        view.addSubview(circle)
+        
+        // Specify animation
+        UIView.animate(withDuration: 0.9, delay: 0.25, options: [], animations: { circle.frame.origin.y += 200 }, completion: { _ in circle.removeFromSuperview() }
+        )
+    }
+    
 }
