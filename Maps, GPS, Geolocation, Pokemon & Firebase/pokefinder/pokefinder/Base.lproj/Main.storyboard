@@ -83,6 +83,7 @@
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.827892005443573" green="0.32684564590454102" blue="0.21642440557479858" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstItem="UuO-vb-XNZ" firstAttribute="leading" secondItem="KgX-xy-Oj2" secondAttribute="leading" constant="8" id="8o7-2h-1Lz"/>
                                     <constraint firstItem="XPp-oU-2uZ" firstAttribute="top" secondItem="KgX-xy-Oj2" secondAttribute="top" constant="14" id="GfB-yt-74D"/>
@@ -90,6 +91,9 @@
                                     <constraint firstItem="XPp-oU-2uZ" firstAttribute="centerX" secondItem="KgX-xy-Oj2" secondAttribute="centerX" id="t2X-dl-dQD"/>
                                     <constraint firstAttribute="height" constant="55" id="tGp-HX-m09"/>
                                 </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="qvP-uo-xU9" appends="YES" id="fRb-X9-HCY"/>
+                                </connections>
                             </view>
                             <searchBar contentMode="redraw" text="" placeholder="Search through Pokédex" translatesAutoresizingMaskIntoConstraints="NO" id="Moc-H6-4dq">
                                 <rect key="frame" x="0.0" y="55" width="375" height="44"/>
@@ -174,9 +178,6 @@
                                     <constraint firstItem="XvH-dL-4dI" firstAttribute="top" secondItem="stC-Bm-Yoa" secondAttribute="top" constant="10" id="SJT-vw-sYL"/>
                                     <constraint firstAttribute="trailing" secondItem="XvH-dL-4dI" secondAttribute="trailing" constant="10" id="e8K-1i-J8Y"/>
                                 </constraints>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="6pG-Yl-hjd" appends="YES" id="vSO-U8-HB1"/>
-                                </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -199,9 +200,9 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kuX-mB-1cy" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <panGestureRecognizer minimumNumberOfTouches="1" id="6pG-Yl-hjd">
+                <panGestureRecognizer minimumNumberOfTouches="1" id="qvP-uo-xU9">
                     <connections>
-                        <action selector="handleGesture:" destination="Ffb-ag-7qG" id="VtP-8w-UWS"/>
+                        <action selector="handleGesture:" destination="Ffb-ag-7qG" id="WmE-Jx-axZ"/>
                     </connections>
                 </panGestureRecognizer>
             </objects>

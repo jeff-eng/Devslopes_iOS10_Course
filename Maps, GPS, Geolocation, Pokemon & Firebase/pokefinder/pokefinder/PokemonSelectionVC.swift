@@ -153,6 +153,48 @@ class PokemonSelectionVC: UIViewController, UICollectionViewDelegate, UICollecti
     }
 
     //MARK: IBActions
+//    @IBAction func handleGesture(_ sender: UIScreenEdgePanGestureRecognizer) {
+//        // Calculating the vertical drag distance
+//        
+//        // Sets how far down the user has to drag in order to trigger the modal dismissal
+//        let percentThreshold: CGFloat = 0.3
+//        // Converts the pan gesture coordinate to the PokemonSelectionVC's coordinate space
+//        let translation = sender.translation(in: view)
+//        // Converts the vertical distance to a percentage (based on teh overall screen height)
+//        let verticalMovement = translation.y / view.bounds.height
+//        // Captures movement in the downward direction
+//        let downwardMovement = fmaxf(Float(verticalMovement), 0.0)
+//        // Converts the downward movement to a percentage (max 100%)
+//        let downwardmovementPercent = fminf(downwardMovement, 1.0)
+//        // Casts percentage to a CGFloat (Interactor expects this type)
+//        let progress = CGFloat(downwardmovementPercent)
+//        
+//        // Unwrap the interactor optional variable
+//        guard let interactor = interactor else { return }
+//        
+//        switch sender.state {
+//        // User just began dragging modal
+//        case .began:
+//            interactor.hasStarted = true
+//            dismiss(animated: true, completion: nil)
+//        // If user drags more than 30% threshold, complete the transition
+//        case .changed:
+//            interactor.shouldFinish = progress > percentThreshold
+//            interactor.update(progress)
+//        // In case gesture is cancelled, the interactor also cancels; also reset hasStarted to false
+//        case .cancelled:
+//            interactor.hasStarted = false
+//            interactor.cancel()
+//        // Based on whether user dragged more than 30%, the interactor completes the transition, or doesn't, using finish() or cancel().
+//        case .ended:
+//            interactor.hasStarted = false
+//            interactor.shouldFinish
+//                ? interactor.finish()
+//                : interactor.cancel()
+//        default:
+//            break
+//        }
+//    }
     @IBAction func handleGesture(_ sender: UIPanGestureRecognizer) {
         // Calculating the vertical drag distance
         
