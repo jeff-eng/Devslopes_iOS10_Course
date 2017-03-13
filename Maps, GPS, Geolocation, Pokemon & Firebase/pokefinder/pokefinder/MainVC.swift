@@ -149,13 +149,17 @@ class MainVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
         
         if let anno = view.annotation as? PokeAnnotation {
             if control == view.leftCalloutAccessoryView {
-                print("The delete button was tapped!")
-                // Removes Pokemon sighting from Firebase
+                // Remove Pokemon sighting from Firebase
                 removeSighting(withPokemon: anno.pokeID)
-                // Remove the MKAnnotation
-                mapView.removeAnnotation(anno)
-                // Remove the MKAnnotationView from its superview
-                view.removeFromSuperview()
+                // Remove all annotations from the map so the map can be refreshed
+                mapView.removeAnnotations(mapView.annotations)
+                // Get the current center location on Map
+                let lat = mapView.centerCoordinate.latitude
+                let long = mapView.centerCoordinate.longitude
+                // Convert to CLLocation object
+                let location = CLLocation(latitude: lat, longitude: long)
+                // Refresh/update the map with Pokemon sightings
+                showSightingsOnMap(location)
             } else {
                 // Configure map view before it's loaded
                 // Create a placemark (an object that stores address info)
