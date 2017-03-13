@@ -198,6 +198,11 @@ class MainVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     func showSightingsOnMap(_ location: CLLocation) {
         // Create a query at a specific location with specified radius (in km)
         let circleQuery = geoFire!.query(at: location, withRadius: 2.5)
+        let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .white)
+        mapView.bringSubview(toFront: activityIndicator)
+        activityIndicator.center = self.view.center
+        activityIndicator.startAnimating()
+
         // Observe whenever we find a sighting
         _ = circleQuery?.observe(GFEventType.keyEntered, with: { (key, location) in
           
@@ -210,6 +215,7 @@ class MainVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
                 self.mapView.addAnnotation(anno)
             }
         })
+        activityIndicator.stopAnimating()
     }
     
     //MARK: Gesture Recognizer
