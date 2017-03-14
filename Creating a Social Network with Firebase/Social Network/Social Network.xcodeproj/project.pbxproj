@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		7033B6B0F610A94E3337F496 /* Pods_Social_Network.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA9ABCF6EE68BB62210D31BA /* Pods_Social_Network.framework */; };
 		95882EF01E7770C200014FD2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95882EEF1E7770C200014FD2 /* AppDelegate.swift */; };
-		95882EF21E7770C200014FD2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95882EF11E7770C200014FD2 /* ViewController.swift */; };
+		95882EF21E7770C200014FD2 /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95882EF11E7770C200014FD2 /* SignInVC.swift */; };
 		95882EF51E7770C200014FD2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95882EF31E7770C200014FD2 /* Main.storyboard */; };
 		95882EF71E7770C200014FD2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95882EF61E7770C200014FD2 /* Assets.xcassets */; };
 		95882EFA1E7770C200014FD2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95882EF81E7770C200014FD2 /* LaunchScreen.storyboard */; };
@@ -20,7 +20,7 @@
 		8418560DB6C8D25C2F32B98A /* Pods-Social Network.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Social Network.release.xcconfig"; path = "Pods/Target Support Files/Pods-Social Network/Pods-Social Network.release.xcconfig"; sourceTree = "<group>"; };
 		95882EEC1E7770C100014FD2 /* Social Network.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Social Network.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		95882EEF1E7770C200014FD2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		95882EF11E7770C200014FD2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		95882EF11E7770C200014FD2 /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
 		95882EF41E7770C200014FD2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		95882EF61E7770C200014FD2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		95882EF91E7770C200014FD2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -72,15 +72,47 @@
 		95882EEE1E7770C100014FD2 /* Social Network */ = {
 			isa = PBXGroup;
 			children = (
+				95882F051E77A6F300014FD2 /* Model */,
+				95882F041E77A6ED00014FD2 /* View */,
+				95882F031E77A6E600014FD2 /* Controller */,
+				95882F061E77A70100014FD2 /* Storyboards */,
 				95882EEF1E7770C200014FD2 /* AppDelegate.swift */,
-				95882EF11E7770C200014FD2 /* ViewController.swift */,
-				95882EF31E7770C200014FD2 /* Main.storyboard */,
 				95882EF61E7770C200014FD2 /* Assets.xcassets */,
-				95882EF81E7770C200014FD2 /* LaunchScreen.storyboard */,
 				95882F011E777D6A00014FD2 /* GoogleService-Info.plist */,
 				95882EFB1E7770C200014FD2 /* Info.plist */,
 			);
 			path = "Social Network";
+			sourceTree = "<group>";
+		};
+		95882F031E77A6E600014FD2 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				95882EF11E7770C200014FD2 /* SignInVC.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		95882F041E77A6ED00014FD2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		95882F051E77A6F300014FD2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		95882F061E77A70100014FD2 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				95882EF31E7770C200014FD2 /* Main.storyboard */,
+				95882EF81E7770C200014FD2 /* LaunchScreen.storyboard */,
+			);
+			name = Storyboards;
 			sourceTree = "<group>";
 		};
 		BB4D2A0175FDEBD4E86CCC7A /* Frameworks */ = {
@@ -216,7 +248,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				95882EF21E7770C200014FD2 /* ViewController.swift in Sources */,
+				95882EF21E7770C200014FD2 /* SignInVC.swift in Sources */,
 				95882EF01E7770C200014FD2 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -383,6 +415,7 @@
 				95882F001E7770C200014FD2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
