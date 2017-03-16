@@ -17,6 +17,8 @@
 		95882F081E79ECC200014FD2 /* DropShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95882F071E79ECC200014FD2 /* DropShadow.swift */; };
 		95882F0B1E79EE6E00014FD2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95882F0A1E79EE6E00014FD2 /* Constants.swift */; };
 		95882F0D1E79F6FD00014FD2 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95882F0C1E79F6FD00014FD2 /* RoundButton.swift */; };
+		95882F111E7A035500014FD2 /* StyleTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95882F101E7A035500014FD2 /* StyleTextField.swift */; };
+		95882F131E7A097000014FD2 /* StyleSignInButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95882F121E7A097000014FD2 /* StyleSignInButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		95882F071E79ECC200014FD2 /* DropShadow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropShadow.swift; sourceTree = "<group>"; };
 		95882F0A1E79EE6E00014FD2 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		95882F0C1E79F6FD00014FD2 /* RoundButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
+		95882F101E7A035500014FD2 /* StyleTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleTextField.swift; sourceTree = "<group>"; };
+		95882F121E7A097000014FD2 /* StyleSignInButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleSignInButton.swift; sourceTree = "<group>"; };
 		AA9ABCF6EE68BB62210D31BA /* Pods_Social_Network.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Social_Network.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B429160B9003FF9146BF6B14 /* Pods-Social Network.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Social Network.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Social Network/Pods-Social Network.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -104,6 +108,8 @@
 			children = (
 				95882F071E79ECC200014FD2 /* DropShadow.swift */,
 				95882F0C1E79F6FD00014FD2 /* RoundButton.swift */,
+				95882F101E7A035500014FD2 /* StyleTextField.swift */,
+				95882F121E7A097000014FD2 /* StyleSignInButton.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -268,8 +274,10 @@
 				95882F081E79ECC200014FD2 /* DropShadow.swift in Sources */,
 				95882F0D1E79F6FD00014FD2 /* RoundButton.swift in Sources */,
 				95882EF21E7770C200014FD2 /* SignInVC.swift in Sources */,
+				95882F111E7A035500014FD2 /* StyleTextField.swift in Sources */,
 				95882EF01E7770C200014FD2 /* AppDelegate.swift in Sources */,
 				95882F0B1E79EE6E00014FD2 /* Constants.swift in Sources */,
+				95882F131E7A097000014FD2 /* StyleSignInButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
