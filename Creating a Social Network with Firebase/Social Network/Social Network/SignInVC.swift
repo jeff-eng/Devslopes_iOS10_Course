@@ -45,14 +45,9 @@ class SignInVC: UIViewController {
             password.characters.count >= 6
         else {
             if let emailText = emailTextField.text, emailText == "" {
-                let emptyEmailAlert = UIAlertController.init(title: "Missing email address", message: "Please enter a valid email", preferredStyle: .alert)
-                emptyEmailAlert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-                present(emptyEmailAlert, animated: true)
+                displayInvalidEmailAlert()
             } else if let password = passwordTextField.text, password.characters.count < 6 {
-            let errorAlert = UIAlertController.init(title: "Login Error", message: "Your password must be at least 6 alphanumeric characters.", preferredStyle: .alert)
-            errorAlert.addAction(UIAlertAction(title: "OK", style: .default))
-            // Present the UIAlert and reset the password text field
-            present(errorAlert, animated: true, completion: { self.passwordTextField.text = nil })
+                displayInvalidPasswordAlert()
             }
             return
         }
@@ -84,5 +79,19 @@ class SignInVC: UIViewController {
         })
     }
     
+    //MARK: UIAlertControllers
+    func displayInvalidEmailAlert() {
+        let emptyEmailAlert = UIAlertController.init(title: "Invalid email", message: "Please enter a valid email", preferredStyle: .alert)
+        emptyEmailAlert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        present(emptyEmailAlert, animated: true)
+    }
+    
+    func displayInvalidPasswordAlert() {
+        let errorAlert = UIAlertController.init(title: "Login Error", message: "Your password must be at least 6 alphanumeric characters.", preferredStyle: .alert)
+        errorAlert.addAction(UIAlertAction(title: "OK", style: .default))
+        // Present the UIAlert and reset the password text field
+        present(errorAlert, animated: true, completion: { self.passwordTextField.text = nil })
+
+    }
 }
 
