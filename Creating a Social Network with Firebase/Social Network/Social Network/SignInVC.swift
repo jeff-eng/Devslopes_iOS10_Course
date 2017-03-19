@@ -12,6 +12,8 @@ import FBSDKLoginKit
 import Firebase
 
 class SignInVC: UIViewController {
+    @IBOutlet weak var emailTextField: StyleTextField!
+    @IBOutlet weak var passwordTextField: StyleTextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +34,28 @@ class SignInVC: UIViewController {
                 self.firebaseAuth(credential)
             }
         }
+    }
+    
+    @IBAction func signInPressed(_ sender: StyleSignInButton) {
+        guard let email = emailTextField.text, let password = passwordTextField.text else {
+            return
+        }
+        //Initiate Email authentication process with Firebase
+        FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (user, error)  in
+            if error == nil {
+                print("Jeff: Email user authenticated with Firebase")
+            } else {
+                // Handle scenario where user doesn't exist; a new user will automatically be created
+                FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user, error) in
+                    if error != nil {
+                        print("Jeff: Unable to create new user with email in Firebase")
+                    } else {
+                        print("Jeff: Successfully created new user with email in Firebase")
+                    }
+                })
+            }
+        })
+    
     }
 
     func firebaseAuth(_ credential: FIRAuthCredential) {
