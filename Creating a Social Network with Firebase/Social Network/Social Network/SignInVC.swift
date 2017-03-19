@@ -40,7 +40,10 @@ class SignInVC: UIViewController {
     }
     
     @IBAction func signInPressed(_ sender: StyleSignInButton) {
-        guard let email = emailTextField.text, let password = passwordTextField.text else {
+        guard let email = emailTextField.text,
+            let password = passwordTextField.text,
+            password.characters.count >= 6
+        else {
             return
         }
         //Initiate Email authentication process with Firebase
