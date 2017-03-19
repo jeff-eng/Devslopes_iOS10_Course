@@ -17,7 +17,10 @@ class SignInVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-     
+        
+        // Enable textfield clear button
+        emailTextField.clearButtonMode = .whileEditing
+        passwordTextField.clearButtonMode = .whileEditing
     }
 
     @IBAction func facebookBtnPressed(_ sender: UIButton) {
