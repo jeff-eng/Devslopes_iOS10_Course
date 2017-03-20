@@ -22,6 +22,10 @@ class SignInVC: UIViewController {
         // Enable textfield clear button
         emailTextField.clearButtonMode = .whileEditing
         passwordTextField.clearButtonMode = .whileEditing
+        
+        if let _ = KeychainWrapper.standard.string(forKey: KEY_UID) {
+            performSegue(withIdentifier: "FeedVC", sender: nil)
+        }
     }
 
     @IBAction func facebookBtnPressed(_ sender: UIButton) {
@@ -86,6 +90,7 @@ class SignInVC: UIViewController {
     func completeSignIn(_ id: String) {
         let keychainResult = KeychainWrapper.standard.set(id, forKey: KEY_UID)
         print("Jeff: Data saved to keychain \(keychainResult)")
+        performSegue(withIdentifier: "FeedVC", sender: nil)
     }
     
     //MARK: UIAlertControllers

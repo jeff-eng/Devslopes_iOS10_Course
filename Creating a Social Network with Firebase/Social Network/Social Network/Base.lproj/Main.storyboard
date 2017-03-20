@@ -127,7 +127,7 @@
                     <connections>
                         <outlet property="emailTextField" destination="cOt-0W-5lc" id="dR2-cL-1J8"/>
                         <outlet property="passwordTextField" destination="tT9-hf-IYG" id="07V-75-DCv"/>
-                        <segue destination="hX5-dB-hgO" kind="show" id="y7g-3H-e7O"/>
+                        <segue destination="hX5-dB-hgO" kind="show" identifier="FeedVC" id="y7g-3H-e7O"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
