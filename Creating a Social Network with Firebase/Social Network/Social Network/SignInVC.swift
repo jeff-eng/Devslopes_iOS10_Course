@@ -23,6 +23,9 @@ class SignInVC: UIViewController {
         emailTextField.clearButtonMode = .whileEditing
         passwordTextField.clearButtonMode = .whileEditing
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         if let _ = KeychainWrapper.standard.string(forKey: KEY_UID) {
             performSegue(withIdentifier: "FeedVC", sender: nil)
         }
