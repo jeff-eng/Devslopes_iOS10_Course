@@ -23,7 +23,7 @@ class FeedVC: UIViewController {
         print("Jeff: \(keychainResult)")
         // Sign out of Firebase
         try! FIRAuth.auth()?.signOut()
-        // D
+        // Dismiss the current view controller
         dismiss(animated: true, completion: nil)
     }
 
