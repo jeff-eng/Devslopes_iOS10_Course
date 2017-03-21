@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import SwiftKeychainWrapper
+import Firebase
 
 class FeedVC: UIViewController {
 
@@ -15,5 +17,14 @@ class FeedVC: UIViewController {
 
     }
 
+    @IBAction func signOutTapped(_ sender: UIButton) {
+        // Remove ID from keychain
+        let keychainResult = KeychainWrapper.standard.removeObject(forKey: KEY_UID)
+        print("Jeff: \(keychainResult)")
+        // Sign out of Firebase
+        try! FIRAuth.auth()?.signOut()
+        // D
+        dismiss(animated: true, completion: nil)
+    }
 
 }
