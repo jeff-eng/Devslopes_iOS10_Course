@@ -1,14 +1,14 @@
 //
-//  DropShadow.swift
+//  CircleView.swift
 //  Social Network
 //
-//  Created by Jeffrey Eng on 3/15/17.
+//  Created by Jeffrey Eng on 3/21/17.
 //  Copyright © 2017 Jeffrey Eng. All rights reserved.
 //
 
 import UIKit
 
-class DropShadow: UIView {
+class CircleView: UIImageView {
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -17,7 +17,13 @@ class DropShadow: UIView {
         layer.shadowOpacity = 0.8
         layer.shadowRadius = 5.0
         layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
-        layer.cornerRadius = 2.0
+              
     }
-
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        layer.cornerRadius = self.frame.width / 2
+    }
+    
 }
