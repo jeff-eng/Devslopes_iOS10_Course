@@ -187,7 +187,7 @@
                                     <constraint firstAttribute="height" constant="65" id="qhK-gB-pse"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="334" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="2F8-EK-f8K">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="334" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="2F8-EK-f8K">
                                 <rect key="frame" x="0.0" y="162" width="375" height="505"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -195,14 +195,14 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="334"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2bW-LT-0M9" id="JO6-lo-Ozv">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="333"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="334"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nr8-or-BYx" customClass="DropShadow" customModule="Social_Network" customModuleProvider="target">
-                                                    <rect key="frame" x="16" y="8" width="343" height="317"/>
+                                                    <rect key="frame" x="16" y="8" width="343" height="318"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="g9W-J3-fHs">
-                                                            <rect key="frame" x="8" y="8" width="327" height="271"/>
+                                                            <rect key="frame" x="8" y="8" width="327" height="272"/>
                                                             <subviews>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YIW-N9-VXL">
                                                                     <rect key="frame" x="0.0" y="0.0" width="327" height="60"/>
@@ -230,10 +230,10 @@
                                                                     </subviews>
                                                                 </stackView>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="yqO-gd-ZkU">
-                                                                    <rect key="frame" x="0.0" y="68" width="327" height="116"/>
+                                                                    <rect key="frame" x="0.0" y="68" width="327" height="117"/>
                                                                 </imageView>
                                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="yxH-Gy-lqX">
-                                                                    <rect key="frame" x="0.0" y="192" width="327" height="79"/>
+                                                                    <rect key="frame" x="0.0" y="193" width="327" height="79"/>
                                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                     <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -283,38 +283,31 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qtI-TG-oxi" customClass="DropShadow" customModule="Social_Network" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="65"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gUc-Vn-dOZ">
-                                        <rect key="frame" x="297" y="27" width="70" height="30"/>
-                                        <state key="normal" title="Sign Out">
-                                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="signOutTapped:" destination="hX5-dB-hgO" eventType="touchUpInside" id="9Ih-2q-lGc"/>
-                                        </connections>
-                                    </button>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sign-out" translatesAutoresizingMaskIntoConstraints="NO" id="fYB-1r-q5a">
-                                        <rect key="frame" x="16" y="20" width="45" height="38"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="45" id="5iW-da-upI"/>
-                                            <constraint firstAttribute="height" constant="38" id="Fmr-Mb-bya"/>
-                                        </constraints>
-                                    </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Feed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3VQ-70-YsE">
-                                        <rect key="frame" x="158.5" y="21" width="59.5" height="36"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Social Feed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3VQ-70-YsE">
+                                        <rect key="frame" x="91.5" y="23.5" width="193.5" height="36"/>
                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="26"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L2D-r6-H8H">
+                                        <rect key="frame" x="8" y="26" width="45" height="31"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="31" id="TBn-cu-ZdO"/>
+                                            <constraint firstAttribute="width" constant="45" id="phu-2M-cbX"/>
+                                        </constraints>
+                                        <state key="normal" image="sign-out"/>
+                                        <connections>
+                                            <action selector="signOutPressed:" destination="hX5-dB-hgO" eventType="touchUpInside" id="XJp-N0-GX1"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.72560375929999998" blue="0.96723216769999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="65" id="IK1-5r-D6e"/>
-                                    <constraint firstItem="fYB-1r-q5a" firstAttribute="leading" secondItem="qtI-TG-oxi" secondAttribute="leading" constant="16" id="QoY-gb-gHb"/>
+                                    <constraint firstItem="3VQ-70-YsE" firstAttribute="centerY" secondItem="L2D-r6-H8H" secondAttribute="centerY" id="ITJ-Bo-jyo"/>
+                                    <constraint firstAttribute="bottom" secondItem="L2D-r6-H8H" secondAttribute="bottom" constant="8" id="LIL-49-QnV"/>
                                     <constraint firstItem="3VQ-70-YsE" firstAttribute="centerX" secondItem="qtI-TG-oxi" secondAttribute="centerX" id="e8M-wE-ncM"/>
-                                    <constraint firstAttribute="trailing" secondItem="gUc-Vn-dOZ" secondAttribute="trailing" constant="8" id="hhP-aC-Ivo"/>
-                                    <constraint firstAttribute="bottom" secondItem="gUc-Vn-dOZ" secondAttribute="bottom" constant="8" id="m1U-k3-e4M"/>
-                                    <constraint firstItem="fYB-1r-q5a" firstAttribute="top" secondItem="qtI-TG-oxi" secondAttribute="top" constant="20" id="ura-is-izN"/>
-                                    <constraint firstItem="3VQ-70-YsE" firstAttribute="centerY" secondItem="fYB-1r-q5a" secondAttribute="centerY" id="w1e-UM-eE9"/>
+                                    <constraint firstItem="L2D-r6-H8H" firstAttribute="leading" secondItem="qtI-TG-oxi" secondAttribute="leading" constant="8" id="gQD-wa-vJp"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -332,6 +325,9 @@
                             <constraint firstAttribute="trailing" secondItem="2F8-EK-f8K" secondAttribute="trailing" id="y0C-DP-VpC"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="2F8-EK-f8K" id="aTg-WR-y7G"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HEk-rJ-GyG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
