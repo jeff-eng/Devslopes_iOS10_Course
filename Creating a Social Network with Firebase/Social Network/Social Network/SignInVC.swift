@@ -36,7 +36,7 @@ class SignInVC: UIViewController {
         
         facebookLogin.logIn(withReadPermissions: ["email"], from: self) { (result, error) in
             if error != nil {
-                print("Jeff: Unable to authenticate with Facebook - \(error)")
+                print("Jeff: Unable to authenticate with Facebook - \(String(describing: error))")
             } else if result?.isCancelled == true {
                 print("Jeff: User cancelled Facebook authentication")
             } else {
@@ -62,16 +62,18 @@ class SignInVC: UIViewController {
         //Initiate Email authentication process with Firebase
         FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (user, error)  in
             if error == nil, let user = user {
+                let userData = ["provider": user.providerID]
                 print("Jeff: Email user authenticated with Firebase")
-                self.completeSignIn(user.uid)
+                self.completeSignIn(user.uid, userData: userData)
             } else {
                 // Handle scenario where user doesn't exist; a new user will automatically be created
                 FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user, error) in
                     if error != nil {
                         print("Jeff: Unable to create new user with email in Firebase")
                     } else if let user = user {
+                        let userData = ["provider": user.providerID]
                         print("Jeff: Successfully created new user with email in Firebase")
-                        self.completeSignIn(user.uid)
+                        self.completeSignIn(user.uid, userData: userData)
                     }
                 })
             }
@@ -82,15 +84,17 @@ class SignInVC: UIViewController {
     func firebaseAuth(_ credential: FIRAuthCredential) {
         FIRAuth.auth()?.signIn(with: credential, completion: { (user, error) in
             if error != nil {
-                print("Jeff: Unable to authenticate with Firebase - \(error)")
+                print("Jeff: Unable to authenticate with Firebase - \(String(describing: error))")
             } else if let user = user {
+                let userData = ["provider": credential.provider]
                 print("Jeff: Successfully authenticated with Firebase")
-                self.completeSignIn(user.uid)
+                self.completeSignIn(user.uid, userData: userData)
             }
         })
     }
     
-    func completeSignIn(_ id: String) {
+    func completeSignIn(_ id: String, userData: Dictionary<String, String>) {
+        DataService.ds.createFirebaseDBUser(uid: id, userData: userData)
         let keychainResult = KeychainWrapper.standard.set(id, forKey: KEY_UID)
         print("Jeff: Data saved to keychain \(keychainResult)")
         performSegue(withIdentifier: "FeedVC", sender: nil)
