@@ -13,6 +13,9 @@ import Firebase
 import SwiftKeychainWrapper
 
 class SignInVC: UIViewController {
+    
+    var keyboardDismissTapGesture: UIGestureRecognizer?
+    
     @IBOutlet weak var emailTextField: StyleTextField!
     @IBOutlet weak var passwordTextField: StyleTextField!
 
@@ -26,9 +29,20 @@ class SignInVC: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
         if let _ = KeychainWrapper.standard.string(forKey: KEY_UID) {
             performSegue(withIdentifier: "FeedVC", sender: nil)
         }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self)
+        
+        super.viewWillDisappear(animated)
     }
 
     @IBAction func facebookBtnPressed(_ sender: UIButton) {
@@ -115,4 +129,35 @@ class SignInVC: UIViewController {
 
     }
 }
+
+//MARK: Keyboard Hiding Extension
+extension SignInVC: KeyboardBehavior {
+    
+    func keyboardWillHide(notification: NSNotification) {
+        if keyboardDismissTapGesture != nil {
+            // Removing the instance of the UITapGestureRecognizer
+            self.view.removeGestureRecognizer(keyboardDismissTapGesture!)
+            keyboardDismissTapGesture = nil
+        }
+    
+    }
+    
+    func keyboardWillShow(notification: NSNotification) {
+        if keyboardDismissTapGesture == nil {
+            // Adding an instance of UITapGestureRecognizer
+            keyboardDismissTapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard(sender:)))
+            // Apply gesture recognizer to the main view
+            self.view.addGestureRecognizer(keyboardDismissTapGesture!)
+        }
+    }
+    
+    func dismissKeyboard(sender: Any) {
+        emailTextField.resignFirstResponder()
+        passwordTextField.resignFirstResponder()
+    }
+}
+
+
+
+
 

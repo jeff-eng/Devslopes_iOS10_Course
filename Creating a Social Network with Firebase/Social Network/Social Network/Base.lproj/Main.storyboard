@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -64,20 +64,8 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.87" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="93K-2C-jGb" customClass="RoundButton" customModule="Social_Network" customModuleProvider="target">
-                                <rect key="frame" x="112" y="230" width="150" height="150"/>
-                                <color key="backgroundColor" red="0.25490196078431371" green="0.36078431372549019" blue="0.64313725490196072" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="150" id="7rQ-66-Xs4"/>
-                                    <constraint firstAttribute="height" constant="150" id="HcR-xU-Yws"/>
-                                </constraints>
-                                <state key="normal" image="f"/>
-                                <connections>
-                                    <action selector="facebookBtnPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="JmC-dh-5kl"/>
-                                </connections>
-                            </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="194-At-jfo">
-                                <rect key="frame" x="46" y="420" width="283" height="117"/>
+                                <rect key="frame" x="46" y="230" width="283" height="117"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cOt-0W-5lc" customClass="StyleTextField" customModule="Social_Network" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="283" height="25"/>
@@ -104,11 +92,23 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="93K-2C-jGb" customClass="RoundButton" customModule="Social_Network" customModuleProvider="target">
+                                <rect key="frame" x="112" y="377" width="150" height="150"/>
+                                <color key="backgroundColor" red="0.25490196078431371" green="0.36078431372549019" blue="0.64313725490196072" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="7rQ-66-Xs4"/>
+                                    <constraint firstAttribute="height" constant="150" id="HcR-xU-Yws"/>
+                                </constraints>
+                                <state key="normal" image="f"/>
+                                <connections>
+                                    <action selector="facebookBtnPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="JmC-dh-5kl"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="194-At-jfo" firstAttribute="top" secondItem="dpO-dv-dcH" secondAttribute="bottom" constant="40" id="4tj-z3-OfJ"/>
                             <constraint firstItem="dpO-dv-dcH" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="6NY-gO-SCp"/>
-                            <constraint firstItem="194-At-jfo" firstAttribute="top" secondItem="93K-2C-jGb" secondAttribute="bottom" constant="40" id="Fus-qo-3nq"/>
                             <constraint firstItem="194-At-jfo" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="H73-ca-eLO"/>
                             <constraint firstAttribute="trailingMargin" secondItem="194-At-jfo" secondAttribute="trailing" constant="30" id="JwV-pQ-XPp"/>
                             <constraint firstItem="1Cp-sZ-MqI" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="K1m-E2-Qa2"/>
@@ -117,7 +117,7 @@
                             <constraint firstItem="dpO-dv-dcH" firstAttribute="top" secondItem="1Cp-sZ-MqI" secondAttribute="bottom" constant="20" id="UzA-ag-rMR"/>
                             <constraint firstAttribute="trailing" secondItem="1Cp-sZ-MqI" secondAttribute="trailing" id="dra-iL-6x5"/>
                             <constraint firstItem="dpO-dv-dcH" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="gn8-sw-P38"/>
-                            <constraint firstItem="93K-2C-jGb" firstAttribute="top" secondItem="dpO-dv-dcH" secondAttribute="bottom" constant="40" id="ipO-HC-0Rg"/>
+                            <constraint firstItem="93K-2C-jGb" firstAttribute="top" secondItem="194-At-jfo" secondAttribute="bottom" constant="30" id="jbH-mg-O7k"/>
                             <constraint firstItem="93K-2C-jGb" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="nhA-Gp-ntU"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="R8g-7U-s0Y" secondAttribute="bottom" id="q6F-uH-g89"/>
                             <constraint firstItem="R8g-7U-s0Y" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="q9O-df-Nd6"/>
