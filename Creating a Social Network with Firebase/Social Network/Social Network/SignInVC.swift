@@ -128,6 +128,7 @@ class SignInVC: UIViewController {
         present(errorAlert, animated: true, completion: { self.passwordTextField.text = nil })
 
     }
+    
 }
 
 //MARK: Keyboard Hiding Extension
@@ -139,7 +140,6 @@ extension SignInVC: KeyboardBehavior {
             self.view.removeGestureRecognizer(keyboardDismissTapGesture!)
             keyboardDismissTapGesture = nil
         }
-    
     }
     
     func keyboardWillShow(notification: NSNotification) {
@@ -155,9 +155,5 @@ extension SignInVC: KeyboardBehavior {
         emailTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
     }
+    
 }
-
-
-
-
-

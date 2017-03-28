@@ -337,6 +337,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="captionTextField" destination="b8r-XX-Ugy" id="mny-au-KSy"/>
                         <outlet property="tableView" destination="2F8-EK-f8K" id="aTg-WR-y7G"/>
                     </connections>
                 </viewController>

@@ -12,13 +12,29 @@ import Firebase
 
 class FeedVC: UIViewController, UITableViewDelegate {
 
+    var keyboardDismissTapGesture: UIGestureRecognizer!
+    
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var captionTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         tableView.delegate = self
         tableView.dataSource = self
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+         NotificationCenter.default.removeObserver(self)
+        
+        super.viewWillDisappear(true)
     }
 
     @IBAction func signOutPressed(_ sender: UIButton) {
@@ -43,4 +59,24 @@ extension FeedVC: UITableViewDataSource {
         return 5
     }
     
+}
+
+extension FeedVC: KeyboardBehavior {
+    func keyboardWillShow(notification: NSNotification) {
+        if keyboardDismissTapGesture == nil {
+            keyboardDismissTapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard(sender:)))
+            self.view.addGestureRecognizer(keyboardDismissTapGesture!)
+        }
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        if keyboardDismissTapGesture != nil {
+            self.view.removeGestureRecognizer(keyboardDismissTapGesture!)
+            keyboardDismissTapGesture = nil
+        }
+    }
+    
+    func dismissKeyboard(sender: Any) {
+        captionTextField.resignFirstResponder()
+    }
 }
