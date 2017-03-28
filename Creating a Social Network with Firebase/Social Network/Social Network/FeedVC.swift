@@ -24,6 +24,10 @@ class FeedVC: UIViewController, UITableViewDelegate {
         tableView.dataSource = self
         
         captionTextField.clearButtonMode = .whileEditing
+        
+        DataService.ds.REF_POSTS.observe(.value, with: { (snapshot) in
+            print(snapshot.value as Any)
+        })
     }
     
     override func viewDidAppear(_ animated: Bool) {
