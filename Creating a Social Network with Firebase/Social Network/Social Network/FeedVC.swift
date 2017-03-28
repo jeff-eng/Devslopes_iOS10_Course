@@ -22,6 +22,8 @@ class FeedVC: UIViewController, UITableViewDelegate {
 
         tableView.delegate = self
         tableView.dataSource = self
+        
+        captionTextField.clearButtonMode = .whileEditing
     }
     
     override func viewDidAppear(_ animated: Bool) {
