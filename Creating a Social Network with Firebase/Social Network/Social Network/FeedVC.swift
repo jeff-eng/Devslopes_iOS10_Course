@@ -12,6 +12,8 @@ import Firebase
 
 class FeedVC: UIViewController, UITableViewDelegate {
 
+    var posts = [Post]()
+    
     var keyboardDismissTapGesture: UIGestureRecognizer!
     
     @IBOutlet weak var tableView: UITableView!
@@ -26,7 +28,20 @@ class FeedVC: UIViewController, UITableViewDelegate {
         captionTextField.clearButtonMode = .whileEditing
         
         DataService.ds.REF_POSTS.observe(.value, with: { (snapshot) in
-            print(snapshot.value as Any)
+            guard let snapshotObjects = snapshot.children.allObjects as? [FIRDataSnapshot] else {
+                print("No objects from snapshot available.")
+                return
+            }
+            for snap in snapshotObjects {
+                print(" Here is your snap: \(snap)")
+                if let postDict = snap.value as? Dictionary<String, Any> {
+                    let key = snap.key
+                    print("This is your key: \(key)")
+                    let post = Post(postKey: key, postData: postDict)
+                    self.posts.append(post)
+                }
+            }
+            self.tableView.reloadData()
         })
     }
     
@@ -62,7 +77,7 @@ extension FeedVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return posts.count
     }
     
 }

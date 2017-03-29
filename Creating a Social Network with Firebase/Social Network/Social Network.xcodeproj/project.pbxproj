@@ -24,6 +24,7 @@
 		95882F0D1E79F6FD00014FD2 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95882F0C1E79F6FD00014FD2 /* RoundButton.swift */; };
 		95882F111E7A035500014FD2 /* StyleTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95882F101E7A035500014FD2 /* StyleTextField.swift */; };
 		95882F131E7A097000014FD2 /* StyleSignInButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95882F121E7A097000014FD2 /* StyleSignInButton.swift */; };
+		95D4EB571E8C5ABD005439AA /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D4EB561E8C5ABD005439AA /* Post.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		95882F0C1E79F6FD00014FD2 /* RoundButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
 		95882F101E7A035500014FD2 /* StyleTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleTextField.swift; sourceTree = "<group>"; };
 		95882F121E7A097000014FD2 /* StyleSignInButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleSignInButton.swift; sourceTree = "<group>"; };
+		95D4EB561E8C5ABD005439AA /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		AA9ABCF6EE68BB62210D31BA /* Pods_Social_Network.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Social_Network.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B429160B9003FF9146BF6B14 /* Pods-Social Network.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Social Network.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Social Network/Pods-Social Network.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -148,6 +150,7 @@
 		95882F051E77A6F300014FD2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				95D4EB561E8C5ABD005439AA /* Post.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -306,6 +309,7 @@
 				95882F081E79ECC200014FD2 /* DropShadow.swift in Sources */,
 				9535C1071E89CEEC00089C8C /* KeyboardBehavior.swift in Sources */,
 				95882F0D1E79F6FD00014FD2 /* RoundButton.swift in Sources */,
+				95D4EB571E8C5ABD005439AA /* Post.swift in Sources */,
 				95882EF21E7770C200014FD2 /* SignInVC.swift in Sources */,
 				95882F111E7A035500014FD2 /* StyleTextField.swift in Sources */,
 				9535C1041E89B99300089C8C /* DataService.swift in Sources */,
