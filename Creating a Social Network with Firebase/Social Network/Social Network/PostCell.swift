@@ -15,11 +15,14 @@ class PostCell: UITableViewCell {
     @IBOutlet weak var postImage: UIImageView!
     @IBOutlet weak var caption: UITextView!
     @IBOutlet weak var likesLabel: UILabel!
-
+  
     override func awakeFromNib() {
         super.awakeFromNib()
     }
 
-    
+    func configureCell(post: Post) {
+        self.caption.text = post.caption
+        self.likesLabel.text = "\(post.likes)"
+    }
     
 }
