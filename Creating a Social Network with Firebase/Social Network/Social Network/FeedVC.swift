@@ -10,15 +10,20 @@ import UIKit
 import SwiftKeychainWrapper
 import Firebase
 
-class FeedVC: UIViewController, UITableViewDelegate {
+class FeedVC: UIViewController, UITableViewDelegate, UINavigationControllerDelegate {
 
+    //MARK: Class properties
     var posts = [Post]()
+    var imagePicker: UIImagePickerController!
     
     var keyboardDismissTapGesture: UIGestureRecognizer!
     
+    //MARK: IBOutlets
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var captionTextField: UITextField!
+    @IBOutlet weak var addImageButton: UIButton!
     
+    //MARK: View methods
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -58,6 +63,7 @@ class FeedVC: UIViewController, UITableViewDelegate {
         super.viewWillDisappear(true)
     }
 
+    //MARK: IBActions
     @IBAction func signOutPressed(_ sender: UIButton) {
         // Remove ID from keychain
         let keychainResult = KeychainWrapper.standard.removeObject(forKey: KEY_UID)
@@ -68,6 +74,37 @@ class FeedVC: UIViewController, UITableViewDelegate {
         dismiss(animated: true, completion: nil)
     }
 
+    @IBAction func addImagePressed(_ sender: UIButton) {
+        imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        
+        let alertController = UIAlertController(title: "Select an Option", message: "Select camera to take a photo or select from your Photo Library.", preferredStyle: .actionSheet)
+        alertController.addAction(UIAlertAction(title: "Camera", style: .default, handler: launchCamera))
+        alertController.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: launchPhotoLibrary))
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: nil))
+        present(alertController, animated: true, completion: nil)
+        
+    }
+    
+    //MARK: Image Picker Methods
+    func launchCamera(action: UIAlertAction) {
+        guard UIImagePickerController.isSourceTypeAvailable(.camera) else {
+            let cameraUnavailableAlert = UIAlertController(title: "Alert", message: "Unable to detect a camera on your device.", preferredStyle: .alert)
+            cameraUnavailableAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            present(cameraUnavailableAlert, animated: true, completion: nil)
+            return
+        }
+        imagePicker.sourceType = .camera
+        imagePicker.allowsEditing = true
+        imagePicker.modalPresentationStyle = .fullScreen
+        present(imagePicker, animated: true, completion: nil)
+    }
+
+    func launchPhotoLibrary(action: UIAlertAction) {
+        imagePicker.sourceType = .photoLibrary
+        imagePicker.allowsEditing = true
+        present(imagePicker, animated: true, completion: nil)
+    }
 }
 
 //MARK: Extensions
@@ -83,7 +120,24 @@ extension FeedVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return posts.count
     }
+}
+
+extension FeedVC: UIImagePickerControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+        guard let image = info[UIImagePickerControllerEditedImage] as? UIImage else {
+            let dummyImage = UIImage()
+            addImageButton.setImage(dummyImage, for: .normal)
+            return
+        }
+        addImageButton.setImage(image, for: .normal)
+        
+        imagePicker.dismiss(animated: true, completion: nil)
+    }
     
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
 }
 
 extension FeedVC: KeyboardBehavior {
