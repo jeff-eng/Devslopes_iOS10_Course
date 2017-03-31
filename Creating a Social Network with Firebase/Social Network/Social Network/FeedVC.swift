@@ -117,6 +117,7 @@ extension FeedVC: UITableViewDataSource {
         
         if let imgFromCache = FeedVC.imageCache.object(forKey: post.imageUrl as NSString) {
             cell.configureCell(post: post, image: imgFromCache)
+            cell.postImage.loadingImageIndicator(false)
         } else {
             cell.configureCell(post: posts[indexPath.row], image: nil)
         }
