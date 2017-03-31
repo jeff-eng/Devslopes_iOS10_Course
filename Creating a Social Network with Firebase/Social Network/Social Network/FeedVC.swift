@@ -15,8 +15,8 @@ class FeedVC: UIViewController, UITableViewDelegate, UINavigationControllerDeleg
     //MARK: Class properties
     var posts = [Post]()
     var imagePicker: UIImagePickerController!
-    
     var keyboardDismissTapGesture: UIGestureRecognizer!
+    static var imageCache: NSCache<NSString, UIImage> = NSCache()
     
     //MARK: IBOutlets
     @IBOutlet weak var tableView: UITableView!
@@ -111,9 +111,15 @@ class FeedVC: UIViewController, UITableViewDelegate, UINavigationControllerDeleg
 extension FeedVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell") as? PostCell else { return PostCell() }
-        cell.configureCell(post: posts[indexPath.row])
+        let post = posts[indexPath.row]
         
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell") as? PostCell else { return PostCell() }
+        
+        if let imgFromCache = FeedVC.imageCache.object(forKey: post.imageUrl as NSString) {
+            cell.configureCell(post: post, image: imgFromCache)
+        } else {
+            cell.configureCell(post: posts[indexPath.row], image: nil)
+        }
         return cell
     }
     
