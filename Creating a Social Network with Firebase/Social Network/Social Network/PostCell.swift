@@ -31,7 +31,6 @@ class PostCell: UITableViewCell {
             self.postImage.image = postImg
         } else {
             let imageUrl = post.imageUrl
-            postImage.loadingImageIndicator(true)
             let ref = FIRStorage.storage().reference(forURL: imageUrl)
             ref.data(withMaxSize: 2 * 1024 * 1024, completion: { (data, error) in
                 if let err = error {
