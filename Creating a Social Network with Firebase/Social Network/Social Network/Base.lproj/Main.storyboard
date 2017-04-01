@@ -179,6 +179,9 @@
                                                     <constraint firstAttribute="width" constant="49" id="UHX-dM-vgg"/>
                                                 </constraints>
                                                 <state key="normal" image="add-post"/>
+                                                <connections>
+                                                    <action selector="postButtonPressed:" destination="hX5-dB-hgO" eventType="touchUpInside" id="QoI-JK-yQM"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>

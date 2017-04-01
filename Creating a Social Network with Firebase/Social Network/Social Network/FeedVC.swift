@@ -86,6 +86,23 @@ class FeedVC: UIViewController, UITableViewDelegate, UINavigationControllerDeleg
         
     }
     
+    @IBAction func postButtonPressed(_ sender: UIButton) {
+        
+        guard let caption = captionTextField.text, caption != "" else {
+            print("Jeff: Caption must be entered")
+            // Create a UIAlertController to notify the user
+            return
+        }
+
+        let defaultImage = UIImage(named: "add-image")
+        
+        guard let imageFromAddButton = addImageButton.imageView?.image, imageFromAddButton != defaultImage else {
+            print("Jeff: The button's image cannot be used.")
+            return
+        }
+        
+    }
+    
     //MARK: Image Picker Methods
     func launchCamera(action: UIAlertAction) {
         guard UIImagePickerController.isSourceTypeAvailable(.camera) else {
