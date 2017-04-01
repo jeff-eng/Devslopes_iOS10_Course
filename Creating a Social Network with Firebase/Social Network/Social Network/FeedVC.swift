@@ -86,6 +86,43 @@ class FeedVC: UIViewController, UITableViewDelegate, UINavigationControllerDeleg
         
     }
     
+    @IBAction func postButtonPressed(_ sender: UIButton) {
+        
+        guard let caption = captionTextField.text, caption != "" else {
+            print("Jeff: Caption must be entered")
+            // Create a UIAlertController to notify the user
+            return
+        }
+        
+        let defaultImage = UIImage(named: "add-image")
+        
+        guard let imageFromAddButton = addImageButton.imageView?.image, imageFromAddButton != defaultImage else {
+            print("Jeff: The button's image cannot be used since it is the default image.")
+            return
+        }
+        
+        if let imgData = UIImageJPEGRepresentation(imageFromAddButton, 0.2) {
+            // Create a unique ID for the image
+            let imgUid = NSUUID().uuidString
+            // Create some metadata
+            let metadata = FIRStorageMetadata()
+            metadata.contentType = "image/jpeg"
+            
+            DataService.ds.REF_POST_IMAGES.child(imgUid).put(imgData, metadata: metadata) {
+                (metadata, error) in
+                if error != nil {
+                    print("Jeff: Unable to upload image to Firebase storage.")
+                    // Provide an alert to user
+                } else {
+                    print("Jeff: Successfully uploaded image to Firebase storage.")
+                    let downloadURL = metadata?.downloadURL()?.absoluteString
+                }
+                
+            }
+        }
+        
+    }
+    
     //MARK: Image Picker Methods
     func launchCamera(action: UIAlertAction) {
         guard UIImagePickerController.isSourceTypeAvailable(.camera) else {
