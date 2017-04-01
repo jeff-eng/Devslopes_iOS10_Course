@@ -106,8 +106,10 @@ class FeedVC: UIViewController, UITableViewDelegate, UINavigationControllerDeleg
             let imgUid = NSUUID().uuidString
             // Create some metadata
             let metadata = FIRStorageMetadata()
+            // Set the image type in the image's metadata
             metadata.contentType = "image/jpeg"
             
+            // Upload the image to Firebase storage
             DataService.ds.REF_POST_IMAGES.child(imgUid).put(imgData, metadata: metadata) {
                 (metadata, error) in
                 if error != nil {
@@ -115,12 +117,36 @@ class FeedVC: UIViewController, UITableViewDelegate, UINavigationControllerDeleg
                     // Provide an alert to user
                 } else {
                     print("Jeff: Successfully uploaded image to Firebase storage.")
-                    let downloadURL = metadata?.downloadURL()?.absoluteString
+                    
+                    // Retrieve the image's Firebase storage URL
+                    if let downloadURL = metadata?.downloadURL()?.absoluteString {
+                        print("Jeff: Couldn't get the image's Firebase storage URL.")
+                        // Create the post in Firebase and pass it the image's Firebase storage URL.
+                        self.postToFirebase(imgUrl: downloadURL)
+                    }
                 }
                 
             }
         }
         
+    }
+    
+    func postToFirebase(imgUrl: String) {
+        let post: Dictionary<String, Any> = [
+            "caption": captionTextField.text!,
+            "imageUrl": imgUrl,
+            "likes": 0
+        ]
+        
+        // Create a new post child location in Firebase and automatically assign it an ID.
+        let firebasePost = DataService.ds.REF_POSTS.childByAutoId()
+        // Set the values for this post node
+        firebasePost.setValue(post)
+        
+        // Reset the caption text field and addImage button back to its default state
+        captionTextField.text = ""
+//        addImageButton.imageView?.image = UIImage(named: "add-image")
+        addImageButton.setImage(UIImage(named: "add-image"), for: .normal)
     }
     
     //MARK: Image Picker Methods
