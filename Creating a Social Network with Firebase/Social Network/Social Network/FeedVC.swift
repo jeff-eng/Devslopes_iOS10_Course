@@ -33,6 +33,9 @@ class FeedVC: UIViewController, UITableViewDelegate, UINavigationControllerDeleg
         captionTextField.clearButtonMode = .whileEditing
         
         DataService.ds.REF_POSTS.observe(.value, with: { (snapshot) in
+            // Clear out the posts array
+            self.posts = []
+            
             guard let snapshotObjects = snapshot.children.allObjects as? [FIRDataSnapshot] else {
                 print("No objects from snapshot available.")
                 return
@@ -96,39 +99,36 @@ class FeedVC: UIViewController, UITableViewDelegate, UINavigationControllerDeleg
         
         let defaultImage = UIImage(named: "add-image")
         
-        guard let imageFromAddButton = addImageButton.imageView?.image, imageFromAddButton != defaultImage else {
+        guard let imageFromAddButton = addImageButton.currentImage, imageFromAddButton != defaultImage else {
             print("Jeff: The button's image cannot be used since it is the default image.")
             return
         }
         
-        if let imgData = UIImageJPEGRepresentation(imageFromAddButton, 0.2) {
+        uploadImageToFirebase(imageFromAddButton)
+        
+     }
+    
+    func uploadImageToFirebase(_ image: UIImage) {
+        if let imgData = UIImageJPEGRepresentation(image, 0.2) {
             // Create a unique ID for the image
-            let imgUid = NSUUID().uuidString
-            // Create some metadata
+            let imgUID = NSUUID().uuidString
+            // Create instance of Firebase Storage Metadata
             let metadata = FIRStorageMetadata()
             // Set the image type in the image's metadata
             metadata.contentType = "image/jpeg"
             
             // Upload the image to Firebase storage
-            DataService.ds.REF_POST_IMAGES.child(imgUid).put(imgData, metadata: metadata) {
-                (metadata, error) in
-                if error != nil {
-                    print("Jeff: Unable to upload image to Firebase storage.")
-                    // Provide an alert to user
-                } else {
-                    print("Jeff: Successfully uploaded image to Firebase storage.")
-                    
-                    // Retrieve the image's Firebase storage URL
-                    if let downloadURL = metadata?.downloadURL()?.absoluteString {
-                        print("Jeff: Couldn't get the image's Firebase storage URL.")
-                        // Create the post in Firebase and pass it the image's Firebase storage URL.
-                        self.postToFirebase(imgUrl: downloadURL)
-                    }
+            DataService.ds.REF_POST_IMAGES.child(imgUID).put(imgData, metadata: metadata) { (metadata, error) in
+                
+                guard let downloadURL = metadata?.downloadURL()?.absoluteString else {
+                    print("Unable to upload to Firebase storage: \(String(describing: error))")
+                    return
                 }
                 
+                print("Successfully uploaded image to Firebase storage.")
+                self.postToFirebase(imgUrl: downloadURL)
             }
         }
-        
     }
     
     func postToFirebase(imgUrl: String) {
@@ -145,8 +145,8 @@ class FeedVC: UIViewController, UITableViewDelegate, UINavigationControllerDeleg
         
         // Reset the caption text field and addImage button back to its default state
         captionTextField.text = ""
-//        addImageButton.imageView?.image = UIImage(named: "add-image")
         addImageButton.setImage(UIImage(named: "add-image"), for: .normal)
+        
     }
     
     //MARK: Image Picker Methods
