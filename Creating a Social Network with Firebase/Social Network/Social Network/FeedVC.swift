@@ -80,13 +80,6 @@ class FeedVC: UIViewController, UITableViewDelegate, UINavigationControllerDeleg
     @IBAction func addImagePressed(_ sender: UIButton) {
         imagePicker = UIImagePickerController()
         imagePicker.delegate = self
-        
-//        let alertController = UIAlertController(title: "Select an Option", message: "Select camera to take a photo or select from your Photo Library.", preferredStyle: .actionSheet)
-//        alertController.addAction(UIAlertAction(title: "Camera", style: .default, handler: launchCamera))
-//        alertController.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: launchPhotoLibrary))
-//        alertController.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: nil))
-//        present(alertController, animated: true, completion: nil)
-
         presentActionSheet()
     }
     
@@ -106,9 +99,9 @@ class FeedVC: UIViewController, UITableViewDelegate, UINavigationControllerDeleg
         }
         
         uploadImageToFirebase(imageFromAddButton)
-        
      }
     
+    //MARK: Firebase-related Methods
     func uploadImageToFirebase(_ image: UIImage) {
         if let imgData = UIImageJPEGRepresentation(image, 0.2) {
             // Create a unique ID for the image
@@ -147,11 +140,11 @@ class FeedVC: UIViewController, UITableViewDelegate, UINavigationControllerDeleg
         // Reset the caption text field and addImage button back to its default state
         captionTextField.text = ""
         addImageButton.setImage(UIImage(named: "add-image"), for: .normal)
-        
     }
     
+    //MARK: User Interaction
     func presentActionSheet() {
-        let alertController = UIAlertController(title: "Select an Option", message: "Select camera to take a photo or select from your Photo Library.", preferredStyle: .actionSheet)
+        let alertController = UIAlertController(title: "Select an Option", message: "Select Camera to take a photo or select from your Photo Library.", preferredStyle: .actionSheet)
         alertController.addAction(UIAlertAction(title: "Camera", style: .default, handler: launchCamera))
         alertController.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: launchPhotoLibrary))
         alertController.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: nil))
@@ -179,6 +172,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UINavigationControllerDeleg
         imagePicker.allowsEditing = true
         present(imagePicker, animated: true, completion: nil)
     }
+    
 }
 
 //MARK: Extensions
