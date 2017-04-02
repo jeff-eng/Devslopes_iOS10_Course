@@ -81,12 +81,13 @@ class FeedVC: UIViewController, UITableViewDelegate, UINavigationControllerDeleg
         imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         
-        let alertController = UIAlertController(title: "Select an Option", message: "Select camera to take a photo or select from your Photo Library.", preferredStyle: .actionSheet)
-        alertController.addAction(UIAlertAction(title: "Camera", style: .default, handler: launchCamera))
-        alertController.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: launchPhotoLibrary))
-        alertController.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: nil))
-        present(alertController, animated: true, completion: nil)
-        
+//        let alertController = UIAlertController(title: "Select an Option", message: "Select camera to take a photo or select from your Photo Library.", preferredStyle: .actionSheet)
+//        alertController.addAction(UIAlertAction(title: "Camera", style: .default, handler: launchCamera))
+//        alertController.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: launchPhotoLibrary))
+//        alertController.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: nil))
+//        present(alertController, animated: true, completion: nil)
+
+        presentActionSheet()
     }
     
     @IBAction func postButtonPressed(_ sender: UIButton) {
@@ -149,11 +150,21 @@ class FeedVC: UIViewController, UITableViewDelegate, UINavigationControllerDeleg
         
     }
     
+    func presentActionSheet() {
+        let alertController = UIAlertController(title: "Select an Option", message: "Select camera to take a photo or select from your Photo Library.", preferredStyle: .actionSheet)
+        alertController.addAction(UIAlertAction(title: "Camera", style: .default, handler: launchCamera))
+        alertController.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: launchPhotoLibrary))
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: nil))
+        present(alertController, animated: true, completion: nil)
+    }
+    
     //MARK: Image Picker Methods
     func launchCamera(action: UIAlertAction) {
         guard UIImagePickerController.isSourceTypeAvailable(.camera) else {
             let cameraUnavailableAlert = UIAlertController(title: "Alert", message: "Unable to detect a camera on your device.", preferredStyle: .alert)
-            cameraUnavailableAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            
+            cameraUnavailableAlert.addAction(UIAlertAction(title: "OK", style: .default) { (action) in self.presentActionSheet() })
+            
             present(cameraUnavailableAlert, animated: true, completion: nil)
             return
         }
