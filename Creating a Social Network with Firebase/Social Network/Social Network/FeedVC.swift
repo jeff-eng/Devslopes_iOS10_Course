@@ -33,6 +33,9 @@ class FeedVC: UIViewController, UITableViewDelegate, UINavigationControllerDeleg
         captionTextField.clearButtonMode = .whileEditing
         
         DataService.ds.REF_POSTS.observe(.value, with: { (snapshot) in
+            // Clear out the posts array
+            self.posts = []
+            
             guard let snapshotObjects = snapshot.children.allObjects as? [FIRDataSnapshot] else {
                 print("No objects from snapshot available.")
                 return
@@ -77,13 +80,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UINavigationControllerDeleg
     @IBAction func addImagePressed(_ sender: UIButton) {
         imagePicker = UIImagePickerController()
         imagePicker.delegate = self
-        
-        let alertController = UIAlertController(title: "Select an Option", message: "Select camera to take a photo or select from your Photo Library.", preferredStyle: .actionSheet)
-        alertController.addAction(UIAlertAction(title: "Camera", style: .default, handler: launchCamera))
-        alertController.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: launchPhotoLibrary))
-        alertController.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: nil))
-        present(alertController, animated: true, completion: nil)
-        
+        presentActionSheet()
     }
     
     @IBAction func postButtonPressed(_ sender: UIButton) {
@@ -96,38 +93,71 @@ class FeedVC: UIViewController, UITableViewDelegate, UINavigationControllerDeleg
         
         let defaultImage = UIImage(named: "add-image")
         
-        guard let imageFromAddButton = addImageButton.imageView?.image, imageFromAddButton != defaultImage else {
+        guard let imageFromAddButton = addImageButton.currentImage, imageFromAddButton != defaultImage else {
             print("Jeff: The button's image cannot be used since it is the default image.")
             return
         }
         
-        if let imgData = UIImageJPEGRepresentation(imageFromAddButton, 0.2) {
+        uploadImageToFirebase(imageFromAddButton)
+     }
+    
+    //MARK: Firebase-related Methods
+    func uploadImageToFirebase(_ image: UIImage) {
+        if let imgData = UIImageJPEGRepresentation(image, 0.2) {
             // Create a unique ID for the image
-            let imgUid = NSUUID().uuidString
-            // Create some metadata
+            let imgUID = NSUUID().uuidString
+            // Create instance of Firebase Storage Metadata
             let metadata = FIRStorageMetadata()
+            // Set the image type in the image's metadata
             metadata.contentType = "image/jpeg"
             
-            DataService.ds.REF_POST_IMAGES.child(imgUid).put(imgData, metadata: metadata) {
-                (metadata, error) in
-                if error != nil {
-                    print("Jeff: Unable to upload image to Firebase storage.")
-                    // Provide an alert to user
-                } else {
-                    print("Jeff: Successfully uploaded image to Firebase storage.")
-                    let downloadURL = metadata?.downloadURL()?.absoluteString
+            // Upload the image to Firebase storage
+            DataService.ds.REF_POST_IMAGES.child(imgUID).put(imgData, metadata: metadata) { (metadata, error) in
+                
+                guard let downloadURL = metadata?.downloadURL()?.absoluteString else {
+                    print("Unable to upload to Firebase storage: \(String(describing: error))")
+                    return
                 }
                 
+                print("Successfully uploaded image to Firebase storage.")
+                self.postToFirebase(imgUrl: downloadURL)
             }
         }
+    }
+    
+    func postToFirebase(imgUrl: String) {
+        let post: Dictionary<String, Any> = [
+            "caption": captionTextField.text!,
+            "imageUrl": imgUrl,
+            "likes": 0
+        ]
         
+        // Create a new post child location in Firebase and automatically assign it an ID.
+        let firebasePost = DataService.ds.REF_POSTS.childByAutoId()
+        // Set the values for this post node
+        firebasePost.setValue(post)
+        
+        // Reset the caption text field and addImage button back to its default state
+        captionTextField.text = ""
+        addImageButton.setImage(UIImage(named: "add-image"), for: .normal)
+    }
+    
+    //MARK: User Interaction
+    func presentActionSheet() {
+        let alertController = UIAlertController(title: "Select an Option", message: "Select Camera to take a photo or select from your Photo Library.", preferredStyle: .actionSheet)
+        alertController.addAction(UIAlertAction(title: "Camera", style: .default, handler: launchCamera))
+        alertController.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: launchPhotoLibrary))
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: nil))
+        present(alertController, animated: true, completion: nil)
     }
     
     //MARK: Image Picker Methods
     func launchCamera(action: UIAlertAction) {
         guard UIImagePickerController.isSourceTypeAvailable(.camera) else {
             let cameraUnavailableAlert = UIAlertController(title: "Alert", message: "Unable to detect a camera on your device.", preferredStyle: .alert)
-            cameraUnavailableAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            
+            cameraUnavailableAlert.addAction(UIAlertAction(title: "OK", style: .default) { (action) in self.presentActionSheet() })
+            
             present(cameraUnavailableAlert, animated: true, completion: nil)
             return
         }
@@ -142,6 +172,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UINavigationControllerDeleg
         imagePicker.allowsEditing = true
         present(imagePicker, animated: true, completion: nil)
     }
+    
 }
 
 //MARK: Extensions
