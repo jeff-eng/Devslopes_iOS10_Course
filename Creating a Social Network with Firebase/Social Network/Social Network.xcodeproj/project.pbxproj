@@ -25,6 +25,7 @@
 		95882F111E7A035500014FD2 /* StyleTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95882F101E7A035500014FD2 /* StyleTextField.swift */; };
 		95882F131E7A097000014FD2 /* StyleSignInButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95882F121E7A097000014FD2 /* StyleSignInButton.swift */; };
 		95BA294E1E8DD8C500C39C8B /* UIImageView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BA294D1E8DD8C500C39C8B /* UIImageView+Ext.swift */; };
+		95BA296B1E948ECC00C39C8B /* PostCell-Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BA296A1E948ECC00C39C8B /* PostCell-Test.swift */; };
 		95D4EB571E8C5ABD005439AA /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D4EB561E8C5ABD005439AA /* Post.swift */; };
 /* End PBXBuildFile section */
 
@@ -49,6 +50,7 @@
 		95882F101E7A035500014FD2 /* StyleTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleTextField.swift; sourceTree = "<group>"; };
 		95882F121E7A097000014FD2 /* StyleSignInButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleSignInButton.swift; sourceTree = "<group>"; };
 		95BA294D1E8DD8C500C39C8B /* UIImageView+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Ext.swift"; sourceTree = "<group>"; };
+		95BA296A1E948ECC00C39C8B /* PostCell-Test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PostCell-Test.swift"; sourceTree = "<group>"; };
 		95D4EB561E8C5ABD005439AA /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		AA9ABCF6EE68BB62210D31BA /* Pods_Social_Network.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Social_Network.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B429160B9003FF9146BF6B14 /* Pods-Social Network.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Social Network.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Social Network/Pods-Social Network.debug.xcconfig"; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 				95882F121E7A097000014FD2 /* StyleSignInButton.swift */,
 				95536BD11E81F51000F73082 /* CircleView.swift */,
 				954A9A491E85C97D006E471B /* PostCell.swift */,
+				95BA296A1E948ECC00C39C8B /* PostCell-Test.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -317,6 +320,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				95536BD21E81F51000F73082 /* CircleView.swift in Sources */,
+				95BA296B1E948ECC00C39C8B /* PostCell-Test.swift in Sources */,
 				95882F081E79ECC200014FD2 /* DropShadow.swift in Sources */,
 				9535C1071E89CEEC00089C8C /* KeyboardBehavior.swift in Sources */,
 				95882F0D1E79F6FD00014FD2 /* RoundButton.swift in Sources */,

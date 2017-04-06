@@ -27,6 +27,11 @@ class FeedVC: UIViewController, UITableViewDelegate, UINavigationControllerDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let memoryCapacity = 500 * 1024 * 1024
+        let diskCapacity = 500 * 1024 * 1024
+        let urlCache = URLCache(memoryCapacity: memoryCapacity, diskCapacity: diskCapacity, diskPath: "myDiskPath")
+        URLCache.shared = urlCache
+        
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -100,7 +105,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UINavigationControllerDeleg
         
         uploadImageToFirebase(imageFromAddButton)
      }
-    
+       
     //MARK: Firebase-related Methods
     func uploadImageToFirebase(_ image: UIImage) {
         if let imgData = UIImageJPEGRepresentation(image, 0.2) {
@@ -183,11 +188,9 @@ extension FeedVC: UITableViewDataSource {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell") as? PostCell else { return PostCell() }
         
-        if let imgFromCache = FeedVC.imageCache.object(forKey: post.imageUrl as NSString) {
-            cell.configureCell(post: post, image: imgFromCache)
-        } else {
-            cell.configureCell(post: posts[indexPath.row], image: nil)
-        }
+        cell.post = post
+        cell.configureCell(post)
+        
         return cell
     }
     

@@ -227,13 +227,17 @@
                                                                             <color key="textColor" red="0.0038497787900000002" green="0.54450172190000001" blue="0.7897998691" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
-                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty-heart" translatesAutoresizingMaskIntoConstraints="NO" id="pp9-nc-PCI">
+                                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0uG-zb-pSJ">
                                                                             <rect key="frame" x="267" y="0.0" width="60" height="60"/>
                                                                             <constraints>
-                                                                                <constraint firstAttribute="width" constant="60" id="8Jj-BA-SM8"/>
-                                                                                <constraint firstAttribute="height" constant="60" id="8qD-Nc-K3s"/>
+                                                                                <constraint firstAttribute="width" constant="60" id="8Fr-sw-PjZ"/>
+                                                                                <constraint firstAttribute="height" constant="60" id="PYt-AY-ZXo"/>
                                                                             </constraints>
-                                                                        </imageView>
+                                                                            <state key="normal" image="empty-heart"/>
+                                                                            <connections>
+                                                                                <action selector="likeButtonPressedWithSender:" destination="2bW-LT-0M9" eventType="touchUpInside" id="ZT5-BI-vJX"/>
+                                                                            </connections>
+                                                                        </button>
                                                                     </subviews>
                                                                 </stackView>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yqO-gd-ZkU">
@@ -291,6 +295,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="caption" destination="yxH-Gy-lqX" id="4cE-eM-k5v"/>
+                                            <outlet property="likeButton" destination="0uG-zb-pSJ" id="dp0-Av-nRu"/>
                                             <outlet property="likesLabel" destination="SU6-ia-Tfd" id="HD4-RY-FrC"/>
                                             <outlet property="postImage" destination="yqO-gd-ZkU" id="ScF-M6-IV9"/>
                                             <outlet property="profileImage" destination="8ui-hw-X8d" id="Wlj-w7-9t2"/>
