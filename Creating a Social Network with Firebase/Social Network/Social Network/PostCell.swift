@@ -11,10 +11,9 @@ import Firebase
 
 class PostCell: UITableViewCell {
 
-    var activityIndicator: UIActivityIndicatorView?
     var post: Post?
-    
     var likesRef: FIRDatabaseReference!
+    
     private let likedImage = UIImage(named: "filled-heart")
     private let notLikedImage = UIImage(named: "empty-heart")
     
@@ -41,6 +40,8 @@ class PostCell: UITableViewCell {
         if let image = FeedVC.imageCache.object(forKey: (imageUrl as NSString)) {
             postImage.image = image
         } else {
+            postImage.loadingImageIndicator(true)
+
             // Make network call to Firebase to download image, then save to cache
             let ref = FIRStorage.storage().reference(forURL: imageUrl)
             ref.data(withMaxSize: 2 * 1024 * 1024, completion: { (data, error) in
@@ -54,6 +55,7 @@ class PostCell: UITableViewCell {
                     
                     DispatchQueue.main.async(execute: {
                         self.postImage.image = image
+                        self.postImage.loadingImageIndicator(false)
                     })
                 }
             }).resume()

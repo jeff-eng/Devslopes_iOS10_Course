@@ -36,6 +36,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UINavigationControllerDeleg
         tableView.dataSource = self
         
         captionTextField.clearButtonMode = .whileEditing
+        captionTextField.autocapitalizationType = .sentences
         
         DataService.ds.REF_POSTS.observe(.value, with: { (snapshot) in
             // Clear out the posts array
@@ -104,11 +105,12 @@ class FeedVC: UIViewController, UITableViewDelegate, UINavigationControllerDeleg
         }
         
         uploadImageToFirebase(imageFromAddButton)
+        self.dismissKeyboard(sender: sender)
      }
        
     //MARK: Firebase-related Methods
     func uploadImageToFirebase(_ image: UIImage) {
-        if let imgData = UIImageJPEGRepresentation(image, 0.2) {
+        if let imgData = UIImageJPEGRepresentation(image, 0.5) {
             // Create a unique ID for the image
             let imgUID = NSUUID().uuidString
             // Create instance of Firebase Storage Metadata
