@@ -38,25 +38,8 @@ class FeedVC: UIViewController, UITableViewDelegate, UINavigationControllerDeleg
         captionTextField.clearButtonMode = .whileEditing
         captionTextField.autocapitalizationType = .sentences
         
-        DataService.ds.REF_POSTS.observe(.value, with: { (snapshot) in
-            // Clear out the posts array
-            self.posts = []
-            
-            guard let snapshotObjects = snapshot.children.allObjects as? [FIRDataSnapshot] else {
-                print("No objects from snapshot available.")
-                return
-            }
-            for snap in snapshotObjects {
-                print(" Here is your snap: \(snap)")
-                if let postDict = snap.value as? Dictionary<String, Any> {
-                    let key = snap.key
-                    print("This is your key: \(key)")
-                    let post = Post(postKey: key, postData: postDict)
-                    self.posts.append(post)
-                }
-            }
-            self.tableView.reloadData()
-        })
+        downloadPosts()
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -148,6 +131,28 @@ class FeedVC: UIViewController, UITableViewDelegate, UINavigationControllerDeleg
         // Reset the caption text field and addImage button back to its default state
         captionTextField.text = ""
         addImageButton.setImage(UIImage(named: "add-image"), for: .normal)
+    }
+    
+    func downloadPosts() {
+        DataService.ds.REF_POSTS.queryOrdered(byChild: "postedDate").observe(.value, with: { (snapshot) in
+            // Clear out the posts array
+            self.posts = []
+            
+            guard let snapshotObjects = snapshot.children.allObjects as? [FIRDataSnapshot] else {
+                print("No objects from snapshot available.")
+                return
+            }
+            for snap in snapshotObjects {
+                print(" Here is your snap: \(snap)")
+                if let postDict = snap.value as? Dictionary<String, Any> {
+                    let key = snap.key
+                    print("This is your key: \(key)")
+                    let post = Post(postKey: key, postData: postDict)
+                    self.posts.insert(post, at: 0)
+                }
+            }
+            self.tableView.reloadData()
+        })
     }
     
     //MARK: User Interaction
