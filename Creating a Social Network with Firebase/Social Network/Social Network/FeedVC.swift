@@ -16,6 +16,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UINavigationControllerDeleg
     var posts = [Post]()
     var imagePicker: UIImagePickerController!
     var keyboardDismissTapGesture: UIGestureRecognizer!
+    var refreshControl = UIRefreshControl()
     static var imageCache: NSCache<NSString, UIImage> = NSCache()
     
     //MARK: IBOutlets
@@ -37,6 +38,11 @@ class FeedVC: UIViewController, UITableViewDelegate, UINavigationControllerDeleg
         
         captionTextField.clearButtonMode = .whileEditing
         captionTextField.autocapitalizationType = .sentences
+        
+        self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        self.refreshControl.addTarget(self, action: #selector(downloadPosts), for: UIControlEvents.valueChanged)
+        
+        self.tableView.addSubview(refreshControl)
         
         downloadPosts()
 
@@ -151,6 +157,11 @@ class FeedVC: UIViewController, UITableViewDelegate, UINavigationControllerDeleg
                     self.posts.insert(post, at: 0)
                 }
             }
+            
+            if self.refreshControl.isRefreshing {
+                self.refreshControl.endRefreshing()
+            }
+            
             self.tableView.reloadData()
         })
     }
