@@ -136,7 +136,8 @@ class FeedVC: UIViewController, UITableViewDelegate, UINavigationControllerDeleg
         let post: Dictionary<String, Any> = [
             "caption": captionTextField.text!,
             "imageUrl": imgUrl,
-            "likes": 0
+            "likes": 0,
+            "postedDate": FIRServerValue.timestamp()
         ]
         
         // Create a new post child location in Firebase and automatically assign it an ID.
