@@ -21,7 +21,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="02I-5E-ucI" userLabel="PreviewView" customClass="AVCamPreviewView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="02I-5E-ucI" userLabel="PreviewView" customClass="AAPLPreviewView">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -34,6 +34,9 @@
                             <constraint firstAttribute="trailing" secondItem="02I-5E-ucI" secondAttribute="trailing" id="t0b-LQ-I0d"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="previewView" destination="02I-5E-ucI" id="PTk-Nq-0e7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
