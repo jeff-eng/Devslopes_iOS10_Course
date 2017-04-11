@@ -29,6 +29,7 @@
 		95BA29A01E9C423F00C39C8B /* AAPLCameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAPLCameraViewController.h; sourceTree = "<group>"; };
 		95BA29A11E9C423F00C39C8B /* AAPLCameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAPLCameraViewController.m; sourceTree = "<group>"; };
 		95BA29A41E9C42E900C39C8B /* DevChat-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DevChat-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
+		95FF48AA1E9D58B000273D6D /* AAPLCameraVCDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAPLCameraVCDelegate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +62,7 @@
 		95BA29791E98402B00C39C8B /* DevChat */ = {
 			isa = PBXGroup;
 			children = (
+				95FF48A71E9D572E00273D6D /* Protocols */,
 				95BA29941E984B9D00C39C8B /* View */,
 				95BA298C1E9840CD00C39C8B /* Controller */,
 				95BA297A1E98402B00C39C8B /* AppDelegate.swift */,
@@ -90,6 +92,14 @@
 				95BA299F1E9C423F00C39C8B /* AAPLPreviewView.m */,
 			);
 			name = View;
+			sourceTree = "<group>";
+		};
+		95FF48A71E9D572E00273D6D /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				95FF48AA1E9D58B000273D6D /* AAPLCameraVCDelegate.h */,
+			);
+			name = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
