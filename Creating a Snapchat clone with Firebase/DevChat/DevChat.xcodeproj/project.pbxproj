@@ -12,9 +12,8 @@
 		95BA29801E98402B00C39C8B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95BA297E1E98402B00C39C8B /* Main.storyboard */; };
 		95BA29821E98402B00C39C8B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95BA29811E98402B00C39C8B /* Assets.xcassets */; };
 		95BA29851E98402B00C39C8B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95BA29831E98402B00C39C8B /* LaunchScreen.storyboard */; };
-		95BA29921E984B8700C39C8B /* AVCamPreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 95BA298F1E984B8700C39C8B /* AVCamPreviewView.m */; };
-		95BA29931E984B8700C39C8B /* AVCamCameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95BA29911E984B8700C39C8B /* AVCamCameraViewController.m */; };
-		95BA29971E984C6E00C39C8B /* AVCamPhotoCaptureDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 95BA29961E984C6E00C39C8B /* AVCamPhotoCaptureDelegate.m */; };
+		95BA29A21E9C423F00C39C8B /* AAPLPreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 95BA299F1E9C423F00C39C8B /* AAPLPreviewView.m */; };
+		95BA29A31E9C423F00C39C8B /* AAPLCameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95BA29A11E9C423F00C39C8B /* AAPLCameraViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,13 +24,11 @@
 		95BA29811E98402B00C39C8B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		95BA29841E98402B00C39C8B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		95BA29861E98402B00C39C8B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		95BA298D1E984B8600C39C8B /* DevChat-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DevChat-Bridging-Header.h"; sourceTree = "<group>"; };
-		95BA298E1E984B8700C39C8B /* AVCamPreviewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVCamPreviewView.h; sourceTree = "<group>"; };
-		95BA298F1E984B8700C39C8B /* AVCamPreviewView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVCamPreviewView.m; sourceTree = "<group>"; };
-		95BA29901E984B8700C39C8B /* AVCamCameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVCamCameraViewController.h; sourceTree = "<group>"; };
-		95BA29911E984B8700C39C8B /* AVCamCameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVCamCameraViewController.m; sourceTree = "<group>"; };
-		95BA29951E984C6E00C39C8B /* AVCamPhotoCaptureDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVCamPhotoCaptureDelegate.h; sourceTree = "<group>"; };
-		95BA29961E984C6E00C39C8B /* AVCamPhotoCaptureDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVCamPhotoCaptureDelegate.m; sourceTree = "<group>"; };
+		95BA299E1E9C423F00C39C8B /* AAPLPreviewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAPLPreviewView.h; sourceTree = "<group>"; };
+		95BA299F1E9C423F00C39C8B /* AAPLPreviewView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAPLPreviewView.m; sourceTree = "<group>"; };
+		95BA29A01E9C423F00C39C8B /* AAPLCameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAPLCameraViewController.h; sourceTree = "<group>"; };
+		95BA29A11E9C423F00C39C8B /* AAPLCameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAPLCameraViewController.m; sourceTree = "<group>"; };
+		95BA29A41E9C42E900C39C8B /* DevChat-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DevChat-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,13 +63,12 @@
 			children = (
 				95BA29941E984B9D00C39C8B /* View */,
 				95BA298C1E9840CD00C39C8B /* Controller */,
-				95BA29951E984C6E00C39C8B /* AVCamPhotoCaptureDelegate.h */,
-				95BA29961E984C6E00C39C8B /* AVCamPhotoCaptureDelegate.m */,
 				95BA297A1E98402B00C39C8B /* AppDelegate.swift */,
 				95BA297E1E98402B00C39C8B /* Main.storyboard */,
 				95BA29811E98402B00C39C8B /* Assets.xcassets */,
 				95BA29831E98402B00C39C8B /* LaunchScreen.storyboard */,
 				95BA29861E98402B00C39C8B /* Info.plist */,
+				95BA29A41E9C42E900C39C8B /* DevChat-Bridging-Header.h */,
 			);
 			path = DevChat;
 			sourceTree = "<group>";
@@ -80,10 +76,9 @@
 		95BA298C1E9840CD00C39C8B /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				95BA29901E984B8700C39C8B /* AVCamCameraViewController.h */,
-				95BA29911E984B8700C39C8B /* AVCamCameraViewController.m */,
+				95BA29A01E9C423F00C39C8B /* AAPLCameraViewController.h */,
+				95BA29A11E9C423F00C39C8B /* AAPLCameraViewController.m */,
 				95BA297C1E98402B00C39C8B /* CameraVC.swift */,
-				95BA298D1E984B8600C39C8B /* DevChat-Bridging-Header.h */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -91,8 +86,8 @@
 		95BA29941E984B9D00C39C8B /* View */ = {
 			isa = PBXGroup;
 			children = (
-				95BA298E1E984B8700C39C8B /* AVCamPreviewView.h */,
-				95BA298F1E984B8700C39C8B /* AVCamPreviewView.m */,
+				95BA299E1E9C423F00C39C8B /* AAPLPreviewView.h */,
+				95BA299F1E9C423F00C39C8B /* AAPLPreviewView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -171,11 +166,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				95BA29971E984C6E00C39C8B /* AVCamPhotoCaptureDelegate.m in Sources */,
 				95BA297D1E98402B00C39C8B /* CameraVC.swift in Sources */,
 				95BA297B1E98402B00C39C8B /* AppDelegate.swift in Sources */,
-				95BA29931E984B8700C39C8B /* AVCamCameraViewController.m in Sources */,
-				95BA29921E984B8700C39C8B /* AVCamPreviewView.m in Sources */,
+				95BA29A21E9C423F00C39C8B /* AAPLPreviewView.m in Sources */,
+				95BA29A31E9C423F00C39C8B /* AAPLCameraViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,7 +300,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jeffeng.DevChat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "DevChat/DevChat-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "DevChat-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
@@ -322,7 +316,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jeffeng.DevChat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "DevChat/DevChat-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "DevChat-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -346,6 +340,7 @@
 				95BA298B1E98402B00C39C8B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
