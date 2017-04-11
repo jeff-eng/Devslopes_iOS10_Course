@@ -20,6 +20,12 @@ class CameraVC: AAPLCameraViewController {
 
     }
 
+    @IBAction func recordButtonPressed(_ sender: UIButton) {
+        toggleMovieRecording()
+    }
 
+    @IBAction func changeCameraButtonPressed(_ sender: UIButton) {
+        changeCamera()
+    }
 }
 
