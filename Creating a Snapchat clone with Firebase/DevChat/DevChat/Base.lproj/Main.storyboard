@@ -64,16 +64,17 @@
                         <outlet property="cameraButton" destination="FzB-Xv-xgc" id="HVo-cr-LIs"/>
                         <outlet property="previewView" destination="02I-5E-ucI" id="PTk-Nq-0e7"/>
                         <outlet property="recordButton" destination="TTu-tK-9yy" id="vie-5u-jql"/>
+                        <segue destination="aoW-ws-QnH" kind="presentation" identifier="LoginVC" id="v83-Gp-AqA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="32.799999999999997" y="37.331334332833585"/>
         </scene>
-        <!--View Controller-->
+        <!--LoginVC-->
         <scene sceneID="Wd5-ol-kFq">
             <objects>
-                <viewController id="aoW-ws-QnH" sceneMemberID="viewController">
+                <viewController id="aoW-ws-QnH" customClass="LoginVC" customModule="DevChat" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="s07-vt-tvi"/>
                         <viewControllerLayoutGuide type="bottom" id="b4j-VJ-jtT"/>
@@ -111,7 +112,7 @@
                                     <constraint firstAttribute="height" constant="70" id="V1B-lq-0f8"/>
                                 </constraints>
                             </stackView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="youremail@domain.com" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GP0-K4-eDP" customClass="RoundTextField" customModule="DevChat" customModuleProvider="target">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="your_email@domain.com" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GP0-K4-eDP" customClass="RoundTextField" customModule="DevChat" customModuleProvider="target">
                                 <rect key="frame" x="55" y="235" width="265" height="42"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="265" id="UpO-03-gHS"/>
