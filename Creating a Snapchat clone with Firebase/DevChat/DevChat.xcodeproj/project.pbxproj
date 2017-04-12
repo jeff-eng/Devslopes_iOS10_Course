@@ -17,6 +17,7 @@
 		95BA29851E98402B00C39C8B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95BA29831E98402B00C39C8B /* LaunchScreen.storyboard */; };
 		95BA29A21E9C423F00C39C8B /* AAPLPreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 95BA299F1E9C423F00C39C8B /* AAPLPreviewView.m */; };
 		95BA29A31E9C423F00C39C8B /* AAPLCameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95BA29A11E9C423F00C39C8B /* AAPLCameraViewController.m */; };
+		95DF38291E9EAD9F005F1469 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DF38281E9EAD9F005F1469 /* LoginVC.swift */; };
 		95FF48AC1E9D84FE00273D6D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 95FF48AB1E9D84FE00273D6D /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
@@ -36,6 +37,7 @@
 		95BA29A01E9C423F00C39C8B /* AAPLCameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAPLCameraViewController.h; sourceTree = "<group>"; };
 		95BA29A11E9C423F00C39C8B /* AAPLCameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAPLCameraViewController.m; sourceTree = "<group>"; };
 		95BA29A41E9C42E900C39C8B /* DevChat-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DevChat-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
+		95DF38281E9EAD9F005F1469 /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		95FF48AA1E9D58B000273D6D /* AAPLCameraVCDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAPLCameraVCDelegate.h; sourceTree = "<group>"; };
 		95FF48AB1E9D84FE00273D6D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B8638342667F40CE381F6FD8 /* Pods-DevChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DevChat.release.xcconfig"; path = "Pods/Target Support Files/Pods-DevChat/Pods-DevChat.release.xcconfig"; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 				95BA29A01E9C423F00C39C8B /* AAPLCameraViewController.h */,
 				95BA29A11E9C423F00C39C8B /* AAPLCameraViewController.m */,
 				95BA297C1E98402B00C39C8B /* CameraVC.swift */,
+				95DF38281E9EAD9F005F1469 /* LoginVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -263,6 +266,7 @@
 			files = (
 				95BA297D1E98402B00C39C8B /* CameraVC.swift in Sources */,
 				9583C0B61E9DCB2E007EBA84 /* RoundedButton.swift in Sources */,
+				95DF38291E9EAD9F005F1469 /* LoginVC.swift in Sources */,
 				95BA297B1E98402B00C39C8B /* AppDelegate.swift in Sources */,
 				9583C0B41E9DBE8C007EBA84 /* RoundTextField.swift in Sources */,
 				95BA29A21E9C423F00C39C8B /* AAPLPreviewView.m in Sources */,
