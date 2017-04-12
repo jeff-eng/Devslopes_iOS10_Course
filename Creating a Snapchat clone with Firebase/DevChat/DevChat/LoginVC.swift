@@ -30,7 +30,7 @@ class LoginVC: UIViewController {
         }
         
         // Call the login service
-        
+        AuthService.instance.login(email, password)
         
     }
 
