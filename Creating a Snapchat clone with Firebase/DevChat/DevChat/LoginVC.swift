@@ -9,12 +9,17 @@
 import UIKit
 
 class LoginVC: UIViewController {
+    @IBOutlet weak var emailTextField: RoundTextField!
+    @IBOutlet weak var passwordTextField: RoundTextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
     }
 
+    @IBAction func loginButtonPressed(_ sender: Any) {
+        
+    }
 
 
 }
