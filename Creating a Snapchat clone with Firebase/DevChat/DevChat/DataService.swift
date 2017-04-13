@@ -20,9 +20,14 @@ class DataService {
         return FIRDatabase.database().reference()
     }
     
+    var usersRef: FIRDatabaseReference {
+        return mainRef.child(GlobalConstants.FIR_CHILD_USERS)
+    }
+    
     func saveUser(uid: String) {
         let profile: Dictionary<String, Any> = ["firstName": "", "lastName": ""]
+        
         // Accessing the database and drilling down all the way to the profile node where we set the values for firstName and lastName keys
-        mainRef.child("users").child(uid).child("profile").setValue(profile)
+        mainRef.child(GlobalConstants.FIR_CHILD_USERS).child(uid).child(GlobalConstants.FIR_CHILD_PROFILE).setValue(profile)
     }
 }
