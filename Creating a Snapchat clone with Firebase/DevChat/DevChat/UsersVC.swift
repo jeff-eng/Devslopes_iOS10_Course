@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseDatabase
+import FirebaseStorage
 
 class UsersVC: UIViewController {
 
@@ -16,12 +17,35 @@ class UsersVC: UIViewController {
     fileprivate var users = [User]()
     fileprivate var selectedUsers = Dictionary<String, User>()
     
+    fileprivate var _snapData: Data?
+    fileprivate var _videoURL: URL?
+    
+    var snapData: Data? {
+        get {
+            return _snapData
+        }
+        set {
+            _snapData = newValue
+        }
+    }
+
+    var videoURL: URL? {
+        get {
+            return _videoURL
+        }
+        set {
+            _videoURL = newValue
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         tableView.delegate = self
         tableView.dataSource = self
         tableView.allowsMultipleSelection = true
+        
+        GlobalConstants.DISABLE_SEND_BUTTON(barButtonItem: navigationItem)
         
         downloadUsers()
     }
@@ -67,6 +91,9 @@ extension UsersVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // Enable the send button when user selects a table view row
+        GlobalConstants.ENABLE_SEND_BUTTON(barButtonItem: navigationItem)
+        
         // TODO: Refactor this code
         let cell = tableView.cellForRow(at: indexPath) as! UserCell
         cell.setCheckmark(selected: true)
@@ -80,6 +107,10 @@ extension UsersVC: UITableViewDataSource {
         cell.setCheckmark(selected: false)
         let user = users[indexPath.row]
         selectedUsers[user.uid] = nil
+        
+        if selectedUsers.count <= 0 {
+            GlobalConstants.DISABLE_SEND_BUTTON(barButtonItem: navigationItem)
+        }
     }
     
     
@@ -87,7 +118,41 @@ extension UsersVC: UITableViewDataSource {
         return users.count
     }
     
-    
+    @IBAction func sendPRButtonPressed(sender: Any) {
+        // TODO: Move this logic into the model
+        if let url = _videoURL {
+            let videoName = "\(NSUUID().uuidString)\(url)"
+            let ref = DataService.instance.videoStorageRef.child(videoName)
+            
+            _ = ref.putFile(url, metadata: nil, completion: { (metadata, error) in
+                guard error != nil else {
+                    let downloadURL = metadata?.downloadURL()
+                    // save this URL somewhere
+                    print("URL: \(String(describing: downloadURL))")
+                    // dismiss the VC
+                    self.dismiss(animated: true, completion: nil)
+                    
+                    return
+                }
+                print("Error uploading video: \(String(describing: error?.localizedDescription))")
+            })
+        } else if let snap = _snapData {
+            let ref = DataService.instance.imagesStorageRef.child("\(NSUUID().uuidString).jpg")
+            
+            _ = ref.put(snap, metadata: nil, completion: { (metadata, error) in
+                guard error != nil else {
+                    let downloadURL = metadata!.downloadURL()
+                    // save this URL somewhere
+                    print("URL: \(String(describing: downloadURL))")
+                    // dismiss the VC
+                    self.dismiss(animated: true, completion: nil)
+                    
+                    return
+                }
+                print("Error uploading snapshot: \(String(describing: error?.localizedDescription))")
+            })
+        }
+    }
     
 }
 

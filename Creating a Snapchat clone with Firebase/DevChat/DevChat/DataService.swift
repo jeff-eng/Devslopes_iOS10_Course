@@ -8,6 +8,7 @@
 
 import Foundation
 import FirebaseDatabase
+import FirebaseStorage
 
 class DataService {
     private static let _instance = DataService()
@@ -22,6 +23,18 @@ class DataService {
     
     var usersRef: FIRDatabaseReference {
         return mainRef.child(GlobalConstants.FIR_CHILD_USERS)
+    }
+    
+    var mainStorageRef: FIRStorageReference {
+        return FIRStorage.storage().reference(forURL: GlobalConstants.FIR_STORAGE_REF_URL)
+    }
+    
+    var imagesStorageRef: FIRStorageReference {
+        return mainStorageRef.child(GlobalConstants.FIR_STORAGE_REF_CHILD_IMAGES)
+    }
+    
+    var videoStorageRef: FIRStorageReference {
+        return mainStorageRef.child(GlobalConstants.FIR_STORAGE_REF_CHILD_VIDEOS)
     }
     
     func saveUser(uid: String) {
