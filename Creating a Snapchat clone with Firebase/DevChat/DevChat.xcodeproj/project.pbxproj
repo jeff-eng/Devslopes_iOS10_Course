@@ -10,6 +10,10 @@
 		6F8169F1C8CAABB5DA1C3248 /* Pods_DevChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEBEC5B2A62DDEDEF867686B /* Pods_DevChat.framework */; };
 		9583C0B41E9DBE8C007EBA84 /* RoundTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9583C0B31E9DBE8C007EBA84 /* RoundTextField.swift */; };
 		9583C0B61E9DCB2E007EBA84 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9583C0B51E9DCB2E007EBA84 /* RoundedButton.swift */; };
+		9586C9BC1E9FFF860071F785 /* UsersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9586C9BB1E9FFF860071F785 /* UsersVC.swift */; };
+		9586C9BE1EA0058D0071F785 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9586C9BD1EA0058D0071F785 /* UserCell.swift */; };
+		9586C9C11EA023FC0071F785 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9586C9C01EA023FC0071F785 /* User.swift */; };
+		9586C9C41EA0291B0071F785 /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9586C9C31EA0291B0071F785 /* GlobalConstants.swift */; };
 		95BA297B1E98402B00C39C8B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BA297A1E98402B00C39C8B /* AppDelegate.swift */; };
 		95BA297D1E98402B00C39C8B /* CameraVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BA297C1E98402B00C39C8B /* CameraVC.swift */; };
 		95BA29801E98402B00C39C8B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95BA297E1E98402B00C39C8B /* Main.storyboard */; };
@@ -27,6 +31,10 @@
 		5D9CE785A9B5F71F67EECD3A /* Pods-DevChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DevChat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DevChat/Pods-DevChat.debug.xcconfig"; sourceTree = "<group>"; };
 		9583C0B31E9DBE8C007EBA84 /* RoundTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundTextField.swift; sourceTree = "<group>"; };
 		9583C0B51E9DCB2E007EBA84 /* RoundedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
+		9586C9BB1E9FFF860071F785 /* UsersVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersVC.swift; sourceTree = "<group>"; };
+		9586C9BD1EA0058D0071F785 /* UserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
+		9586C9C01EA023FC0071F785 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		9586C9C31EA0291B0071F785 /* GlobalConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
 		95BA29771E98402B00C39C8B /* DevChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DevChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95BA297A1E98402B00C39C8B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		95BA297C1E98402B00C39C8B /* CameraVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraVC.swift; sourceTree = "<group>"; };
@@ -68,6 +76,22 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		9586C9BF1EA023E40071F785 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9586C9C01EA023FC0071F785 /* User.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		9586C9C21EA028FE0071F785 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				9586C9C31EA0291B0071F785 /* GlobalConstants.swift */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
 		95BA296E1E98402B00C39C8B = {
 			isa = PBXGroup;
 			children = (
@@ -89,8 +113,10 @@
 		95BA29791E98402B00C39C8B /* DevChat */ = {
 			isa = PBXGroup;
 			children = (
+				9586C9C21EA028FE0071F785 /* Utilities */,
 				95DF382A1E9EBBA7005F1469 /* Services */,
 				95FF48A71E9D572E00273D6D /* Protocols */,
+				9586C9BF1EA023E40071F785 /* Model */,
 				95BA29941E984B9D00C39C8B /* View */,
 				95BA298C1E9840CD00C39C8B /* Controller */,
 				95BA297A1E98402B00C39C8B /* AppDelegate.swift */,
@@ -111,6 +137,7 @@
 				95BA29A11E9C423F00C39C8B /* AAPLCameraViewController.m */,
 				95BA297C1E98402B00C39C8B /* CameraVC.swift */,
 				95DF38281E9EAD9F005F1469 /* LoginVC.swift */,
+				9586C9BB1E9FFF860071F785 /* UsersVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -122,6 +149,7 @@
 				95BA299F1E9C423F00C39C8B /* AAPLPreviewView.m */,
 				9583C0B31E9DBE8C007EBA84 /* RoundTextField.swift */,
 				9583C0B51E9DCB2E007EBA84 /* RoundedButton.swift */,
+				9586C9BD1EA0058D0071F785 /* UserCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -283,9 +311,13 @@
 				9583C0B61E9DCB2E007EBA84 /* RoundedButton.swift in Sources */,
 				95DF38291E9EAD9F005F1469 /* LoginVC.swift in Sources */,
 				95BA297B1E98402B00C39C8B /* AppDelegate.swift in Sources */,
+				9586C9BC1E9FFF860071F785 /* UsersVC.swift in Sources */,
 				9583C0B41E9DBE8C007EBA84 /* RoundTextField.swift in Sources */,
+				9586C9C41EA0291B0071F785 /* GlobalConstants.swift in Sources */,
 				95BA29A21E9C423F00C39C8B /* AAPLPreviewView.m in Sources */,
+				9586C9C11EA023FC0071F785 /* User.swift in Sources */,
 				95BA29A31E9C423F00C39C8B /* AAPLCameraViewController.m in Sources */,
+				9586C9BE1EA0058D0071F785 /* UserCell.swift in Sources */,
 				95DF382C1E9EBBBA005F1469 /* AuthService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
