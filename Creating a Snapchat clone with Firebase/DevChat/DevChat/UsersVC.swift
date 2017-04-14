@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseDatabase
 import FirebaseStorage
+import FirebaseAuth
 
 class UsersVC: UIViewController {
 
@@ -72,6 +73,48 @@ class UsersVC: UIViewController {
         
     }
 
+    @IBAction func sendPRButtonPressed(sender: Any) {
+        // TODO: Move this logic into the model
+        if let url = _videoURL {
+            let videoName = "\(NSUUID().uuidString)\(url)"
+            let ref = DataService.instance.videoStorageRef.child(videoName)
+            
+            _ = ref.putFile(url, metadata: nil, completion: { (metadata, error) in
+                if error != nil {
+                    print("Error uploading video: \(String(describing: error?.localizedDescription))")
+                } else {
+                    let downloadURL = metadata?.downloadURL()
+                    // save this URL somewhere
+                    DataService.instance.sendMediaPullRequest(senderUID: FIRAuth.auth()!.currentUser!.uid, sendingTo: self.selectedUsers, mediaURL: downloadURL!, textSnippet: "Sample Snippet")
+                    print("URL: \(String(describing: downloadURL))")
+                }
+
+            })
+            // dismiss the VC
+            self.dismiss(animated: true, completion: nil)
+            
+        } else if let snap = _snapData {
+            let ref = DataService.instance.imagesStorageRef.child("\(NSUUID().uuidString).jpg")
+            
+            _ = ref.put(snap, metadata: nil, completion: { (metadata, error) in
+                if error != nil {
+                    print("Error uploading snapshot: \(String(describing: error?.localizedDescription))")
+                } else {
+                    let downloadURL = metadata!.downloadURL()
+                    
+                    // save this URL somewhere
+                    DataService.instance.sendMediaPullRequest(senderUID: FIRAuth.auth()!.currentUser!.uid, sendingTo: self.selectedUsers, mediaURL: downloadURL!, textSnippet: "Sample Snippet")
+                    
+                    print("URL: \(String(describing: downloadURL))")
+                    
+                }
+
+            })
+            // dismiss the VC
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
+    
 }
 
 extension UsersVC: UITableViewDataSource {
@@ -116,42 +159,6 @@ extension UsersVC: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return users.count
-    }
-    
-    @IBAction func sendPRButtonPressed(sender: Any) {
-        // TODO: Move this logic into the model
-        if let url = _videoURL {
-            let videoName = "\(NSUUID().uuidString)\(url)"
-            let ref = DataService.instance.videoStorageRef.child(videoName)
-            
-            _ = ref.putFile(url, metadata: nil, completion: { (metadata, error) in
-                guard error != nil else {
-                    let downloadURL = metadata?.downloadURL()
-                    // save this URL somewhere
-                    print("URL: \(String(describing: downloadURL))")
-                    // dismiss the VC
-                    self.dismiss(animated: true, completion: nil)
-                    
-                    return
-                }
-                print("Error uploading video: \(String(describing: error?.localizedDescription))")
-            })
-        } else if let snap = _snapData {
-            let ref = DataService.instance.imagesStorageRef.child("\(NSUUID().uuidString).jpg")
-            
-            _ = ref.put(snap, metadata: nil, completion: { (metadata, error) in
-                guard error != nil else {
-                    let downloadURL = metadata!.downloadURL()
-                    // save this URL somewhere
-                    print("URL: \(String(describing: downloadURL))")
-                    // dismiss the VC
-                    self.dismiss(animated: true, completion: nil)
-                    
-                    return
-                }
-                print("Error uploading snapshot: \(String(describing: error?.localizedDescription))")
-            })
-        }
     }
     
 }

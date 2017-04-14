@@ -43,4 +43,34 @@ class DataService {
         // Accessing the database and drilling down all the way to the profile node where we set the values for firstName and lastName keys
         mainRef.child(GlobalConstants.FIR_CHILD_USERS).child(uid).child(GlobalConstants.FIR_CHILD_PROFILE).setValue(profile)
     }
+    
+    func sendMediaPullRequest(senderUID: String, sendingTo: Dictionary<String, User>, mediaURL: URL, textSnippet: String? = nil) {
+        
+//        var uids = [String]()
+//        for uid in sendingTo.keys {
+//            uids.append(uid)
+//        }
+        let uids = Array(sendingTo.keys)
+        
+        let pr: Dictionary<String, Any> = ["mediaURL": mediaURL.absoluteString,
+                                           "userID": senderUID,
+                                           "openCount": 0,
+                                           "recipients": uids]
+        
+        mainRef.child("pullRequests").childByAutoId().setValue(pr)
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }
