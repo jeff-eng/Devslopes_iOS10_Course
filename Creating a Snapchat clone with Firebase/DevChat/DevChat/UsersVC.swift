@@ -26,6 +26,7 @@ class UsersVC: UIViewController {
         downloadUsers()
     }
 
+    // TODO: Move this into the model User struct and do the parsing there
     func downloadUsers() {
         
         DataService.instance.usersRef.observeSingleEvent(of: .value) { (snapshot: FIRDataSnapshot) in
