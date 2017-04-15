@@ -8,6 +8,7 @@
 
 import Foundation
 import FirebaseDatabase
+import FirebaseStorage
 
 class DataService {
     private static let _instance = DataService()
@@ -24,10 +25,52 @@ class DataService {
         return mainRef.child(GlobalConstants.FIR_CHILD_USERS)
     }
     
+    var mainStorageRef: FIRStorageReference {
+        return FIRStorage.storage().reference(forURL: GlobalConstants.FIR_STORAGE_REF_URL)
+    }
+    
+    var imagesStorageRef: FIRStorageReference {
+        return mainStorageRef.child(GlobalConstants.FIR_STORAGE_REF_CHILD_IMAGES)
+    }
+    
+    var videoStorageRef: FIRStorageReference {
+        return mainStorageRef.child(GlobalConstants.FIR_STORAGE_REF_CHILD_VIDEOS)
+    }
+    
     func saveUser(uid: String) {
         let profile: Dictionary<String, Any> = ["firstName": "", "lastName": ""]
         
         // Accessing the database and drilling down all the way to the profile node where we set the values for firstName and lastName keys
         mainRef.child(GlobalConstants.FIR_CHILD_USERS).child(uid).child(GlobalConstants.FIR_CHILD_PROFILE).setValue(profile)
     }
+    
+    func sendMediaPullRequest(senderUID: String, sendingTo: Dictionary<String, User>, mediaURL: URL, textSnippet: String? = nil) {
+        
+//        var uids = [String]()
+//        for uid in sendingTo.keys {
+//            uids.append(uid)
+//        }
+        let uids = Array(sendingTo.keys)
+        
+        let pr: Dictionary<String, Any> = ["mediaURL": mediaURL.absoluteString,
+                                           "userID": senderUID,
+                                           "openCount": 0,
+                                           "recipients": uids]
+        
+        mainRef.child("pullRequests").childByAutoId().setValue(pr)
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }
