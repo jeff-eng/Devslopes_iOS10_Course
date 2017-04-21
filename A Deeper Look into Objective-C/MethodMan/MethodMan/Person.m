@@ -10,4 +10,13 @@
 
 @implementation Person
 
+- (void)speakName {
+    NSLog(@"My name is Khan!");
+}
+
+// Static Type method on the Person class uses the +
++ (void)stateSpecies {
+    NSLog(@"I am a human...");
+}
+
 @end

@@ -10,4 +10,8 @@
 
 @interface Person : NSObject
 
+- (void)speakName;
+// Type method on the Person class uses the +
++ (void)stateSpecies;
+
 @end

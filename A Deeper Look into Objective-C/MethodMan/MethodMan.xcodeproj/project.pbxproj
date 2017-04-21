@@ -13,6 +13,7 @@
 		95CEFA711EAA6BB300C299CA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95CEFA6F1EAA6BB300C299CA /* Main.storyboard */; };
 		95CEFA731EAA6BB300C299CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95CEFA721EAA6BB300C299CA /* Assets.xcassets */; };
 		95CEFA761EAA6BB300C299CA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95CEFA741EAA6BB300C299CA /* LaunchScreen.storyboard */; };
+		95CEFA7F1EAA83C500C299CA /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 95CEFA7E1EAA83C500C299CA /* Person.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,8 @@
 		95CEFA721EAA6BB300C299CA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		95CEFA751EAA6BB300C299CA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		95CEFA771EAA6BB300C299CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		95CEFA7D1EAA83C500C299CA /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
+		95CEFA7E1EAA83C500C299CA /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +70,8 @@
 				95CEFA741EAA6BB300C299CA /* LaunchScreen.storyboard */,
 				95CEFA771EAA6BB300C299CA /* Info.plist */,
 				95CEFA661EAA6BB300C299CA /* Supporting Files */,
+				95CEFA7D1EAA83C500C299CA /* Person.h */,
+				95CEFA7E1EAA83C500C299CA /* Person.m */,
 			);
 			path = MethodMan;
 			sourceTree = "<group>";
@@ -110,7 +115,7 @@
 				TargetAttributes = {
 					95CEFA621EAA6BB300C299CA = {
 						CreatedOnToolsVersion = 8.3.2;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -152,6 +157,7 @@
 			files = (
 				95CEFA6E1EAA6BB300C299CA /* ViewController.m in Sources */,
 				95CEFA6B1EAA6BB300C299CA /* AppDelegate.m in Sources */,
+				95CEFA7F1EAA83C500C299CA /* Person.m in Sources */,
 				95CEFA681EAA6BB300C299CA /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -274,10 +280,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = MethodMan/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jeffeng.MethodMan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -285,10 +293,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = MethodMan/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jeffeng.MethodMan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};
