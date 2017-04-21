@@ -110,7 +110,6 @@
 				TargetAttributes = {
 					95220F2A1EA7C36100391593 = {
 						CreatedOnToolsVersion = 8.3.1;
-						DevelopmentTeam = C24EPTZG2L;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -275,7 +274,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = C24EPTZG2L;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = HelloOBJC/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jeffeng.HelloOBJC;
@@ -287,7 +286,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = C24EPTZG2L;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = HelloOBJC/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jeffeng.HelloOBJC;
@@ -314,6 +313,7 @@
 				95220F441EA7C36100391593 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
