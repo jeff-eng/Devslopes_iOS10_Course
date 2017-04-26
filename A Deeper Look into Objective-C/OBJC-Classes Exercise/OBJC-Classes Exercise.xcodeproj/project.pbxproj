@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		95C8B60F1EB1046200176898 /* XYZShoutingPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C8B60E1EB1046200176898 /* XYZShoutingPerson.m */; };
 		95DF3FAE1EAEA13000CABB1D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 95DF3FAD1EAEA13000CABB1D /* main.m */; };
 		95DF3FB61EAEA1B000CABB1D /* XYZPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 95DF3FB51EAEA1B000CABB1D /* XYZPerson.m */; };
 /* End PBXBuildFile section */
@@ -24,6 +25,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		95C8B60D1EB1046200176898 /* XYZShoutingPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYZShoutingPerson.h; sourceTree = "<group>"; };
+		95C8B60E1EB1046200176898 /* XYZShoutingPerson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYZShoutingPerson.m; sourceTree = "<group>"; };
 		95DF3FAA1EAEA13000CABB1D /* OBJC-Classes Exercise */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "OBJC-Classes Exercise"; sourceTree = BUILT_PRODUCTS_DIR; };
 		95DF3FAD1EAEA13000CABB1D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		95DF3FB41EAEA1B000CABB1D /* XYZPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYZPerson.h; sourceTree = "<group>"; };
@@ -63,6 +66,8 @@
 				95DF3FAD1EAEA13000CABB1D /* main.m */,
 				95DF3FB41EAEA1B000CABB1D /* XYZPerson.h */,
 				95DF3FB51EAEA1B000CABB1D /* XYZPerson.m */,
+				95C8B60D1EB1046200176898 /* XYZShoutingPerson.h */,
+				95C8B60E1EB1046200176898 /* XYZShoutingPerson.m */,
 			);
 			path = "OBJC-Classes Exercise";
 			sourceTree = "<group>";
@@ -125,6 +130,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				95DF3FB61EAEA1B000CABB1D /* XYZPerson.m in Sources */,
+				95C8B60F1EB1046200176898 /* XYZShoutingPerson.m in Sources */,
 				95DF3FAE1EAEA13000CABB1D /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -254,6 +260,7 @@
 				95DF3FB31EAEA13000CABB1D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
