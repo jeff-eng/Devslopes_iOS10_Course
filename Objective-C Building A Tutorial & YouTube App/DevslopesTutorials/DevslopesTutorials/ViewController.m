@@ -18,6 +18,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [[HTTPService instance] getTutorials:^(NSDictionary * _Nullable dataDict, NSString * _Nullable errMessage) {
+        if (dataDict) {
+            NSLog(@"Dictionary: %@", dataDict.debugDescription);
+        } else if (errMessage) {
+            // Display alert to user
+        }
+    }];
 }
 
 
@@ -25,6 +32,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 
 @end
