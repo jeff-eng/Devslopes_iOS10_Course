@@ -33,7 +33,7 @@
                                 <rect key="frame" x="16" y="38" width="343" height="629"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="112" id="RBF-23-8cl" customClass="VideoCell">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="main" rowHeight="112" id="RBF-23-8cl" customClass="VideoCell">
                                         <rect key="frame" x="0.0" y="28" width="343" height="112"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RBF-23-8cl" id="fyg-BA-JxZ">
@@ -110,6 +110,9 @@
                             <constraint firstItem="ZrI-b8-d91" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="18" id="ueG-9s-Wtq"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="ZrI-b8-d91" id="bHH-u2-nZf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
