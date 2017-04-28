@@ -16,6 +16,7 @@
 		95C8B6361EB2432800176898 /* HTTPService.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C8B6351EB2432800176898 /* HTTPService.m */; };
 		95C8B63A1EB29EF500176898 /* VideoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C8B6391EB29EF500176898 /* VideoCell.m */; };
 		95C8B63E1EB2B43500176898 /* Video.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C8B63D1EB2B43500176898 /* Video.m */; };
+		95C8B6421EB3975A00176898 /* VideoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C8B6411EB3975A00176898 /* VideoVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,8 @@
 		95C8B6391EB29EF500176898 /* VideoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCell.m; sourceTree = "<group>"; };
 		95C8B63C1EB2B43500176898 /* Video.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Video.h; sourceTree = "<group>"; };
 		95C8B63D1EB2B43500176898 /* Video.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Video.m; sourceTree = "<group>"; };
+		95C8B6401EB3975A00176898 /* VideoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoVC.h; sourceTree = "<group>"; };
+		95C8B6411EB3975A00176898 /* VideoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,13 +70,12 @@
 		95C8B61B1EB2425300176898 /* DevslopesTutorials */ = {
 			isa = PBXGroup;
 			children = (
+				95C8B63F1EB396AB00176898 /* Controller */,
 				95C8B63B1EB2B40E00176898 /* Model */,
 				95C8B6371EB29ECB00176898 /* View */,
 				95C8B6331EB242CF00176898 /* Services */,
 				95C8B61F1EB2425300176898 /* AppDelegate.h */,
 				95C8B6201EB2425300176898 /* AppDelegate.m */,
-				95C8B6221EB2425300176898 /* ViewController.h */,
-				95C8B6231EB2425300176898 /* ViewController.m */,
 				95C8B6251EB2425300176898 /* Main.storyboard */,
 				95C8B6281EB2425300176898 /* Assets.xcassets */,
 				95C8B62A1EB2425300176898 /* LaunchScreen.storyboard */,
@@ -116,6 +118,17 @@
 				95C8B63D1EB2B43500176898 /* Video.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		95C8B63F1EB396AB00176898 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				95C8B6221EB2425300176898 /* ViewController.h */,
+				95C8B6231EB2425300176898 /* ViewController.m */,
+				95C8B6401EB3975A00176898 /* VideoVC.h */,
+				95C8B6411EB3975A00176898 /* VideoVC.m */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -194,6 +207,7 @@
 				95C8B63A1EB29EF500176898 /* VideoCell.m in Sources */,
 				95C8B6361EB2432800176898 /* HTTPService.m in Sources */,
 				95C8B63E1EB2B43500176898 /* Video.m in Sources */,
+				95C8B6421EB3975A00176898 /* VideoVC.m in Sources */,
 				95C8B6211EB2425300176898 /* AppDelegate.m in Sources */,
 				95C8B61E1EB2425300176898 /* main.m in Sources */,
 			);
