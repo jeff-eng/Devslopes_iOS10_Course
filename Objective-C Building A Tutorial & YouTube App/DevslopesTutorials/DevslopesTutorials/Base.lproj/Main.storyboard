@@ -112,7 +112,7 @@
                     </view>
                     <connections>
                         <outlet property="tableView" destination="ZrI-b8-d91" id="bHH-u2-nZf"/>
-                        <segue destination="hw6-od-Nvz" kind="presentation" id="yaA-24-lWQ"/>
+                        <segue destination="hw6-od-Nvz" kind="presentation" identifier="VideoVC" id="yaA-24-lWQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
